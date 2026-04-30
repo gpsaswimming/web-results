@@ -80,7 +80,7 @@ def generate_index_for_single_directory(current_path, subdirs, files, repo_root)
         print(f"  → Display: {dir_name}")
 
         # Combine subdirectories and files, then sort alphabetically
-        all_items = sorted(subdirs + files, key=str.lower)
+        all_items = sorted(subdirs + files, key=str.lower, reverse=True)
 
         # Filter out index.html and repo management files
         all_items = [item for item in all_items if item != OUTPUT_FILE and item not in EXCLUDE_FILES]
