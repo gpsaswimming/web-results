@@ -1,0 +1,35 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.fseventsd
+
+# Claude Code
+.claude/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Bulk processor working directories
+incoming/
+preview/
+temp/
+temp_*/
+
+# Raw meet files
+*.sd3
+*.SD3
+*.zip
+*.ZIP
+
+# Logs
+*.log
+
+# Legacy n8n bulk upload artifact
+last_updated.txt
+
+# Generated files — built at deploy time, never committed
+index.html

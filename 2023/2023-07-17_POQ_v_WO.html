@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2023 Poquoson Barracudas v. Willow Oaks Stingrays</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Favicon Links -->
+    <link rel="apple-touch-icon" sizes="180x180" href="https://d1nmxxg9d5tdo.cloudfront.net/875/files/apple-touch-icon.png?1651502524">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://d1nmxxg9d5tdo.cloudfront.net/875/files/favicon-32x32.png?1651502547">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://d1nmxxg9d5tdo.cloudfront.net/875/files/favicon-16x16.png?1651502535">
+    <link rel="manifest" href="https://d1nmxxg9d5tdo.cloudfront.net/875/files/site.webmanifest?1651502732">
+    <link rel="mask-icon" href="https://d1nmxxg9d5tdo.cloudfront.net/875/files/safari-pinned-tab.svg?1651502580" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background-color: #f0f2f5;
+            padding: 1rem;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1.5rem;
+            background-color: #fff;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border-radius: 0.75rem;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #002366;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            border-radius: 0.75rem 0.75rem 0 0;
+            margin: -1.5rem -1.5rem 2rem -1.5rem;
+        }
+
+        header img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 1rem;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            margin: 0;
+        }
+
+        /* Typography */
+        h2 {
+            color: #002366;
+            font-size: 1.875rem;
+            font-weight: 700;
+            text-align: center;
+            margin-top: 2.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 3px solid #d9242b;
+        }
+
+        h2:first-of-type {
+            margin-top: 0;
+        }
+
+        /* Table Styles */
+        .table-wrapper {
+            overflow-x: auto;
+            margin-bottom: 2rem;
+        }
+
+        .table-wrapper.narrow {
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875rem;
+        }
+
+        th, td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            vertical-align: top;
+            border: 1px solid #e5e7eb;
+        }
+
+        /* Center-aligned columns */
+        .center {
+            text-align: center;
+        }
+
+        thead {
+            background-color: #002366;
+            color: white;
+        }
+
+        thead th {
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+        }
+
+        tbody tr {
+            background-color: #ffffff;
+        }
+
+        tbody tr:nth-child(odd) {
+            background-color: #f9fafb;
+        }
+
+        tbody tr:hover {
+            background-color: #f3f4f6;
+        }
+
+        tbody td {
+            color: #374151;
+        }
+
+        tbody td:first-child {
+            font-weight: 500;
+            color: #1f2937;
+        }
+
+        /* Footer Styles */
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e5e7eb;
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background-color: white;
+                padding: 0;
+            }
+
+            .container {
+                box-shadow: none;
+                padding: 0;
+                max-width: 100%;
+            }
+
+            header {
+                margin: 0 0 2rem 0;
+            }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            body {
+                padding: 0.5rem;
+            }
+
+            .container {
+                padding: 1rem;
+                border-radius: 0.5rem;
+            }
+
+            header {
+                padding: 1.5rem 1rem;
+                margin: -1rem -1rem 1.5rem -1rem;
+            }
+
+            header img {
+                width: 64px;
+                height: 64px;
+            }
+
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+                margin-top: 2rem;
+            }
+
+            table {
+                font-size: 0.75rem;
+            }
+
+            th, td {
+                padding: 0.5rem;
+            }
+
+            thead th {
+                font-size: 0.625rem;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            header h1 {
+                font-size: 1.875rem;
+            }
+        }
+
+        @media (min-width: 1025px) {
+            header img {
+                width: 100px;
+                height: 100px;
+            }
+
+            header h1 {
+                font-size: 2.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="https://publicity.gpsaswimming.org/assets/gpsa_logo.png" alt="GPSA Logo" onerror="this.onerror=null; this.src='https://placehold.co/100x100/002366/FFFFFF?text=GPSA';">
+            <h1>2023 Poquoson Barracudas v. Willow Oaks Stingrays</h1>
+        </header>
+
+        <main>
+            <h2>Team Scores</h2>
+            <div class="table-wrapper narrow">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Team</th>
+                            <th>Score</th>
+                        </tr>
+                    </thead>
+                    <tbody><tr><td>Poquoson Barracudas</td><td>268.0</td></tr>
+<tr><td>Willow Oaks Stingrays</td><td>226.0</td></tr></tbody>
+                </table>
+            </div>
+
+            <h2>Event Winners</h2>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="center">Event</th>
+                            <th>Description</th>
+                            <th>Winner(s)</th>
+                            <th class="center">Team</th>
+                            <th class="center">Time</th>
+                        </tr>
+                    </thead>
+                    <tbody><tr><td class="center">1</td><td>Boys 10 & Under 100m IM</td><td>Humble, Owen</td><td class="center">WO</td><td class="center">01:55.32</td></tr>
+<tr><td class="center">2</td><td>Girls 10 & Under 100m IM</td><td>Kawecki, Daisy</td><td class="center">POQ</td><td class="center">01:30.22</td></tr>
+<tr><td class="center">3</td><td>Boys 11-12 100m IM</td><td>DiCarlo, Dominick</td><td class="center">WO</td><td class="center">01:33.00</td></tr>
+<tr><td class="center">4</td><td>Girls 11-12 100m IM</td><td>Wick, Abigail</td><td class="center">POQ</td><td class="center">01:31.44</td></tr>
+<tr><td class="center">5</td><td>Boys 13-14 100m IM</td><td>Birkle, Jack R</td><td class="center">POQ</td><td class="center">01:24.22</td></tr>
+<tr><td class="center">6</td><td>Girls 13-14 100m IM</td><td>Isaac, Lucia</td><td class="center">WO</td><td class="center">01:22.00</td></tr>
+<tr><td class="center">7</td><td>Boys 15-18 100m IM</td><td>Isely, Gabriel</td><td class="center">POQ</td><td class="center">01:05.69</td></tr>
+<tr><td class="center">8</td><td>Girls 15-18 100m IM</td><td>Kanak, Elizabeth A</td><td class="center">WO</td><td class="center">01:23.97</td></tr>
+<tr><td class="center">9</td><td>Boys 6 & Under 25m Freestyle</td><td>Spaeth, Andrew</td><td class="center">POQ</td><td class="center">00:27.50</td></tr>
+<tr><td class="center">10</td><td>Girls 6 & Under 25m Freestyle</td><td>Hoang, Emma C</td><td class="center">WO</td><td class="center">00:31.37</td></tr>
+<tr><td class="center">11</td><td>Boys 7-8 25m Freestyle</td><td>Rule, James</td><td class="center">POQ</td><td class="center">00:19.00</td></tr>
+<tr><td class="center">12</td><td>Girls 7-8 25m Freestyle</td><td>Fenn, Adeline</td><td class="center">WO</td><td class="center">00:21.88</td></tr>
+<tr><td class="center">13</td><td>Boys 9-10 50m Freestyle</td><td>O'Brien, Tytus E</td><td class="center">POQ</td><td class="center">00:40.97</td></tr>
+<tr><td class="center">14</td><td>Girls 9-10 50m Freestyle</td><td>Mansilla, Chloe G</td><td class="center">POQ</td><td class="center">00:41.44</td></tr>
+<tr><td class="center">15</td><td>Boys 11-12 50m Freestyle</td><td>Brown, Luc</td><td class="center">POQ</td><td class="center">00:40.12</td></tr>
+<tr><td class="center">16</td><td>Girls 11-12 50m Freestyle</td><td>Wick, Abigail</td><td class="center">POQ</td><td class="center">00:34.94</td></tr>
+<tr><td class="center">17</td><td>Boys 13-14 50m Freestyle</td><td>Sebring, Tyler D</td><td class="center">POQ</td><td class="center">00:35.13</td></tr>
+<tr><td class="center">18</td><td>Girls 13-14 50m Freestyle</td><td>Mansilla, Sophia A</td><td class="center">POQ</td><td class="center">00:32.90</td></tr>
+<tr><td class="center">19</td><td>Boys 15-18 50m Freestyle</td><td>DeVries, Clint A.</td><td class="center">POQ</td><td class="center">00:25.94</td></tr>
+<tr><td class="center">20</td><td>Girls 15-18 50m Freestyle</td><td>Johnson, Skylar A</td><td class="center">WO</td><td class="center">00:31.09</td></tr>
+<tr><td class="center">21</td><td>Boys 8 & Under 25m Breaststroke</td><td>Kulzer, Hudson</td><td class="center">WO</td><td class="center">00:28.15</td></tr>
+<tr><td class="center">22</td><td>Girls 8 & Under 25m Breaststroke</td><td>Fenn, Adeline</td><td class="center">WO</td><td class="center">00:32.00</td></tr>
+<tr><td class="center">23</td><td>Boys 9-10 50m Breaststroke</td><td>Brown, Landon</td><td class="center">POQ</td><td class="center">01:00.72</td></tr>
+<tr><td class="center">24</td><td>Girls 9-10 50m Breaststroke</td><td>Kawecki, Daisy</td><td class="center">POQ</td><td class="center">00:52.62</td></tr>
+<tr><td class="center">25</td><td>Boys 11-12 50m Breaststroke</td><td>Brooks, Logan</td><td class="center">WO</td><td class="center">00:52.78</td></tr>
+<tr><td class="center">26</td><td>Girls 11-12 50m Breaststroke</td><td>Lassiter, Jillian F</td><td class="center">POQ</td><td class="center">00:54.53</td></tr>
+<tr><td class="center">27</td><td>Boys 13-14 50m Breaststroke</td><td>Birkle, Jack R</td><td class="center">POQ</td><td class="center">00:41.94</td></tr>
+<tr><td class="center">28</td><td>Girls 13-14 50m Breaststroke</td><td>Kawecki, Lillian</td><td class="center">POQ</td><td class="center">00:41.65</td></tr>
+<tr><td class="center">29</td><td>Boys 15-18 50m Breaststroke</td><td>Isely, Gabriel</td><td class="center">POQ</td><td class="center">00:34.50</td></tr>
+<tr><td class="center">30</td><td>Girls 15-18 50m Breaststroke</td><td>Johnson, Skylar A</td><td class="center">WO</td><td class="center">00:41.16</td></tr>
+<tr><td class="center">31</td><td>Boys 6 & Under 25m Backstroke</td><td>Spaeth, Andrew</td><td class="center">POQ</td><td class="center">00:36.87</td></tr>
+<tr><td class="center">32</td><td>Girls 6 & Under 25m Backstroke</td><td>Hoang, Emma C</td><td class="center">WO</td><td class="center">00:38.91</td></tr>
+<tr><td class="center">33</td><td>Boys 7-8 25m Backstroke</td><td>O'Brien, Thorin E</td><td class="center">POQ</td><td class="center">00:26.84</td></tr>
+<tr><td class="center">34</td><td>Girls 7-8 25m Backstroke</td><td>Melillo, Charlotte</td><td class="center">WO</td><td class="center">00:28.16</td></tr>
+<tr><td class="center">35</td><td>Boys 9-10 50m Backstroke</td><td>Humble, Owen</td><td class="center">WO</td><td class="center">00:52.38</td></tr>
+<tr><td class="center">36</td><td>Girls 9-10 50m Backstroke</td><td>Mansilla, Chloe G</td><td class="center">POQ</td><td class="center">00:51.03</td></tr>
+<tr><td class="center">37</td><td>Boys 11-12 50m Backstroke</td><td>Brown, Luc</td><td class="center">POQ</td><td class="center">00:45.28</td></tr>
+<tr><td class="center">38</td><td>Girls 11-12 50m Backstroke</td><td>Humble, Lily</td><td class="center">WO</td><td class="center">00:47.34</td></tr>
+<tr><td class="center">39</td><td>Boys 13-14 50m Backstroke</td><td>DiCarlo, Dominick</td><td class="center">WO</td><td class="center">00:41.06</td></tr>
+<tr><td class="center">40</td><td>Girls 13-14 50m Backstroke</td><td>Kawecki, Lillian</td><td class="center">POQ</td><td class="center">00:35.56</td></tr>
+<tr><td class="center">41</td><td>Boys 15-18 50m Backstroke</td><td>DeVries, Clint A.</td><td class="center">POQ</td><td class="center">00:31.78</td></tr>
+<tr><td class="center">42</td><td>Girls 15-18 50m Backstroke</td><td>Johnson, Skylar A</td><td class="center">WO</td><td class="center">00:35.43</td></tr>
+<tr><td class="center">43</td><td>Boys 8 & Under 25m Butterfly</td><td>Kulzer, Hudson</td><td class="center">WO</td><td class="center">00:22.93</td></tr>
+<tr><td class="center">44</td><td>Girls 8 & Under 25m Butterfly</td><td>Melillo, Charlotte</td><td class="center">WO</td><td class="center">00:28.28</td></tr>
+<tr><td class="center">45</td><td>Boys 9-10 50m Butterfly</td><td>O'Brien, Tytus E</td><td class="center">POQ</td><td class="center">00:50.84</td></tr>
+<tr><td class="center">46</td><td>Girls 9-10 50m Butterfly</td><td>Kawecki, Daisy</td><td class="center">POQ</td><td class="center">00:39.97</td></tr>
+<tr><td class="center">47</td><td>Boys 11-12 50m Butterfly</td><td>DiCarlo, Dominick</td><td class="center">WO</td><td class="center">00:42.03</td></tr>
+<tr><td class="center">48</td><td>Girls 11-12 50m Butterfly</td><td>Wick, Abigail</td><td class="center">POQ</td><td class="center">00:41.47</td></tr>
+<tr><td class="center">49</td><td>Boys 13-14 50m Butterfly</td><td>Birkle, Jack R</td><td class="center">POQ</td><td class="center">00:36.69</td></tr>
+<tr><td class="center">50</td><td>Girls 13-14 50m Butterfly</td><td>Kawecki, Lillian</td><td class="center">POQ</td><td class="center">00:33.03</td></tr>
+<tr><td class="center">51</td><td>Boys 15-18 50m Butterfly</td><td>Elsayyad, Ali H</td><td class="center">WO</td><td class="center">00:28.65</td></tr>
+<tr><td class="center">52</td><td>Girls 15-18 50m Butterfly</td><td>Kanak, Elizabeth A</td><td class="center">WO</td><td class="center">00:34.84</td></tr>
+<tr><td class="center">53</td><td>Boys 200m Medley Relay</td><td>Haga, Ryver A<br>Brooks, Logan<br>Warren, William L<br>Kulzer, Hudson</td><td class="center">WO</td><td class="center">03:04.88</td></tr>
+<tr><td class="center">54</td><td>Girls 200m Medley Relay</td><td>Kawecki, Daisy<br>Dymond, Mya M<br>Kawecki, Lillian<br>Wick, Abigail</td><td class="center">POQ</td><td class="center">02:34.78</td></tr>
+<tr><td class="center">55</td><td>Boys 200m Freestyle Relay</td><td>DiCarlo, Dominick<br>Humble, Owen<br>Elsayyad, Ali H<br>Melillo, Aaron</td><td class="center">WO</td><td class="center">02:24.40</td></tr>
+<tr><td class="center">56</td><td>Girls 200m Freestyle Relay</td><td>Mansilla, Chloe G<br>Lassiter, Jillian F<br>Holcomb, Kathryn<br>Mansilla, Sophia A</td><td class="center">POQ</td><td class="center">02:28.34</td></tr></tbody>
+                </table>
+            </div>
+        </main>
+
+        <footer>
+            <p>Results generated on 2025-11-14 with the GPSA Bulk Meet Results Processor v1.0</p>
+        </footer>
+    </div>
+</body>
+</html>

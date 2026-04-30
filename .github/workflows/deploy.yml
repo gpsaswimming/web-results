@@ -1,0 +1,63 @@
+name: Deploy to Cloudflare Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  deployments: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install beautifulsoup4
+
+      - name: Generate directory indexes
+        run: python scripts/generate_index.py .
+
+      - name: Build season archives
+        run: |
+          for CSV in $(find . -maxdepth 2 -name "divisions.csv" | sort); do
+            YEAR_DIR=$(dirname "$CSV")
+            YEAR=$(basename "$YEAR_DIR")
+
+            HTML_COUNT=$(find "$YEAR_DIR" -maxdepth 1 -name "*.html" ! -name "index.html" | wc -l)
+            if [ "$HTML_COUNT" -eq 0 ]; then
+              echo "Skipping $YEAR — no result files yet"
+              continue
+            fi
+
+            echo "Building archive for $YEAR ($HTML_COUNT results)..."
+            python scripts/build_season_index.py \
+              -i "$YEAR_DIR" \
+              -o "$YEAR_DIR" \
+              --non-interactive \
+              --verbose
+          done
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: gpsa-results
+          directory: .
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}

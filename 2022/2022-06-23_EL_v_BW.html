@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2022 Elizabeth Lake Tideriders v. Beechwood Sharks</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Favicon Links -->
+    <link rel="apple-touch-icon" sizes="180x180" href="https://d1nmxxg9d5tdo.cloudfront.net/875/files/apple-touch-icon.png?1651502524">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://d1nmxxg9d5tdo.cloudfront.net/875/files/favicon-32x32.png?1651502547">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://d1nmxxg9d5tdo.cloudfront.net/875/files/favicon-16x16.png?1651502535">
+    <link rel="manifest" href="https://d1nmxxg9d5tdo.cloudfront.net/875/files/site.webmanifest?1651502732">
+    <link rel="mask-icon" href="https://d1nmxxg9d5tdo.cloudfront.net/875/files/safari-pinned-tab.svg?1651502580" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background-color: #f0f2f5;
+            padding: 1rem;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1.5rem;
+            background-color: #fff;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border-radius: 0.75rem;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #002366;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            border-radius: 0.75rem 0.75rem 0 0;
+            margin: -1.5rem -1.5rem 2rem -1.5rem;
+        }
+
+        header img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 1rem;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            margin: 0;
+        }
+
+        /* Typography */
+        h2 {
+            color: #002366;
+            font-size: 1.875rem;
+            font-weight: 700;
+            text-align: center;
+            margin-top: 2.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 3px solid #d9242b;
+        }
+
+        h2:first-of-type {
+            margin-top: 0;
+        }
+
+        /* Table Styles */
+        .table-wrapper {
+            overflow-x: auto;
+            margin-bottom: 2rem;
+        }
+
+        .table-wrapper.narrow {
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875rem;
+        }
+
+        th, td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            vertical-align: top;
+            border: 1px solid #e5e7eb;
+        }
+
+        /* Center-aligned columns */
+        .center {
+            text-align: center;
+        }
+
+        thead {
+            background-color: #002366;
+            color: white;
+        }
+
+        thead th {
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+        }
+
+        tbody tr {
+            background-color: #ffffff;
+        }
+
+        tbody tr:nth-child(odd) {
+            background-color: #f9fafb;
+        }
+
+        tbody tr:hover {
+            background-color: #f3f4f6;
+        }
+
+        tbody td {
+            color: #374151;
+        }
+
+        tbody td:first-child {
+            font-weight: 500;
+            color: #1f2937;
+        }
+
+        /* Footer Styles */
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e5e7eb;
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background-color: white;
+                padding: 0;
+            }
+
+            .container {
+                box-shadow: none;
+                padding: 0;
+                max-width: 100%;
+            }
+
+            header {
+                margin: 0 0 2rem 0;
+            }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            body {
+                padding: 0.5rem;
+            }
+
+            .container {
+                padding: 1rem;
+                border-radius: 0.5rem;
+            }
+
+            header {
+                padding: 1.5rem 1rem;
+                margin: -1rem -1rem 1.5rem -1rem;
+            }
+
+            header img {
+                width: 64px;
+                height: 64px;
+            }
+
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+                margin-top: 2rem;
+            }
+
+            table {
+                font-size: 0.75rem;
+            }
+
+            th, td {
+                padding: 0.5rem;
+            }
+
+            thead th {
+                font-size: 0.625rem;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            header h1 {
+                font-size: 1.875rem;
+            }
+        }
+
+        @media (min-width: 1025px) {
+            header img {
+                width: 100px;
+                height: 100px;
+            }
+
+            header h1 {
+                font-size: 2.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="https://publicity.gpsaswimming.org/assets/gpsa_logo.png" alt="GPSA Logo" onerror="this.onerror=null; this.src='https://placehold.co/100x100/002366/FFFFFF?text=GPSA';">
+            <h1>2022 Elizabeth Lake Tideriders v. Beechwood Sharks</h1>
+        </header>
+
+        <main>
+            
+            <h2>Team Scores</h2>
+            <div class="table-wrapper narrow">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Team</th>
+                            <th>Score</th>
+                        </tr>
+                    </thead>
+                    <tbody><tr><td>Beechwood Sharks</td><td>215.0</td></tr><tr><td>Elizabeth Lake Tideriders</td><td>106.0</td></tr></tbody>
+                </table>
+            </div>
+
+            <h2>Event Winners</h2>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="center">Event</th>
+                            <th>Description</th>
+                            <th>Winner(s)</th>
+                            <th class="center">Team</th>
+                            <th class="center">Time</th>
+                        </tr>
+                    </thead>
+                    <tbody><tr><td class="center">2</td><td>Girls 9-10 100m IM</td><td>Guthrie, Sara E</td><td class="center">BW</td><td class="center">01:57.09</td></tr><tr><td class="center">3</td><td>Boys 11-12 100m IM</td><td>Campbell, James</td><td class="center">BW</td><td class="center">01:55.56</td></tr><tr><td class="center">4</td><td>Girls 11-12 100m IM</td><td>Davis, Amaya</td><td class="center">BW</td><td class="center">02:16.94</td></tr><tr><td class="center">5</td><td>Boys 13-14 100m IM</td><td>Guthrie, Connor L</td><td class="center">BW</td><td class="center">01:51.04</td></tr><tr><td class="center">6</td><td>Girls 13-14 100m IM</td><td>Davis, Aliyah</td><td class="center">BW</td><td class="center">01:36.15</td></tr><tr><td class="center">8</td><td>Girls 15-18 100m IM</td><td>Clements, Cicilia A</td><td class="center">BW</td><td class="center">01:42.82</td></tr><tr><td class="center">9</td><td>Boys 6 & Under 25m Freestyle</td><td>Miller, Julian J</td><td class="center">EL</td><td class="center">00:43.00</td></tr><tr><td class="center">11</td><td>Boys 7-8 25m Freestyle</td><td>Smith, Parker</td><td class="center">BW</td><td class="center">00:48.09</td></tr><tr><td class="center">12</td><td>Girls 7-8 25m Freestyle</td><td>Polito, Nora</td><td class="center">BW</td><td class="center">00:22.75</td></tr><tr><td class="center">13</td><td>Boys 9-10 50m Freestyle</td><td>Robertson, Marshall W</td><td class="center">EL</td><td class="center">00:55.00</td></tr><tr><td class="center">14</td><td>Girls 9-10 50m Freestyle</td><td>Guthrie, Sara E</td><td class="center">BW</td><td class="center">00:42.25</td></tr><tr><td class="center">15</td><td>Boys 11-12 50m Freestyle</td><td>Guthrie, Connor L</td><td class="center">BW</td><td class="center">00:39.88</td></tr><tr><td class="center">16</td><td>Girls 11-12 50m Freestyle</td><td>Ramirez, Isabella</td><td class="center">EL</td><td class="center">00:40.70</td></tr><tr><td class="center">17</td><td>Boys 13-14 50m Freestyle</td><td>Cunningham, Reid</td><td class="center">EL</td><td class="center">00:38.14</td></tr><tr><td class="center">18</td><td>Girls 13-14 50m Freestyle</td><td>Williamson, Kylee S</td><td class="center">BW</td><td class="center">00:48.85</td></tr><tr><td class="center">19</td><td>Boys 15-18 50m Freestyle</td><td>Pultz, Mac</td><td class="center">BW</td><td class="center">00:40.03</td></tr><tr><td class="center">20</td><td>Girls 15-18 50m Freestyle</td><td>Strohl, Jae`lyn P</td><td class="center">EL</td><td class="center">00:34.57</td></tr><tr><td class="center">22</td><td>Girls 7-8 25m Breaststroke</td><td>Polito, Nora</td><td class="center">BW</td><td class="center">00:35.85</td></tr><tr><td class="center">25</td><td>Boys 11-12 50m Breaststroke</td><td>Campbell, James</td><td class="center">BW</td><td class="center">01:05.35</td></tr><tr><td class="center">26</td><td>Girls 11-12 50m Breaststroke</td><td>McAnuff, Hayden O</td><td class="center">EL</td><td class="center">01:05.51</td></tr><tr><td class="center">27</td><td>Boys 13-14 50m Breaststroke</td><td>Cunningham, Reid</td><td class="center">EL</td><td class="center">00:49.58</td></tr><tr><td class="center">28</td><td>Girls 13-14 50m Breaststroke</td><td>Davis, Aliyah</td><td class="center">BW</td><td class="center">00:53.32</td></tr><tr><td class="center">29</td><td>Boys 15-18 50m Breaststroke</td><td>Pultz, Mac</td><td class="center">BW</td><td class="center">01:09.25</td></tr><tr><td class="center">30</td><td>Girls 15-18 50m Breaststroke</td><td>Harris, Sophia</td><td class="center">EL</td><td class="center">00:50.84</td></tr><tr><td class="center">33</td><td>Boys 7-8 25m Backstroke</td><td>Smith, Parker</td><td class="center">BW</td><td class="center">01:00.88</td></tr><tr><td class="center">34</td><td>Girls 7-8 25m Backstroke</td><td>Polito, Nora</td><td class="center">BW</td><td class="center">00:26.12</td></tr><tr><td class="center">35</td><td>Boys 9-10 50m Backstroke</td><td>Smith, Peyton</td><td class="center">BW</td><td class="center">02:18.50</td></tr><tr><td class="center">36</td><td>Girls 9-10 50m Backstroke</td><td>Guthrie, Sara E</td><td class="center">BW</td><td class="center">00:51.63</td></tr><tr><td class="center">37</td><td>Boys 11-12 50m Backstroke</td><td>Guthrie, Connor L</td><td class="center">BW</td><td class="center">00:48.00</td></tr><tr><td class="center">38</td><td>Girls 11-12 50m Backstroke</td><td>Davis, Rebecca</td><td class="center">BW</td><td class="center">01:11.69</td></tr><tr><td class="center">39</td><td>Boys 13-14 50m Backstroke</td><td>Cunningham, Reid</td><td class="center">EL</td><td class="center">00:47.37</td></tr><tr><td class="center">40</td><td>Girls 13-14 50m Backstroke</td><td>Davis, Aliyah</td><td class="center">BW</td><td class="center">00:49.56</td></tr><tr><td class="center">41</td><td>Boys 15-18 50m Backstroke</td><td>Pultz, Mac</td><td class="center">BW</td><td class="center">01:00.91</td></tr><tr><td class="center">42</td><td>Girls 15-18 50m Backstroke</td><td>Strohl, Jae`lyn P</td><td class="center">EL</td><td class="center">00:44.81</td></tr><tr><td class="center">44</td><td>Girls 7-8 25m Butterfly</td><td>Polito, Nora</td><td class="center">BW</td><td class="center">00:29.32</td></tr><tr><td class="center">46</td><td>Girls 9-10 50m Butterfly</td><td>Guthrie, Sara E</td><td class="center">BW</td><td class="center">00:54.62</td></tr><tr><td class="center">47</td><td>Boys 11-12 50m Butterfly</td><td>Campbell, James</td><td class="center">BW</td><td class="center">00:56.75</td></tr><tr><td class="center">48</td><td>Girls 11-12 50m Butterfly</td><td>Ramirez, Isabella</td><td class="center">EL</td><td class="center">00:53.13</td></tr><tr><td class="center">49</td><td>Boys 13-14 50m Butterfly</td><td>Guthrie, Connor L</td><td class="center">BW</td><td class="center">00:51.78</td></tr><tr><td class="center">50</td><td>Girls 13-14 50m Butterfly</td><td>Davis, Aliyah</td><td class="center">BW</td><td class="center">00:40.50</td></tr><tr><td class="center">51</td><td>Boys 15-18 50m Butterfly</td><td>Hofler, Landon</td><td class="center">BW</td><td class="center">01:22.54</td></tr><tr><td class="center">52</td><td>Girls 15-18 50m Butterfly</td><td>Strohl, Jae`lyn P</td><td class="center">EL</td><td class="center">00:42.44</td></tr><tr><td class="center">55</td><td>Boys 200m Freestyle Relay</td><td>Mitchell, Alexander N<br>McAnuff, Eric D<br>Robertson, Marshall W<br>Cunningham, Reid</td><td class="center">EL</td><td class="center">03:07.69</td></tr><tr><td class="center">56</td><td>Girls 200m Freestyle Relay</td><td>Davis, Amaya<br>Guthrie, Sara E<br>Clements, Cicilia A<br>Davis, Aliyah</td><td class="center">BW</td><td class="center">02:40.15</td></tr></tbody>
+                </table>
+            </div>
+        </main>
+
+        <footer>
+            <p>Results generated on 2/7/2026 with the GPSA Meet Publicity Tool v1.2</p>
+        </footer>
+    </div>
+</body>
+</html>

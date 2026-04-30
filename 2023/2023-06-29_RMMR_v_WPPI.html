@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2023 Running Man Manta Rays v. Windy Point Piranhas</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Favicon Links -->
+    <link rel="apple-touch-icon" sizes="180x180" href="https://d1nmxxg9d5tdo.cloudfront.net/875/files/apple-touch-icon.png?1651502524">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://d1nmxxg9d5tdo.cloudfront.net/875/files/favicon-32x32.png?1651502547">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://d1nmxxg9d5tdo.cloudfront.net/875/files/favicon-16x16.png?1651502535">
+    <link rel="manifest" href="https://d1nmxxg9d5tdo.cloudfront.net/875/files/site.webmanifest?1651502732">
+    <link rel="mask-icon" href="https://d1nmxxg9d5tdo.cloudfront.net/875/files/safari-pinned-tab.svg?1651502580" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background-color: #f0f2f5;
+            padding: 1rem;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1.5rem;
+            background-color: #fff;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border-radius: 0.75rem;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #002366;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            border-radius: 0.75rem 0.75rem 0 0;
+            margin: -1.5rem -1.5rem 2rem -1.5rem;
+        }
+
+        header img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 1rem;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            margin: 0;
+        }
+
+        /* Typography */
+        h2 {
+            color: #002366;
+            font-size: 1.875rem;
+            font-weight: 700;
+            text-align: center;
+            margin-top: 2.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 3px solid #d9242b;
+        }
+
+        h2:first-of-type {
+            margin-top: 0;
+        }
+
+        /* Table Styles */
+        .table-wrapper {
+            overflow-x: auto;
+            margin-bottom: 2rem;
+        }
+
+        .table-wrapper.narrow {
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875rem;
+        }
+
+        th, td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            vertical-align: top;
+            border: 1px solid #e5e7eb;
+        }
+
+        /* Center-aligned columns */
+        .center {
+            text-align: center;
+        }
+
+        thead {
+            background-color: #002366;
+            color: white;
+        }
+
+        thead th {
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+        }
+
+        tbody tr {
+            background-color: #ffffff;
+        }
+
+        tbody tr:nth-child(odd) {
+            background-color: #f9fafb;
+        }
+
+        tbody tr:hover {
+            background-color: #f3f4f6;
+        }
+
+        tbody td {
+            color: #374151;
+        }
+
+        tbody td:first-child {
+            font-weight: 500;
+            color: #1f2937;
+        }
+
+        /* Footer Styles */
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e5e7eb;
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background-color: white;
+                padding: 0;
+            }
+
+            .container {
+                box-shadow: none;
+                padding: 0;
+                max-width: 100%;
+            }
+
+            header {
+                margin: 0 0 2rem 0;
+            }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            body {
+                padding: 0.5rem;
+            }
+
+            .container {
+                padding: 1rem;
+                border-radius: 0.5rem;
+            }
+
+            header {
+                padding: 1.5rem 1rem;
+                margin: -1rem -1rem 1.5rem -1rem;
+            }
+
+            header img {
+                width: 64px;
+                height: 64px;
+            }
+
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+                margin-top: 2rem;
+            }
+
+            table {
+                font-size: 0.75rem;
+            }
+
+            th, td {
+                padding: 0.5rem;
+            }
+
+            thead th {
+                font-size: 0.625rem;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            header h1 {
+                font-size: 1.875rem;
+            }
+        }
+
+        @media (min-width: 1025px) {
+            header img {
+                width: 100px;
+                height: 100px;
+            }
+
+            header h1 {
+                font-size: 2.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="https://publicity.gpsaswimming.org/assets/gpsa_logo.png" alt="GPSA Logo" onerror="this.onerror=null; this.src='https://placehold.co/100x100/002366/FFFFFF?text=GPSA';">
+            <h1>2023 Running Man Manta Rays v. Windy Point Piranhas</h1>
+        </header>
+
+        <main>
+            <h2>Team Scores</h2>
+            <div class="table-wrapper narrow">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Team</th>
+                            <th>Score</th>
+                        </tr>
+                    </thead>
+                    <tbody><tr><td>Running Man Manta Rays</td><td>250.0</td></tr>
+<tr><td>Windy Point Piranhas</td><td>243.0</td></tr></tbody>
+                </table>
+            </div>
+
+            <h2>Event Winners</h2>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="center">Event</th>
+                            <th>Description</th>
+                            <th>Winner(s)</th>
+                            <th class="center">Team</th>
+                            <th class="center">Time</th>
+                        </tr>
+                    </thead>
+                    <tbody><tr><td class="center">1</td><td>Boys 10 & Under 100m IM</td><td>Nance, Carter J</td><td class="center">RMMR</td><td class="center">01:24.63</td></tr>
+<tr><td class="center">2</td><td>Girls 10 & Under 100m IM</td><td>Goff, Emmalyn</td><td class="center">WPPI</td><td class="center">01:29.33</td></tr>
+<tr><td class="center">3</td><td>Boys 11-12 100m IM</td><td>James, Raymond W</td><td class="center">WPPI</td><td class="center">01:16.65</td></tr>
+<tr><td class="center">4</td><td>Girls 11-12 100m IM</td><td>Woodard, Elizabeth</td><td class="center">WPPI</td><td class="center">01:20.93</td></tr>
+<tr><td class="center">5</td><td>Boys 13-14 100m IM</td><td>Roberts, James D</td><td class="center">RMMR</td><td class="center">01:29.77</td></tr>
+<tr><td class="center">6</td><td>Girls 13-14 100m IM</td><td>Nance, Madelyn P</td><td class="center">RMMR</td><td class="center">01:14.58</td></tr>
+<tr><td class="center">7</td><td>Boys 15-18 100m IM</td><td>Elias, Emmanuel</td><td class="center">RMMR</td><td class="center">01:07.81</td></tr>
+<tr><td class="center">8</td><td>Girls 15-18 100m IM</td><td>Epes, Ella</td><td class="center">WPPI</td><td class="center">01:08.65</td></tr>
+<tr><td class="center">9</td><td>Boys 6 & Under 25m Freestyle</td><td>Goff, Conor</td><td class="center">WPPI</td><td class="center">00:30.82</td></tr>
+<tr><td class="center">10</td><td>Girls 6 & Under 25m Freestyle</td><td>Reeves, Olivia J</td><td class="center">RMMR</td><td class="center">00:34.19</td></tr>
+<tr><td class="center">11</td><td>Boys 7-8 25m Freestyle</td><td>Lam, Finn</td><td class="center">WPPI</td><td class="center">00:20.14</td></tr>
+<tr><td class="center">12</td><td>Girls 7-8 25m Freestyle</td><td>Amini, Meela</td><td class="center">RMMR</td><td class="center">00:18.62</td></tr>
+<tr><td class="center">13</td><td>Boys 9-10 50m Freestyle</td><td>Mello, Brendan J</td><td class="center">WPPI</td><td class="center">00:37.14</td></tr>
+<tr><td class="center">14</td><td>Girls 9-10 50m Freestyle</td><td>Patel, Aneesa</td><td class="center">WPPI</td><td class="center">00:39.56</td></tr>
+<tr><td class="center">15</td><td>Boys 11-12 50m Freestyle</td><td>Wooley, Ben</td><td class="center">RMMR</td><td class="center">00:38.97</td></tr>
+<tr><td class="center">16</td><td>Girls 11-12 50m Freestyle</td><td>Clevenger, Madison R</td><td class="center">RMMR</td><td class="center">00:32.25</td></tr>
+<tr><td class="center">17</td><td>Boys 13-14 50m Freestyle</td><td>Cross, Skylr R</td><td class="center">WPPI</td><td class="center">00:29.62</td></tr>
+<tr><td class="center">18</td><td>Girls 13-14 50m Freestyle</td><td>Nance, Madelyn P</td><td class="center">RMMR</td><td class="center">00:30.80</td></tr>
+<tr><td class="center">19</td><td>Boys 15-18 50m Freestyle</td><td>Elias, Emmanuel</td><td class="center">RMMR</td><td class="center">00:26.82</td></tr>
+<tr><td class="center">20</td><td>Girls 15-18 50m Freestyle</td><td>Chung, Olivia</td><td class="center">RMMR</td><td class="center">00:29.99</td></tr>
+<tr><td class="center">21</td><td>Boys 8 & Under 25m Breaststroke</td><td>Lam, Finn</td><td class="center">WPPI</td><td class="center">00:24.70</td></tr>
+<tr><td class="center">22</td><td>Girls 8 & Under 25m Breaststroke</td><td>Du, Rebecca R</td><td class="center">RMMR</td><td class="center">00:30.95</td></tr>
+<tr><td class="center">23</td><td>Boys 9-10 50m Breaststroke</td><td>Nance, Carter J</td><td class="center">RMMR</td><td class="center">00:47.10</td></tr>
+<tr><td class="center">24</td><td>Girls 9-10 50m Breaststroke</td><td>Goff, Emmalyn</td><td class="center">WPPI</td><td class="center">00:46.58</td></tr>
+<tr><td class="center">25</td><td>Boys 11-12 50m Breaststroke</td><td>James, Raymond W</td><td class="center">WPPI</td><td class="center">00:42.64</td></tr>
+<tr><td class="center">26</td><td>Girls 11-12 50m Breaststroke</td><td>Clevenger, Madison R</td><td class="center">RMMR</td><td class="center">00:38.98</td></tr>
+<tr><td class="center">27</td><td>Boys 13-14 50m Breaststroke</td><td>Roberts, James D</td><td class="center">RMMR</td><td class="center">00:44.35</td></tr>
+<tr><td class="center">28</td><td>Girls 13-14 50m Breaststroke</td><td>Nance, Madelyn P</td><td class="center">RMMR</td><td class="center">00:39.42</td></tr>
+<tr><td class="center">29</td><td>Boys 15-18 50m Breaststroke</td><td>Guerzon, Quincy</td><td class="center">WPPI</td><td class="center">00:34.75</td></tr>
+<tr><td class="center">30</td><td>Girls 15-18 50m Breaststroke</td><td>LaFlamme, Zoe</td><td class="center">RMMR</td><td class="center">00:37.90</td></tr>
+<tr><td class="center">31</td><td>Boys 6 & Under 25m Backstroke</td><td>Goff, Conor</td><td class="center">WPPI</td><td class="center">00:37.80</td></tr>
+<tr><td class="center">32</td><td>Girls 6 & Under 25m Backstroke</td><td>Reeves, Olivia J</td><td class="center">RMMR</td><td class="center">00:36.69</td></tr>
+<tr><td class="center">33</td><td>Boys 7-8 25m Backstroke</td><td>Mueller, Colton A</td><td class="center">WPPI</td><td class="center">00:23.16</td></tr>
+<tr><td class="center">34</td><td>Girls 7-8 25m Backstroke</td><td>Amini, Meela</td><td class="center">RMMR</td><td class="center">00:23.80</td></tr>
+<tr><td class="center">35</td><td>Boys 9-10 50m Backstroke</td><td>Mueller, Camden D</td><td class="center">WPPI</td><td class="center">00:41.96</td></tr>
+<tr><td class="center">36</td><td>Girls 9-10 50m Backstroke</td><td>Patel, Aneesa</td><td class="center">WPPI</td><td class="center">00:48.83</td></tr>
+<tr><td class="center">37</td><td>Boys 11-12 50m Backstroke</td><td>Shandor, Caine</td><td class="center">RMMR</td><td class="center">00:45.22</td></tr>
+<tr><td class="center">38</td><td>Girls 11-12 50m Backstroke</td><td>Elias, Grace</td><td class="center">RMMR</td><td class="center">00:40.72</td></tr>
+<tr><td class="center">39</td><td>Boys 13-14 50m Backstroke</td><td>Cross, Skylr R</td><td class="center">WPPI</td><td class="center">00:35.82</td></tr>
+<tr><td class="center">40</td><td>Girls 13-14 50m Backstroke</td><td>LaFlamme, Zoe</td><td class="center">RMMR</td><td class="center">00:36.21</td></tr>
+<tr><td class="center">41</td><td>Boys 15-18 50m Backstroke</td><td>Andrews, Matthew</td><td class="center">RMMR</td><td class="center">00:33.29</td></tr>
+<tr><td class="center">42</td><td>Girls 15-18 50m Backstroke</td><td>Epes, Ella</td><td class="center">WPPI</td><td class="center">00:31.27</td></tr>
+<tr><td class="center">43</td><td>Boys 8 & Under 25m Butterfly</td><td>Mueller, Colton A</td><td class="center">WPPI</td><td class="center">00:22.91</td></tr>
+<tr><td class="center">44</td><td>Girls 8 & Under 25m Butterfly</td><td>Jallo, Audrey M</td><td class="center">WPPI</td><td class="center">00:26.13</td></tr>
+<tr><td class="center">45</td><td>Boys 9-10 50m Butterfly</td><td>Nance, Carter J</td><td class="center">RMMR</td><td class="center">00:39.35</td></tr>
+<tr><td class="center">46</td><td>Girls 9-10 50m Butterfly</td><td>Goff, Emmalyn</td><td class="center">WPPI</td><td class="center">00:42.52</td></tr>
+<tr><td class="center">47</td><td>Boys 11-12 50m Butterfly</td><td>James, Raymond W</td><td class="center">WPPI</td><td class="center">00:33.86</td></tr>
+<tr><td class="center">48</td><td>Girls 11-12 50m Butterfly</td><td>Woodard, Elizabeth</td><td class="center">WPPI</td><td class="center">00:36.43</td></tr>
+<tr><td class="center">49</td><td>Boys 13-14 50m Butterfly</td><td>Cross, Skylr R</td><td class="center">WPPI</td><td class="center">00:33.17</td></tr>
+<tr><td class="center">50</td><td>Girls 13-14 50m Butterfly</td><td>Chung, Olivia</td><td class="center">RMMR</td><td class="center">00:32.41</td></tr>
+<tr><td class="center">51</td><td>Boys 15-18 50m Butterfly</td><td>Elias, Emmanuel</td><td class="center">RMMR</td><td class="center">00:28.79</td></tr>
+<tr><td class="center">52</td><td>Girls 15-18 50m Butterfly</td><td>Epes, Ella</td><td class="center">WPPI</td><td class="center">00:29.35</td></tr>
+<tr><td class="center">53</td><td>Boys 200m Medley Relay</td><td>Cross, Skylr R<br>James, Raymond W<br>Hawkins, Reid<br>Mueller, Camden D</td><td class="center">WPPI</td><td class="center">02:22.64</td></tr>
+<tr><td class="center">54</td><td>Girls 200m Medley Relay</td><td>Wojcik, Melissa<br>Woodard, Elizabeth<br>Epes, Ella<br>Patel, Aneesa</td><td class="center">WPPI</td><td class="center">02:23.63</td></tr>
+<tr><td class="center">55</td><td>Boys 200m Freestyle Relay</td><td>Shandor, Caine<br>Nance, Carter J<br>Roberts, James D<br>Elias, Emmanuel</td><td class="center">RMMR</td><td class="center">02:13.14</td></tr>
+<tr><td class="center">56</td><td>Girls 200m Freestyle Relay</td><td>Amini, Meela<br>Gonzalez, Allison<br>Nance, Madelyn P<br>Chung, Olivia</td><td class="center">RMMR</td><td class="center">02:10.89</td></tr></tbody>
+                </table>
+            </div>
+        </main>
+
+        <footer>
+            <p>Results generated on 2025-11-14 with the GPSA Bulk Meet Results Processor v1.0</p>
+        </footer>
+    </div>
+</body>
+</html>
