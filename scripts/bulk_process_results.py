@@ -44,7 +44,7 @@ GENDER_MAP = {
     'X': 'Mixed'
 }
 
-LOGO_URL = 'https://publicity.gpsaswimming.org/assets/gpsa_logo.png'
+LOGO_URL = 'https://assets.gpsaswimming.org/img/gpsa_logo.png'
 
 
 class SDIFParser:
@@ -366,13 +366,12 @@ class HTMLGenerator:
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Favicon Links -->
-    <link rel="apple-touch-icon" sizes="180x180" href="https://d1nmxxg9d5tdo.cloudfront.net/875/files/apple-touch-icon.png?1651502524">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://d1nmxxg9d5tdo.cloudfront.net/875/files/favicon-32x32.png?1651502547">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://d1nmxxg9d5tdo.cloudfront.net/875/files/favicon-16x16.png?1651502535">
-    <link rel="manifest" href="https://d1nmxxg9d5tdo.cloudfront.net/875/files/site.webmanifest?1651502732">
-    <link rel="mask-icon" href="https://d1nmxxg9d5tdo.cloudfront.net/875/files/safari-pinned-tab.svg?1651502580" color="#5bbad5">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="theme-color" content="#ffffff">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://assets.gpsaswimming.org/img/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://assets.gpsaswimming.org/img/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://assets.gpsaswimming.org/img/favicons/favicon-16x16.png">
+    <link rel="mask-icon" href="https://assets.gpsaswimming.org/img/favicons/safari-pinned-tab.svg" color="#002366">
+    <meta name="msapplication-TileColor" content="#002366">
+    <meta name="theme-color" content="#002366">
 
     <style>
         /* Base Styles */

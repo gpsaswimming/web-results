@@ -127,7 +127,7 @@ def generate_index_for_single_directory(current_path, subdirs, files, repo_root)
     <div class="max-w-7xl mx-auto">
       <!-- Standardized GPSA header with logo -->
       <header class="gpsa-header p-4 shadow-md flex items-center justify-center no-print mb-6 rounded-lg">
-        <img src="https://publicity.gpsaswimming.org/assets/gpsa_logo.png"
+        <img src="https://assets.gpsaswimming.org/img/gpsa_logo.png"
              alt="GPSA Logo"
              class="h-16 w-16 md:h-20 md:w-20 mr-4 rounded-full"
              onerror="this.onerror=null; this.src='https://placehold.co/100x100/002366/FFFFFF?text=GPSA';">

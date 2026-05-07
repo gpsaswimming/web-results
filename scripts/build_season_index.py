@@ -445,9 +445,12 @@ def generate_html(meets_by_division, division_assignments, year):
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Favicon Links -->
-    <link rel="apple-touch-icon" sizes="180x180" href="https://d1nmxxg9d5tdo.cloudfront.net/875/files/apple-touch-icon.png?1651502524">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://d1nmxxg9d5tdo.cloudfront.net/875/files/favicon-32x32.png?1651502547">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://d1nmxxg9d5tdo.cloudfront.net/875/files/favicon-16x16.png?1651502535">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://assets.gpsaswimming.org/img/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://assets.gpsaswimming.org/img/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://assets.gpsaswimming.org/img/favicons/favicon-16x16.png">
+    <link rel="mask-icon" href="https://assets.gpsaswimming.org/img/favicons/safari-pinned-tab.svg" color="#002366">
+    <meta name="msapplication-TileColor" content="#002366">
+    <meta name="theme-color" content="#002366">
 
     <script>
         tailwind.config = {{
@@ -569,7 +572,7 @@ def generate_html(meets_by_division, division_assignments, year):
     <main class="container mx-auto p-4 sm:p-6 lg:p-8">
         <div class="max-w-7xl mx-auto">
             <header id="top" class="gpsa-header p-4 shadow-md flex items-center justify-center no-print mb-6 rounded-lg">
-                <img src="https://publicity.gpsaswimming.org/assets/gpsa_logo.png"
+                <img src="https://assets.gpsaswimming.org/img/gpsa_logo.png"
                      alt="GPSA Logo"
                      class="h-16 w-16 md:h-20 md:w-20 mr-4 rounded-full"
                      onerror="this.onerror=null; this.src='https://placehold.co/100x100/002366/FFFFFF?text=GPSA';">
