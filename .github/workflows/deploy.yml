@@ -33,7 +33,7 @@ jobs:
       - name: Generate directory indexes
         run: python scripts/generate_index.py .
 
-      - name: Build season archives
+      - name: Build season archives and scores feeds
         run: |
           for CSV in $(find . -maxdepth 2 -name "divisions.csv" | sort); do
             YEAR_DIR=$(dirname "$CSV")
@@ -50,6 +50,12 @@ jobs:
               -i "$YEAR_DIR" \
               -o "$YEAR_DIR" \
               --non-interactive \
+              --verbose
+
+            echo "Building scores.json feed for $YEAR..."
+            python scripts/build_scores_json.py \
+              -i "$YEAR_DIR" \
+              -o "$YEAR_DIR" \
               --verbose
           done
 

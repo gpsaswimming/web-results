@@ -33,3 +33,4 @@ last_updated.txt
 
 # Generated files — built at deploy time, never committed
 index.html
+scores.json

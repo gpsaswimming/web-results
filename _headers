@@ -1,0 +1,7 @@
+# Cloudflare Pages headers (https://developers.cloudflare.com/pages/configuration/headers/)
+
+# Allow the meet-schedule site to fetch per-season scores feeds cross-origin.
+# These are static public JSON files; a plain GET is a CORS "simple request"
+# (no preflight), so this single response header is the entire CORS surface.
+/*/scores.json
+  Access-Control-Allow-Origin: https://meet-schedule.gpsaswimming.org
