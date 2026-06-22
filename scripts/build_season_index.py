@@ -69,7 +69,8 @@ FILENAME_ABBR_MAP = {
     "GPWYCC": "WYCC",
     "MBKM": "MBKMT",
     "WPPI": "WPPIR",
-    "BLMA": "BLMAR"
+    "BLMA": "BLMAR",
+    "WYTH": "WYTHE"
 }
 
 
