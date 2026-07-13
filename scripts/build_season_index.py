@@ -425,10 +425,17 @@ def generate_html(meets_by_division, division_assignments, year):
     """Generates the final HTML output file from the processed meet data."""
     
     # --- Calculate Standings ---
-    standings = defaultdict(lambda: {'wins': 0, 'losses': 0})
+    standings = defaultdict(lambda: {'wins': 0, 'losses': 0, 'ties': 0})
     for division in meets_by_division:
         for meet in meets_by_division[division]:
-            # Determine winner and loser
+            # A dual meet with equal scores is a tie: neither team is credited a
+            # win or loss. (How a tie weights standings order is a pending Board
+            # rule — see docs-rulebook awards.md / proposed-changes tracker — so
+            # for now ordering stays win-based and ties are tracked separately.)
+            if meet['home_score'] == meet['away_score']:
+                standings[meet['home_abbr']]['ties'] += 1
+                standings[meet['away_abbr']]['ties'] += 1
+                continue
             winner_abbr = meet['home_abbr'] if meet['home_score'] > meet['away_score'] else meet['away_abbr']
             loser_abbr = meet['away_abbr'] if meet['home_score'] > meet['away_score'] else meet['home_abbr']
             standings[winner_abbr]['wins'] += 1
@@ -627,7 +634,7 @@ def generate_html(meets_by_division, division_assignments, year):
 
         # --- Standings Table ---
         html_output += '<table class="w-full border-collapse min-w-full">'
-        html_output += '<thead><tr class="border-b border-black"><th class="table-header bg-gpsa-red text-white text-center align-middle">Team</th><th class="table-header bg-gpsa-red text-white text-center align-middle">Win</th><th class="table-header bg-gpsa-red text-white text-center align-middle">Loss</th></tr></thead><tbody>'
+        html_output += '<thead><tr class="border-b border-black"><th class="table-header bg-gpsa-red text-white text-center align-middle">Team</th><th class="table-header bg-gpsa-red text-white text-center align-middle">Win</th><th class="table-header bg-gpsa-red text-white text-center align-middle">Loss</th><th class="table-header bg-gpsa-red text-white text-center align-middle">Tie</th></tr></thead><tbody>'
 
         division_teams = division_assignments.get(division_name, [])
         # Sort teams by wins (descending)
@@ -639,7 +646,7 @@ def generate_html(meets_by_division, division_assignments, year):
         for team_abbr in sorted_teams:
             team_full_name = inverted_team_map.get(team_abbr, team_abbr)
             win_loss = standings[team_abbr]
-            html_output += f"<tr class='border-b border-black'><td class='table-cell table-text text-left align-middle'>{team_abbr} &ndash; {team_full_name}</td><td class='table-cell table-text text-center align-middle'>{win_loss['wins']}</td><td class='table-cell table-text text-center align-middle'>{win_loss['losses']}</td></tr>"
+            html_output += f"<tr class='border-b border-black'><td class='table-cell table-text text-left align-middle'>{team_abbr} &ndash; {team_full_name}</td><td class='table-cell table-text text-center align-middle'>{win_loss['wins']}</td><td class='table-cell table-text text-center align-middle'>{win_loss['losses']}</td><td class='table-cell table-text text-center align-middle'>{win_loss['ties']}</td></tr>"
         html_output += '</tbody></table>'
         html_output += '<div class="mt-4 sm:mt-6 flex justify-end"><a href="#top" class="text-sm sm:text-base text-gpsa-blue-light hover:text-gpsa-red font-medium">Back to Top &uarr;</a></div></div>'
 
