@@ -12,6 +12,8 @@ PAGE_TITLE = "Directory Listing"
 EXCLUDE_DIRS = ['.git', 'scripts', 'assets', 'resources', 'css', '2022']
 # List of filenames to exclude from directory listings.
 EXCLUDE_FILES = ['CLAUDE.md', 'README.md', 'CNAME', '.gitignore', 'last_updated.txt']
+# File extensions to exclude from listings (e.g. data feeds that back a results page).
+EXCLUDE_EXTS = ['.json']
 
 CSS_URL = "https://css.gpsaswimming.org/gpsa-tools-common.css"
 
@@ -213,8 +215,12 @@ def crawl_and_index(root_path):
         # Modify dir_names in-place to prevent os.walk from traversing into excluded or hidden directories
         dir_names[:] = [d for d in dir_names if d not in EXCLUDE_DIRS and not d.startswith('.')]
 
-        # Filter out hidden files from the file_names list
-        visible_files = [f for f in file_names if not f.startswith('.')]
+        # Filter out hidden files and excluded extensions (e.g. .json data feeds)
+        visible_files = [
+            f for f in file_names
+            if not f.startswith('.')
+            and os.path.splitext(f)[1].lower() not in EXCLUDE_EXTS
+        ]
 
         # Pass the repository root (not the crawl start path) for CSS path calculation
         generate_index_for_single_directory(current_path, dir_names, visible_files, repo_root)
