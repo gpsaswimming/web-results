@@ -59,6 +59,11 @@ jobs:
               --verbose
           done
 
+      - name: Inject analytics into all pages
+        run: |
+          python scripts/test_inject_analytics.py
+          python scripts/inject_analytics.py .
+
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v4
         with:
