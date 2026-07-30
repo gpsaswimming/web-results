@@ -421,9 +421,71 @@ def parse_meet_file(file_path, team_name_map, schedule_name_map, filename_abbr_m
         logging.warning(f"Could not process file {file_path}. Error: {e}")
         return None
 
+def rank_division(division_teams, meets, standings):
+    """Order a division's teams for display, applying the GPSA tiebreaker.
+
+    Implements docs-rulebook awards.md section 2: teams level on record are
+    separated first by head-to-head, then by total points scored in meets
+    against the other tied teams only (season-wide points are deliberately NOT
+    used - the rule excludes them so teams cannot bank a margin against weaker
+    opponents). Teams still level after both steps share a place, and the next
+    place is skipped: two teams sharing 2nd means no 3rd, and the next team is
+    4th.
+
+    Returns a list of (place, team_abbr, is_shared) in display order.
+    """
+    tiers = []
+    by_record = defaultdict(list)
+    for team_abbr in division_teams:
+        record = standings[team_abbr]
+        by_record[(record['wins'], record['losses'], record['ties'])].append(team_abbr)
+
+    # Most wins first, then fewest losses. In a complete round robin every team
+    # swims the same number of meets so these agree; losses only separate teams
+    # in seasons with incomplete archived results (e.g. 2022).
+    for wins, losses, _ties in sorted(by_record, key=lambda r: (-r[0], r[1])):
+        group = by_record[(wins, losses, _ties)]
+        if len(group) == 1:
+            tiers.append(group)
+            continue
+
+        # Head-to-head wins and points scored, counting only meets within the group.
+        h2h = {abbr: 0 for abbr in group}
+        points = {abbr: 0.0 for abbr in group}
+        for meet in meets:
+            home, away = meet['home_abbr'], meet['away_abbr']
+            if home not in h2h or away not in h2h:
+                continue
+            points[home] += meet['home_score']
+            points[away] += meet['away_score']
+            if meet['home_score'] > meet['away_score']:
+                h2h[home] += 1
+            elif meet['away_score'] > meet['home_score']:
+                h2h[away] += 1
+
+        group = sorted(group, key=lambda abbr: (-h2h[abbr], -points[abbr]))
+        # Split into runs of teams the tiebreaker could not separate at all.
+        run = [group[0]]
+        for team_abbr in group[1:]:
+            if (h2h[team_abbr], points[team_abbr]) == (h2h[run[-1]], points[run[-1]]):
+                run.append(team_abbr)
+            else:
+                tiers.append(run)
+                run = [team_abbr]
+        tiers.append(run)
+
+    ranked = []
+    place = 1
+    for tier in tiers:
+        for team_abbr in sorted(tier):
+            ranked.append((place, team_abbr, len(tier) > 1))
+        place += len(tier)
+    return ranked
+
+
 def generate_html(meets_by_division, division_assignments, year):
     """Generates the final HTML output file from the processed meet data."""
-    
+
     # --- Calculate Standings ---
     standings = defaultdict(lambda: {'wins': 0, 'losses': 0, 'ties': 0})
     for division in meets_by_division:
@@ -634,20 +696,26 @@ def generate_html(meets_by_division, division_assignments, year):
 
         # --- Standings Table ---
         html_output += '<table class="w-full border-collapse min-w-full">'
-        html_output += '<thead><tr class="border-b border-black"><th class="table-header bg-gpsa-red text-white text-center align-middle">Team</th><th class="table-header bg-gpsa-red text-white text-center align-middle">Win</th><th class="table-header bg-gpsa-red text-white text-center align-middle">Loss</th><th class="table-header bg-gpsa-red text-white text-center align-middle">Tie</th></tr></thead><tbody>'
+        html_output += '<thead><tr class="border-b border-black"><th class="table-header bg-gpsa-red text-white text-center align-middle">Place</th><th class="table-header bg-gpsa-red text-white text-center align-middle">Team</th><th class="table-header bg-gpsa-red text-white text-center align-middle">Win</th><th class="table-header bg-gpsa-red text-white text-center align-middle">Loss</th><th class="table-header bg-gpsa-red text-white text-center align-middle">Tie</th></tr></thead><tbody>'
 
         division_teams = division_assignments.get(division_name, [])
-        # Sort teams by wins (descending)
-        sorted_teams = sorted(division_teams, key=lambda abbr: standings[abbr]['wins'], reverse=True)
-        
+        ranked_teams = rank_division(division_teams, meets_by_division.get(division_name, []), standings)
+
         # Find the full name from the inverted map for display
         inverted_team_map = {v: k for k, v in TEAM_NAME_MAP.items()}
 
-        for team_abbr in sorted_teams:
+        for place, team_abbr, is_shared in ranked_teams:
             team_full_name = inverted_team_map.get(team_abbr, team_abbr)
             win_loss = standings[team_abbr]
-            html_output += f"<tr class='border-b border-black'><td class='table-cell table-text text-left align-middle'>{team_abbr} &ndash; {team_full_name}</td><td class='table-cell table-text text-center align-middle'>{win_loss['wins']}</td><td class='table-cell table-text text-center align-middle'>{win_loss['losses']}</td><td class='table-cell table-text text-center align-middle'>{win_loss['ties']}</td></tr>"
+            place_str = f"T-{place}" if is_shared else str(place)
+            html_output += f"<tr class='border-b border-black'><td class='table-cell table-text text-center align-middle'>{place_str}</td><td class='table-cell table-text text-left align-middle'>{team_abbr} &ndash; {team_full_name}</td><td class='table-cell table-text text-center align-middle'>{win_loss['wins']}</td><td class='table-cell table-text text-center align-middle'>{win_loss['losses']}</td><td class='table-cell table-text text-center align-middle'>{win_loss['ties']}</td></tr>"
         html_output += '</tbody></table>'
+
+        # Explain the ordering whenever the tiebreaker was needed to produce it.
+        records = [(standings[abbr]['wins'], standings[abbr]['losses'], standings[abbr]['ties'])
+                   for _, abbr, _ in ranked_teams]
+        if len(set(records)) < len(records):
+            html_output += '<p class="mt-3 text-sm text-gray-600">Teams level on record are placed by GPSA Rulebook <em>Awards</em> &sect;2 &mdash; head-to-head first, then total points scored in meets against the other tied teams only. &ldquo;T-&rdquo; marks a shared place where that tiebreaker could not separate the teams.</p>'
         html_output += '<div class="mt-4 sm:mt-6 flex justify-end"><a href="#top" class="text-sm sm:text-base text-gpsa-blue-light hover:text-gpsa-red font-medium">Back to Top &uarr;</a></div></div>'
 
     html_output += '</div></main></body></html>'
