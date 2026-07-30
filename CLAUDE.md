@@ -78,6 +78,37 @@ to show each dual meet's final score and a link to its result page.
 
 ---
 
+## Standings order (division placings)
+
+`build_season_index.py` orders each division's standings table and renders a **Place** column.
+Ordering is by record (most wins, then fewest losses), and teams on **identical** records are
+separated by the GPSA Rulebook tiebreaker — `docs-rulebook` `awards.md` §2:
+
+1. **Head-to-head** among the tied teams.
+2. If still level, **total points scored in meets against the other tied teams only.** Season-wide
+   points are deliberately *not* used — the rule excludes them so a team cannot bank a tiebreaker
+   margin by running up scores on weaker opponents.
+
+Teams the tiebreaker cannot separate **share a place**, rendered as `T-2`, and the next place is
+skipped (two teams sharing 2nd means no 3rd; the next team is 4th). A footnote explaining the
+tiebreaker is emitted only for divisions where two teams held identical records.
+
+This matters because `index.html` is regenerated from the committed result HTML on every deploy and
+is gitignored — **hand-editing a placing will not survive.** Any change to how placings are decided
+belongs in `rank_division()`.
+
+Both 2026 rulings are recorded in the private `gpsa-admin` repo under `analysis/`
+(`2026_red_division_tiebreaker.md`, `2026_blue_division_tiebreaker.md`). Two open Board questions
+noted there affect this code if resolved differently:
+
+- Whether the tiebreaker re-runs from step 1 on the reduced group after each placing, or ranks the
+  whole tied group once by points. `rank_division()` implements the latter; both give the same 2026
+  result, so nothing turns on it yet.
+- How a **tied dual meet** should weight a record (2026 Blue: Beaconsdale 209 – Wythe 209). Ties are
+  counted separately and do not affect ordering.
+
+---
+
 ## Adding Meet Results
 
 1. Add the result HTML file to the correct year directory: `YYYY/YYYY-MM-DD_T1_v_T2.html`
