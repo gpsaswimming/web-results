@@ -4,224 +4,58 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GPSA Invitational Results</title>
+  <meta name="description" content="Full results for a GPSA invitational meet.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://css.gpsaswimming.org/gpsa-results.css">
   <link rel="icon" type="image/png" sizes="32x32" href="https://assets.gpsaswimming.org/img/favicons/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="https://assets.gpsaswimming.org/img/favicons/favicon-16x16.png">
   <meta name="theme-color" content="#002366">
-  <style>
-/* GPSA invitational results — renderer styles.
-   Brand: navy #002366 / red #d9242b / Inter. Signature accent: time-drop green. */
-
-:root {
-  --navy: #002366;
-  --navy-2: #0033a0;
-  --red: #d9242b;
-  --red-2: #b81e24;
-  --drop: #087f5b;          /* faster-than-seed green — the signature */
-  --drop-bg: #e6f4ef;
-  --add: #9aa2ad;           /* added time, muted on purpose */
-  --gold: #c8971d;
-  --silver: #79828f;
-  --bronze: #a9611f;
-  --ink: #17233b;
-  --muted: #667085;
-  --line: #e6e8ee;
-  --bg: #eef1f5;
-  --card: #ffffff;
-  --shadow: 0 1px 2px rgba(16, 24, 40, .06), 0 1px 3px rgba(16, 24, 40, .1);
-  --radius: 14px;
-}
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  color: var(--ink);
-  background: var(--bg);
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-}
-
-.num { font-variant-numeric: tabular-nums; }
-
-/* ---- sticky control bar --------------------------------------------------- */
-.bar {
-  position: sticky; top: 0; z-index: 30;
-  background: rgba(255, 255, 255, .92);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--line);
-}
-.bar-in {
-  max-width: 1180px; margin: 0 auto; padding: .6rem 1rem;
-  display: flex; gap: .6rem; align-items: center; flex-wrap: wrap;
-}
-.bar-title { font-weight: 700; color: var(--navy); font-size: .95rem; margin-right: auto; }
-.bar-title span { color: var(--muted); font-weight: 500; }
-
-.ctrl { display: flex; align-items: center; gap: .4rem; }
-input[type=search], select {
-  font: inherit; font-size: .9rem; color: var(--ink);
-  border: 1px solid var(--line); border-radius: 9px;
-  padding: .45rem .6rem; background: #fff; min-height: 40px;
-}
-input[type=search] { width: min(46vw, 220px); }
-input[type=search]:focus, select:focus { outline: 2px solid var(--navy-2); outline-offset: 1px; border-color: var(--navy-2); }
-
-.toggle { display: inline-flex; align-items: center; gap: .4rem; font-size: .9rem; cursor: pointer; user-select: none; }
-.toggle input { width: 18px; height: 18px; accent-color: var(--navy); }
-
-/* ---- hero ----------------------------------------------------------------- */
-.hero {
-  background: linear-gradient(135deg, var(--navy) 0%, #012a80 55%, var(--navy-2) 100%);
-  color: #fff;
-}
-.hero-in { max-width: 1180px; margin: 0 auto; padding: 2rem 1rem 1.4rem; }
-.eyebrow { text-transform: uppercase; letter-spacing: .16em; font-size: .72rem; font-weight: 600; color: #9fc0ff; }
-.hero h1 { font-size: clamp(1.6rem, 4.5vw, 2.6rem); font-weight: 800; letter-spacing: -.02em; line-height: 1.1; margin: .25rem 0; }
-.hero .date { color: #c9d8ff; font-size: .95rem; }
-
-.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(115px, 1fr)); gap: .6rem; margin-top: 1.3rem; }
-.stat { background: rgba(255, 255, 255, .08); border: 1px solid rgba(255, 255, 255, .14); border-radius: 12px; padding: .8rem .9rem; }
-.stat.hl { background: var(--drop); border-color: transparent; }
-.stat.gold { background: var(--gold); border-color: transparent; }
-.stat .n { font-size: clamp(1.4rem, 4vw, 2rem); font-weight: 800; letter-spacing: -.02em; }
-.stat .l { font-size: .74rem; text-transform: uppercase; letter-spacing: .08em; color: #c9d8ff; }
-.stat.hl .l { color: #d8f3e9; }
-.stat.gold .l { color: #fff4d6; }
-
-/* lane-line accent under the hero */
-.lane { height: 6px; background: repeating-linear-gradient(90deg, var(--red) 0 22px, #fff 22px 30px, var(--navy) 30px 52px, #fff 52px 60px); }
-
-/* ---- page body ------------------------------------------------------------ */
-main { max-width: 1180px; margin: 0 auto; padding: 1.2rem 1rem 4rem; }
-
-details.panel { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 1rem; }
-details.panel > summary { cursor: pointer; list-style: none; padding: .9rem 1.1rem; font-weight: 700; color: var(--navy); display: flex; align-items: center; gap: .5rem; }
-details.panel > summary::-webkit-details-marker { display: none; }
-details.panel > summary::after { content: '▸'; margin-left: auto; color: var(--muted); transition: transform .15s; }
-details.panel[open] > summary::after { transform: rotate(90deg); }
-.panel-body { padding: 0 1.1rem 1.1rem; }
-
-/* medal table */
-.medals { width: 100%; border-collapse: collapse; font-size: .92rem; }
-.medals th, .medals td { padding: .45rem .5rem; text-align: right; border-bottom: 1px solid var(--line); }
-.medals th:first-child, .medals td:first-child { text-align: left; }
-.medals thead th { font-size: .72rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
-.medals tbody tr { cursor: pointer; }
-.medals tbody tr:hover { background: #f6f8fb; }
-.medals td.tot { font-weight: 700; }
-.rank { color: var(--muted); width: 1.6rem; }
-
-/* jump-to-event grid */
-.jump { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: .35rem; }
-.jump a { font-size: .82rem; color: var(--ink); text-decoration: none; padding: .35rem .5rem; border-radius: 8px; border: 1px solid var(--line); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.jump a:hover { background: var(--navy); color: #fff; border-color: var(--navy); }
-.jump a b { color: var(--navy); }
-.jump a:hover b { color: #fff; }
-
-/* ---- event cards ---------------------------------------------------------- */
-.event { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: .9rem; overflow: hidden; scroll-margin-top: 72px; }
-.hidden { display: none !important; }
-.ev-head { padding: .75rem 1.1rem; border-bottom: 1px solid var(--line); display: flex; align-items: baseline; gap: .6rem; flex-wrap: wrap; }
-.ev-num { font-weight: 800; color: var(--red); font-size: .8rem; }
-.ev-title { font-weight: 700; }
-.ev-tag { margin-left: auto; font-size: .72rem; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
-
-.tbl-wrap { overflow-x: auto; }
-/* Fixed layout + shared column widths so every event card's columns line up down the
-   page (auto-layout would size each table's columns to its own data and drift). */
-table.res { width: 100%; border-collapse: collapse; font-size: .9rem; min-width: 520px; table-layout: fixed; }
-.c-pl { width: 44px; } .c-team { width: 66px; } .c-seed { width: 80px; }
-.c-time { width: 80px; } .c-pm { width: 78px; } .c-cm { width: 48px; }  /* c-name takes the rest */
-table.res th, table.res td { padding: .5rem .7rem; text-align: left; white-space: nowrap; }
-table.res thead th { font-size: .7rem; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); border-bottom: 1px solid var(--line); }
-table.res tbody tr + tr td { border-top: 1px solid #f1f3f7; }
-table.res td.r, table.res th.r { text-align: right; }
-table.res td.c, table.res th.c { text-align: center; }
-table.res .name { width: 99%; white-space: normal; }
-
-.pl { display: inline-flex; align-items: center; justify-content: center; min-width: 26px; height: 26px; border-radius: 50%; font-weight: 700; font-size: .82rem; background: #f0f2f6; color: var(--ink); }
-/* GPSA place-ribbon colors, 1st-8th (9+ stay plain gray = no award). */
-.pl.p1 { background: #1857b0; color: #fff; }                                   /* blue */
-.pl.p2 { background: #cf2e2e; color: #fff; }                                   /* red */
-.pl.p3 { background: #fff; color: var(--ink); box-shadow: inset 0 0 0 1.5px #c7cfdb; } /* white */
-.pl.p4 { background: #e8b800; color: #3d3000; }                                /* yellow */
-.pl.p5 { background: #7d1f3d; color: #fff; }                                   /* maroon */
-.pl.p6 { background: #1f8a4c; color: #fff; }                                   /* green */
-.pl.p7 { background: #6a3aa0; color: #fff; }                                   /* purple */
-.pl.p8 { background: #1a1a1a; color: #fff; }                                   /* black */
-
-.swm { background: none; border: none; font: inherit; color: var(--ink); font-weight: 600; cursor: pointer; padding: 0; text-align: left; }
-.swm:hover { color: var(--navy-2); text-decoration: underline; }
-
-.team { display: inline-block; font-size: .72rem; font-weight: 700; color: var(--navy); background: #eaf0fb; border-radius: 6px; padding: .1rem .4rem; }
-
-.relay-tag { display: inline-block; font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .03em; color: var(--red); margin-right: .35rem; }
-table.res td.name { white-space: normal; }  /* relay leg lists wrap */
-
-.drop { color: var(--drop); font-weight: 700; }
-.addt { color: var(--add); }
-.cut { flex-shrink: 0; display: inline-block; font-size: .66rem; font-weight: 700; color: #fff; background: var(--gold); border-radius: 6px; padding: .1rem .45rem; letter-spacing: .03em; white-space: nowrap; vertical-align: middle; }
-.legend .cut { color: #fff; }
-.badge { font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; padding: .1rem .4rem; border-radius: 6px; }
-.badge.dq { background: #fdeaea; color: var(--red-2); }
-.badge.sc { background: #f0f2f6; color: var(--muted); }
-
-.empty { text-align: center; color: var(--muted); padding: 3rem 1rem; }
-.legend { font-size: .78rem; color: var(--muted); margin: .3rem 0 1rem; display: flex; gap: 1.1rem; flex-wrap: wrap; align-items: center; }
-.legend b { color: var(--drop); }
-.medal-key { display: inline-flex; align-items: center; gap: 3px; }
-.medal-key .pl { width: 20px; height: 20px; min-width: 20px; font-size: .66rem; }
-.medal-key .pl:last-of-type { margin-right: 5px; }
-
-/* ---- swimmer modal -------------------------------------------------------- */
-.modal { position: fixed; inset: 0; z-index: 50; display: none; align-items: flex-end; justify-content: center; background: rgba(10, 20, 45, .5); padding: 0; }
-.modal.open { display: flex; }
-.sheet { background: #fff; width: 100%; max-width: 560px; max-height: 86vh; overflow-y: auto; border-radius: 16px 16px 0 0; }
-@media (min-width: 640px) { .modal { align-items: center; padding: 1rem; } .sheet { border-radius: 16px; } }
-.sheet-head { position: sticky; top: 0; background: var(--navy); color: #fff; padding: 1rem 1.2rem; display: flex; align-items: center; gap: .6rem; }
-.sheet-head h3 { font-size: 1.1rem; font-weight: 800; }
-.sheet-head .sub { color: #c9d8ff; font-size: .82rem; }
-.sheet-close { margin-left: auto; background: rgba(255,255,255,.15); color: #fff; border: none; width: 34px; height: 34px; border-radius: 50%; font-size: 1.1rem; cursor: pointer; }
-.sheet-body { padding: .4rem 1.2rem 1.4rem; }
-.swim-row { display: grid; grid-template-columns: auto 1fr auto; gap: .3rem .7rem; align-items: baseline; padding: .6rem 0; border-bottom: 1px solid #f1f3f7; }
-.swim-row .ev { color: var(--muted); font-size: .78rem; grid-column: 1 / -1; }
-.swim-row .time { font-weight: 700; }
-
-footer { text-align: center; color: var(--muted); font-size: .8rem; padding: 1.5rem 1rem; }
-footer a { color: var(--navy-2); }
-
-@media (max-width: 560px) {
-  .stats { grid-template-columns: repeat(2, 1fr); }
-  .bar-title { width: 100%; margin: 0 0 .2rem; }
-  .col-seed { display: none; }
-  .c-seed { width: 0; }
-}
-@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
-
-</style>
   <script defer src="https://citadel.dadalorian.com/stardust" data-website-id="8e0ed974-8a97-4eee-b087-201235f0e538"></script>
 </head>
 <body>
-  <div id="app" aria-live="polite"><p class="empty">Loading results…</p></div>
+  <div id="app"><p class="empty">Loading results…</p></div>
   <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="sheet-name"></div>
   <script>window.__MEET__ = {"meet":{"name":"2026 GPSA Summer Splash Invitational","startDate":"2026-07-25","cutsLabel":"City Meet cut"},"teams":[{"code":"KCD","name":"Kiln Creek Dolphins"},{"code":"WW","name":"Wendwood Wahoos"},{"code":"MBKMT","name":"Marlbank Mudtoads"},{"code":"RRST","name":"Riverdale Rays"},{"code":"RMMR","name":"Running Man Manta Rays"},{"code":"GG","name":"Glendale Gators"},{"code":"WYTH","name":"Wythe Wahoos"},{"code":"VG","name":"Village Green Patriots"},{"code":"EL","name":"Elizabeth Lake Tideriders"},{"code":"WO","name":"Willow Oaks Stingrays"},{"code":"HW","name":"Hidenwood Tarpons"},{"code":"BLMAR","name":"Beaconsdale Blue Marlins"},{"code":"JRCC","name":"James River Country Club"},{"code":"WYCC","name":"Warwick Yacht Sea Turtles"},{"code":"COL","name":"Colony Cudas"},{"code":"POQ","name":"Poquoson Barracudas"},{"code":"WPPIR","name":"Windy Point Piranhas"},{"code":"CV","name":"Coventry Sailfish Swim Team"}],"events":[{"number":"18","description":"Girls 13-14 50m Freestyle","gender":"F","distance":50,"stroke":"Freestyle","ageGroup":"13-14","results":[{"name":"Begley, Caroline","team":"KCD","sid":"begley|caroline|13-14","seed":{"t":"37.09","s":37.09},"final":{"t":"35.32","s":35.32},"place":1,"status":"ok","dq":false,"cut":true},{"name":"Sawyer, Leilani","team":"VG","sid":"sawyer|leilani|13-14","seed":{"t":"38.64","s":38.64},"final":{"t":"36.60","s":36.6},"place":2,"status":"ok","dq":false},{"name":"Looney, Reese E","team":"POQ","sid":"looney|reese|13-14","seed":{"t":"36.99","s":36.99},"final":{"t":"36.69","s":36.69},"place":3,"status":"ok","dq":false},{"name":"Wilinski, Audrey D","team":"RMMR","sid":"wilinski|audrey|13-14","seed":{"t":"36.34","s":36.34},"final":{"t":"37.54","s":37.54},"place":4,"status":"ok","dq":false},{"name":"Woods, Grace","team":"WW","sid":"woods|grace|13-14","seed":{"t":"38.77","s":38.77},"final":{"t":"38.35","s":38.35},"place":5,"status":"ok","dq":false},{"name":"Morgan, Patience L","team":"GG","sid":"morgan|patience|13-14","seed":{"t":"37.82","s":37.82},"final":{"t":"39.01","s":39.01},"place":6,"status":"ok","dq":false},{"name":"Chamberlain, Lucy","team":"WPPIR","sid":"chamberlain|lucy|13-14","seed":{"t":"39.98","s":39.98},"final":{"t":"39.40","s":39.4},"place":7,"status":"ok","dq":false},{"name":"Finerfrock, Amelia M","team":"MBKMT","sid":"finerfrock|amelia|13-14","seed":{"t":"41.46","s":41.46},"final":{"t":"41.83","s":41.83},"place":8,"status":"ok","dq":false},{"name":"Threlkeld, Evelyn","team":"POQ","sid":"threlkeld|evelyn|13-14","seed":{"t":"40.20","s":40.2},"final":{"t":"42.38","s":42.38},"place":9,"status":"ok","dq":false},{"name":"Frailing, Sela","team":"HW","sid":"frailing|sela|13-14","seed":{"t":"41.87","s":41.87},"final":{"t":"42.82","s":42.82},"place":10,"status":"ok","dq":false},{"name":"Muro, Jeri","team":"GG","sid":"muro|jeri|13-14","seed":{"t":"42.13","s":42.13},"final":{"t":"43.35","s":43.35},"place":11,"status":"ok","dq":false},{"name":"Chamberlain, Molly","team":"WPPIR","sid":"chamberlain|molly|13-14","seed":{"t":"36.66","s":36.66},"final":null,"place":null,"status":"scratch","dq":false}]},{"number":"28","description":"Girls 13-14 50m Breaststroke","gender":"F","distance":50,"stroke":"Breaststroke","ageGroup":"13-14","results":[{"name":"Chamberlain, Lucy","team":"WPPIR","sid":"chamberlain|lucy|13-14","seed":{"t":"48.28","s":48.28},"final":{"t":"47.75","s":47.75},"place":1,"status":"ok","dq":false,"cut":true},{"name":"Begley, Caroline","team":"KCD","sid":"begley|caroline|13-14","seed":{"t":"54.90","s":54.9},"final":{"t":"47.98","s":47.98},"place":2,"status":"ok","dq":false,"cut":true},{"name":"Vongroven, Molly","team":"CV","sid":"vongroven|molly|13-14","seed":{"t":"48.71","s":48.71},"final":{"t":"48.10","s":48.1},"place":3,"status":"ok","dq":false},{"name":"Finerfrock, Amelia M","team":"MBKMT","sid":"finerfrock|amelia|13-14","seed":{"t":"49.00","s":49},"final":{"t":"48.37","s":48.37},"place":4,"status":"ok","dq":false},{"name":"Jasper, Taylor","team":"MBKMT","sid":"jasper|taylor|13-14","seed":{"t":"48.15","s":48.15},"final":{"t":"49.79","s":49.79},"place":5,"status":"ok","dq":false},{"name":"Morgan, Patience L","team":"GG","sid":"morgan|patience|13-14","seed":{"t":"48.42","s":48.42},"final":{"t":"50.29","s":50.29},"place":6,"status":"ok","dq":false},{"name":"Buffamante, Kaia","team":"RMMR","sid":"buffamante|kaia|11-12","seed":{"t":"52.97","s":52.97},"final":{"t":"50.85","s":50.85},"place":7,"status":"ok","dq":false},{"name":"Muro, Jeri","team":"GG","sid":"muro|jeri|13-14","seed":{"t":"52.44","s":52.44},"final":{"t":"52.50","s":52.5},"place":8,"status":"ok","dq":false},{"name":"Woods, Grace","team":"WW","sid":"woods|grace|13-14","seed":{"t":"1:03.19","s":63.19},"final":{"t":"57.26","s":57.26},"place":9,"status":"ok","dq":false},{"name":"Daniels, Madison","team":"POQ","sid":"daniels|madison|13-14","seed":{"t":"1:01.09","s":61.09},"final":{"t":"58.21","s":58.21},"place":10,"status":"ok","dq":false},{"name":"Snyder, Alina B","team":"WW","sid":"snyder|alina|13-14","seed":{"t":"55.46","s":55.46},"final":{"t":"59.73","s":59.73},"place":11,"status":"ok","dq":false},{"name":"Frailing, Sela","team":"HW","sid":"frailing|sela|13-14","seed":{"t":"1:00.64","s":60.64},"final":{"t":"1:01.82","s":61.82},"place":12,"status":"ok","dq":false},{"name":"Chamberlain, Molly","team":"WPPIR","sid":"chamberlain|molly|13-14","seed":{"t":"48.24","s":48.24},"final":null,"place":null,"status":"scratch","dq":false}]},{"number":"40","description":"Girls 13-14 50m Backstroke","gender":"F","distance":50,"stroke":"Backstroke","ageGroup":"13-14","results":[{"name":"Jordan, Alexis","team":"WYTH","sid":"jordan|alexis|13-14","seed":{"t":"44.23","s":44.23},"final":{"t":"44.49","s":44.49},"place":1,"status":"ok","dq":false},{"name":"Woods, Grace","team":"WW","sid":"woods|grace|13-14","seed":{"t":"48.20","s":48.2},"final":{"t":"46.66","s":46.66},"place":2,"status":"ok","dq":false},{"name":"Looney, Reese E","team":"POQ","sid":"looney|reese|13-14","seed":{"t":"46.14","s":46.14},"final":{"t":"46.71","s":46.71},"place":3,"status":"ok","dq":false},{"name":"Snyder, Alina B","team":"WW","sid":"snyder|alina|13-14","seed":{"t":"46.75","s":46.75},"final":{"t":"46.90","s":46.9},"place":4,"status":"ok","dq":false},{"name":"Frailing, Sela","team":"HW","sid":"frailing|sela|13-14","seed":{"t":"48.35","s":48.35},"final":{"t":"47.12","s":47.12},"place":5,"status":"ok","dq":false},{"name":"Begley, Caroline","team":"KCD","sid":"begley|caroline|13-14","seed":{"t":"48.77","s":48.77},"final":{"t":"47.44","s":47.44},"place":6,"status":"ok","dq":false},{"name":"Wilinski, Audrey D","team":"RMMR","sid":"wilinski|audrey|13-14","seed":{"t":"44.24","s":44.24},"final":{"t":"47.82","s":47.82},"place":7,"status":"ok","dq":false},{"name":"Threlkeld, Evelyn","team":"POQ","sid":"threlkeld|evelyn|13-14","seed":{"t":"49.16","s":49.16},"final":{"t":"48.74","s":48.74},"place":8,"status":"ok","dq":false},{"name":"Muro, Jeri","team":"GG","sid":"muro|jeri|13-14","seed":{"t":"55.95","s":55.95},"final":{"t":"54.45","s":54.45},"place":9,"status":"ok","dq":false},{"name":"Daniels, Madison","team":"POQ","sid":"daniels|madison|13-14","seed":{"t":"51.38","s":51.38},"final":{"t":"55.47","s":55.47},"place":10,"status":"ok","dq":false}]},{"number":"12","description":"Girls 7-8 25m Freestyle","gender":"F","distance":25,"stroke":"Freestyle","ageGroup":"7-8","results":[{"name":"Reynolds, Ivy","team":"VG","sid":"reynolds|ivy|7-8","seed":{"t":"30.24","s":30.24},"final":{"t":"27.01","s":27.01},"place":1,"status":"ok","dq":false},{"name":"Macaluso, Jane","team":"GG","sid":"macaluso|jane|7-8","seed":{"t":"28.44","s":28.44},"final":{"t":"27.95","s":27.95},"place":2,"status":"ok","dq":false},{"name":"Jensen, Alexis R","team":"HW","sid":"jensen|alexis|7-8","seed":{"t":"29.07","s":29.07},"final":{"t":"28.44","s":28.44},"place":3,"status":"ok","dq":false},{"name":"Stellon, Jacqueline","team":"CV","sid":"stellon|jacqueline|7-8","seed":{"t":"28.16","s":28.16},"final":{"t":"28.50","s":28.5},"place":4,"status":"ok","dq":false},{"name":"Daniels, Jocelyn T","team":"WPPIR","sid":"daniels|jocelyn|7-8","seed":{"t":"29.03","s":29.03},"final":{"t":"28.53","s":28.53},"place":5,"status":"ok","dq":false},{"name":"Bartley, Abigail","team":"RMMR","sid":"bartley|abigail|7-8","seed":{"t":"27.60","s":27.6},"final":{"t":"28.59","s":28.59},"place":6,"status":"ok","dq":false},{"name":"Lilliston, Madison","team":"GG","sid":"lilliston|madison|7-8","seed":{"t":"28.50","s":28.5},"final":{"t":"29.99","s":29.99},"place":7,"status":"ok","dq":false},{"name":"Watson, Halle","team":"RMMR","sid":"watson|halle|7-8","seed":{"t":"27.50","s":27.5},"final":{"t":"30.14","s":30.14},"place":8,"status":"ok","dq":false},{"name":"Cole, Harper","team":"WPPIR","sid":"cole|harper|7-8","seed":{"t":"31.96","s":31.96},"final":{"t":"30.25","s":30.25},"place":9,"status":"ok","dq":false},{"name":"Hudspath, Sutter K","team":"WYCC","sid":"hudspath|sutter|7-8","seed":{"t":"32.36","s":32.36},"final":{"t":"30.69","s":30.69},"place":10,"status":"ok","dq":false},{"name":"Wong, Ellie","team":"VG","sid":"wong|ellie|7-8","seed":{"t":"29.79","s":29.79},"final":{"t":"30.76","s":30.76},"place":11,"status":"ok","dq":false},{"name":"Steward, Anne Marie","team":"KCD","sid":"steward|anne|7-8","seed":{"t":"31.37","s":31.37},"final":{"t":"30.81","s":30.81},"place":12,"status":"ok","dq":false},{"name":"Martin, Veronica","team":"GG","sid":"martin|veronica|7-8","seed":{"t":"29.89","s":29.89},"final":{"t":"30.84","s":30.84},"place":13,"status":"ok","dq":false},{"name":"Begley, Josephine L","team":"KCD","sid":"begley|josephine|7-8","seed":{"t":"31.92","s":31.92},"final":{"t":"31.06","s":31.06},"place":14,"status":"ok","dq":false},{"name":"Matthews, Aubrey L","team":"POQ","sid":"matthews|aubrey|7-8","seed":{"t":"31.90","s":31.9},"final":{"t":"32.14","s":32.14},"place":15,"status":"ok","dq":false},{"name":"Frailing, Anne-Marie","team":"HW","sid":"frailing|anne-marie|7-8","seed":{"t":"33.42","s":33.42},"final":{"t":"32.50","s":32.5},"place":16,"status":"ok","dq":false},{"name":"Council, Aubrey J","team":"GG","sid":"council|aubrey|7-8","seed":{"t":"36.13","s":36.13},"final":{"t":"33.96","s":33.96},"place":17,"status":"ok","dq":false},{"name":"Scott, Lily","team":"WPPIR","sid":"scott|lily|7-8","seed":{"t":"37.24","s":37.24},"final":{"t":"34.60","s":34.6},"place":18,"status":"ok","dq":false},{"name":"Overmeyer, Reagan","team":"POQ","sid":"overmeyer|reagan|7-8","seed":{"t":"32.00","s":32},"final":{"t":"35.26","s":35.26},"place":19,"status":"ok","dq":false},{"name":"Brauer, Julie K","team":"POQ","sid":"brauer|julie|7-8","seed":{"t":"31.95","s":31.95},"final":{"t":"35.63","s":35.63},"place":20,"status":"ok","dq":false},{"name":"Cole, Chloe T","team":"WYTH","sid":"cole|chloe|7-8","seed":{"t":"33.55","s":33.55},"final":{"t":"35.77","s":35.77},"place":21,"status":"ok","dq":false},{"name":"Vito, Mia","team":"WW","sid":"vito|mia|7-8","seed":{"t":"36.91","s":36.91},"final":{"t":"40.17","s":40.17},"place":22,"status":"ok","dq":false},{"name":"Milliner, Eva","team":"POQ","sid":"milliner|eva|7-8","seed":{"t":"36.96","s":36.96},"final":{"t":"40.87","s":40.87},"place":23,"status":"ok","dq":false},{"name":"Brant, Savannah","team":"POQ","sid":"brant|savannah|7-8","seed":{"t":"39.14","s":39.14},"final":{"t":"41.00","s":41},"place":24,"status":"ok","dq":false},{"name":"Cole, Abigail K","team":"WYTH","sid":"cole|abigail|7-8","seed":{"t":"39.04","s":39.04},"final":{"t":"42.46","s":42.46},"place":25,"status":"ok","dq":false},{"name":"Bowen, Adelaine","team":"MBKMT","sid":"bowen|adelaine|7-8","seed":{"t":"52.97","s":52.97},"final":{"t":"49.65","s":49.65},"place":26,"status":"ok","dq":false},{"name":"Lawton, Anastasia E","team":"HW","sid":"lawton|anastasia|7-8","seed":{"t":"1:01.14","s":61.14},"final":{"t":"55.29","s":55.29},"place":27,"status":"ok","dq":false}]},{"number":"22","description":"Girls 8 & Under 25m Breaststroke","gender":"F","distance":25,"stroke":"Breaststroke","ageGroup":"8 & Under","results":[{"name":"Begley, Josephine L","team":"KCD","sid":"begley|josephine|7-8","seed":{"t":"34.79","s":34.79},"final":{"t":"33.29","s":33.29},"place":1,"status":"ok","dq":false},{"name":"Register, Elle","team":"MBKMT","sid":"register|elle|7-8","seed":{"t":"36.08","s":36.08},"final":{"t":"33.47","s":33.47},"place":2,"status":"ok","dq":false},{"name":"Martin, Veronica","team":"GG","sid":"martin|veronica|7-8","seed":{"t":"38.52","s":38.52},"final":{"t":"33.80","s":33.8},"place":3,"status":"ok","dq":false},{"name":"Baber, Kennedy","team":"GG","sid":"baber|kennedy|7-8","seed":{"t":"33.08","s":33.08},"final":{"t":"34.00","s":34},"place":4,"status":"ok","dq":false},{"name":"Reynolds, Ivy","team":"VG","sid":"reynolds|ivy|7-8","seed":{"t":"35.66","s":35.66},"final":{"t":"34.12","s":34.12},"place":5,"status":"ok","dq":false},{"name":"Raines, Lucille","team":"GG","sid":"raines|lucille|6&u","seed":{"t":"39.39","s":39.39},"final":{"t":"38.12","s":38.12},"place":6,"status":"ok","dq":false},{"name":"Glover, Mary","team":"EL","sid":"glover|mary|7-8","seed":{"t":"38.56","s":38.56},"final":{"t":"40.16","s":40.16},"place":7,"status":"ok","dq":false},{"name":"Goergen, Amelia J","team":"WW","sid":"goergen|amelia|6&u","seed":{"t":"40.81","s":40.81},"final":{"t":"40.64","s":40.64},"place":8,"status":"ok","dq":false},{"name":"Overmeyer, Reagan","team":"POQ","sid":"overmeyer|reagan|7-8","seed":{"t":"46.71","s":46.71},"final":{"t":"46.21","s":46.21},"place":9,"status":"ok","dq":false}]},{"number":"34","description":"Girls 7-8 25m Backstroke","gender":"F","distance":25,"stroke":"Backstroke","ageGroup":"7-8","results":[{"name":"Amini, Ayla","team":"RMMR","sid":"amini|ayla|7-8","seed":{"t":"32.13","s":32.13},"final":{"t":"27.94","s":27.94},"place":1,"status":"ok","dq":false,"cut":true},{"name":"Martin, Veronica","team":"GG","sid":"martin|veronica|7-8","seed":{"t":"33.53","s":33.53},"final":{"t":"29.81","s":29.81},"place":2,"status":"ok","dq":false,"cut":true},{"name":"Register, Elle","team":"MBKMT","sid":"register|elle|7-8","seed":{"t":"31.13","s":31.13},"final":{"t":"30.45","s":30.45},"place":3,"status":"ok","dq":false},{"name":"Watson, Halle","team":"RMMR","sid":"watson|halle|7-8","seed":{"t":"33.37","s":33.37},"final":{"t":"30.45","s":30.45},"place":3,"status":"ok","dq":false},{"name":"Daniels, Jocelyn T","team":"WPPIR","sid":"daniels|jocelyn|7-8","seed":{"t":"39.68","s":39.68},"final":{"t":"30.88","s":30.88},"place":5,"status":"ok","dq":false},{"name":"Jordan, Charlotte","team":"VG","sid":"jordan|charlotte|7-8","seed":{"t":"32.95","s":32.95},"final":{"t":"31.78","s":31.78},"place":6,"status":"ok","dq":false},{"name":"Glover, Mary","team":"EL","sid":"glover|mary|7-8","seed":{"t":"35.88","s":35.88},"final":{"t":"32.13","s":32.13},"place":7,"status":"ok","dq":false},{"name":"Frailing, Anne-Marie","team":"HW","sid":"frailing|anne-marie|7-8","seed":{"t":"36.53","s":36.53},"final":{"t":"33.24","s":33.24},"place":8,"status":"ok","dq":false},{"name":"Spady, Saylor W","team":"COL","sid":"spady|saylor|7-8","seed":{"t":"35.65","s":35.65},"final":{"t":"33.95","s":33.95},"place":9,"status":"ok","dq":false},{"name":"Macaluso, Jane","team":"GG","sid":"macaluso|jane|7-8","seed":{"t":"35.00","s":35},"final":{"t":"34.03","s":34.03},"place":10,"status":"ok","dq":false},{"name":"MacPherson, Leona","team":"POQ","sid":"macpherson|leona|7-8","seed":{"t":"30.66","s":30.66},"final":{"t":"34.18","s":34.18},"place":11,"status":"ok","dq":false},{"name":"Matthews, Aubrey L","team":"POQ","sid":"matthews|aubrey|7-8","seed":{"t":"34.50","s":34.5},"final":{"t":"34.43","s":34.43},"place":12,"status":"ok","dq":false},{"name":"Steward, Anne Marie","team":"KCD","sid":"steward|anne|7-8","seed":{"t":"33.57","s":33.57},"final":{"t":"34.62","s":34.62},"place":13,"status":"ok","dq":false},{"name":"Begley, Josephine L","team":"KCD","sid":"begley|josephine|7-8","seed":{"t":"34.65","s":34.65},"final":{"t":"34.78","s":34.78},"place":14,"status":"ok","dq":false},{"name":"Brauer, Julie K","team":"POQ","sid":"brauer|julie|7-8","seed":{"t":"34.88","s":34.88},"final":{"t":"34.94","s":34.94},"place":15,"status":"ok","dq":false},{"name":"Hudspath, Sutter K","team":"WYCC","sid":"hudspath|sutter|7-8","seed":{"t":"35.04","s":35.04},"final":{"t":"37.79","s":37.79},"place":16,"status":"ok","dq":false},{"name":"Cole, Chloe T","team":"WYTH","sid":"cole|chloe|7-8","seed":{"t":"39.07","s":39.07},"final":{"t":"38.83","s":38.83},"place":17,"status":"ok","dq":false},{"name":"Bowen, Adelaine","team":"MBKMT","sid":"bowen|adelaine|7-8","seed":{"t":"41.71","s":41.71},"final":{"t":"42.29","s":42.29},"place":18,"status":"ok","dq":false},{"name":"Vito, Mia","team":"WW","sid":"vito|mia|7-8","seed":{"t":"48.33","s":48.33},"final":{"t":"43.69","s":43.69},"place":19,"status":"ok","dq":false},{"name":"Milliner, Eva","team":"POQ","sid":"milliner|eva|7-8","seed":{"t":"43.70","s":43.7},"final":{"t":"45.87","s":45.87},"place":20,"status":"ok","dq":false},{"name":"Council, Aubrey J","team":"GG","sid":"council|aubrey|7-8","seed":{"t":"41.22","s":41.22},"final":{"t":"46.33","s":46.33},"place":21,"status":"ok","dq":false},{"name":"Cole, Abigail K","team":"WYTH","sid":"cole|abigail|7-8","seed":{"t":"49.14","s":49.14},"final":{"t":"49.12","s":49.12},"place":22,"status":"ok","dq":false},{"name":"Lawton, Anastasia E","team":"HW","sid":"lawton|anastasia|7-8","seed":{"t":"1:16.39","s":76.39},"final":{"t":"1:11.70","s":71.7},"place":23,"status":"ok","dq":false},{"name":"Brant, Savannah","team":"POQ","sid":"brant|savannah|7-8","seed":{"t":"39.75","s":39.75},"final":{"t":"35.47","s":35.47},"place":null,"status":"dq","dq":true},{"name":"Cole, Harper","team":"WPPIR","sid":"cole|harper|7-8","seed":{"t":"31.75","s":31.75},"final":{"t":"35.14","s":35.14},"place":null,"status":"dq","dq":true}]},{"number":"36","description":"Girls 9-10 50m Backstroke","gender":"F","distance":50,"stroke":"Backstroke","ageGroup":"9-10","results":[{"name":"Begley, Margaret","team":"KCD","sid":"begley|margaret|9-10","seed":{"t":"1:01.16","s":61.16},"final":{"t":"55.16","s":55.16},"place":1,"status":"ok","dq":false,"cut":true},{"name":"Keene, Lillian J","team":"GG","sid":"keene|lillian|9-10","seed":{"t":"59.88","s":59.88},"final":{"t":"55.41","s":55.41},"place":2,"status":"ok","dq":false,"cut":true},{"name":"Huskey, Leah K","team":"POQ","sid":"huskey|leah|9-10","seed":{"t":"59.70","s":59.7},"final":{"t":"56.72","s":56.72},"place":3,"status":"ok","dq":false,"cut":true},{"name":"Macaluso, Theresa","team":"GG","sid":"macaluso|theresa|9-10","seed":{"t":"59.27","s":59.27},"final":{"t":"58.08","s":58.08},"place":4,"status":"ok","dq":false,"cut":true},{"name":"Copeland, Magnolia","team":"GG","sid":"copeland|magnolia|9-10","seed":{"t":"1:03.13","s":63.13},"final":{"t":"58.51","s":58.51},"place":5,"status":"ok","dq":false,"cut":true},{"name":"Huskey, Lauren M","team":"POQ","sid":"huskey|lauren|9-10","seed":{"t":"1:01.75","s":61.75},"final":{"t":"59.82","s":59.82},"place":6,"status":"ok","dq":false},{"name":"Guerrero, Giselle","team":"POQ","sid":"guerrero|giselle|9-10","seed":{"t":"59.38","s":59.38},"final":{"t":"1:00.13","s":60.13},"place":7,"status":"ok","dq":false},{"name":"Murphy, Luna","team":"HW","sid":"murphy|luna|9-10","seed":{"t":"59.31","s":59.31},"final":{"t":"1:02.90","s":62.9},"place":8,"status":"ok","dq":false},{"name":"Wampler, Anna J","team":"WO","sid":"wampler|anna|9-10","seed":{"t":"58.87","s":58.87},"final":{"t":"1:03.43","s":63.43},"place":9,"status":"ok","dq":false},{"name":"Kudley, Bellamy","team":"MBKMT","sid":"kudley|bellamy|9-10","seed":{"t":"1:02.05","s":62.05},"final":{"t":"1:03.76","s":63.76},"place":10,"status":"ok","dq":false},{"name":"Jaroma, Everly E","team":"HW","sid":"jaroma|everly|9-10","seed":{"t":"1:02.91","s":62.91},"final":{"t":"1:04.53","s":64.53},"place":11,"status":"ok","dq":false},{"name":"Pearison, Joanna G","team":"EL","sid":"pearison|joanna|9-10","seed":null,"final":{"t":"1:04.85","s":64.85},"place":12,"status":"ok","dq":false},{"name":"Balest, Rylie","team":"MBKMT","sid":"balest|rylie|9-10","seed":{"t":"1:12.18","s":72.18},"final":{"t":"1:05.52","s":65.52},"place":13,"status":"ok","dq":false},{"name":"Selfridge, Natalie","team":"GG","sid":"selfridge|natalie|9-10","seed":{"t":"1:18.40","s":78.4},"final":{"t":"1:06.71","s":66.71},"place":14,"status":"ok","dq":false},{"name":"Allsbrook, Margaret","team":"POQ","sid":"allsbrook|margaret|9-10","seed":{"t":"1:23.07","s":83.07},"final":{"t":"1:06.75","s":66.75},"place":15,"status":"ok","dq":false},{"name":"Crosby, Ellis","team":"RMMR","sid":"crosby|ellis|9-10","seed":{"t":"1:06.74","s":66.74},"final":{"t":"1:07.21","s":67.21},"place":16,"status":"ok","dq":false},{"name":"Crandol, Elizabeth","team":"POQ","sid":"crandol|elizabeth|9-10","seed":{"t":"1:08.61","s":68.61},"final":{"t":"1:09.28","s":69.28},"place":17,"status":"ok","dq":false},{"name":"Hunter, Ophelia","team":"GG","sid":"hunter|ophelia|9-10","seed":{"t":"1:01.87","s":61.87},"final":{"t":"1:09.86","s":69.86},"place":18,"status":"ok","dq":false},{"name":"Park, Harper","team":"GG","sid":"park|harper|9-10","seed":{"t":"1:32.55","s":92.55},"final":{"t":"1:39.36","s":99.36},"place":19,"status":"ok","dq":false},{"name":"Montville, Addison","team":"MBKMT","sid":"montville|addison|9-10","seed":{"t":"1:03.43","s":63.43},"final":{"t":"55.74","s":55.74},"place":null,"status":"dq","dq":true},{"name":"Gowens, Sophia","team":"GG","sid":"gowens|sophia|9-10","seed":{"t":"1:00.93","s":60.93},"final":{"t":"53.61","s":53.61},"place":null,"status":"dq","dq":true},{"name":"Hagewood, Madison","team":"POQ","sid":"hagewood|madison|9-10","seed":{"t":"1:01.42","s":61.42},"final":{"t":"58.00","s":58},"place":null,"status":"dq","dq":true}]},{"number":"13","description":"Boys 9-10 50m Freestyle","gender":"M","distance":50,"stroke":"Freestyle","ageGroup":"9-10","results":[{"name":"Son, Anthony K","team":"POQ","sid":"son|anthony|9-10","seed":{"t":"48.87","s":48.87},"final":{"t":"45.74","s":45.74},"place":1,"status":"ok","dq":false,"cut":true},{"name":"Goergen, James T","team":"WW","sid":"goergen|james|9-10","seed":{"t":"46.82","s":46.82},"final":{"t":"47.36","s":47.36},"place":2,"status":"ok","dq":false},{"name":"Chamberlain, Sam","team":"WPPIR","sid":"chamberlain|sam|9-10","seed":{"t":"48.21","s":48.21},"final":{"t":"47.48","s":47.48},"place":3,"status":"ok","dq":false},{"name":"Scalzi, Ryker J","team":"WO","sid":"scalzi|ryker|9-10","seed":{"t":"50.01","s":50.01},"final":{"t":"47.83","s":47.83},"place":4,"status":"ok","dq":false},{"name":"Hudson, Samuel W","team":"POQ","sid":"hudson|samuel|9-10","seed":{"t":"54.49","s":54.49},"final":{"t":"48.55","s":48.55},"place":5,"status":"ok","dq":false},{"name":"Spence, Noah","team":"EL","sid":"spence|noah|9-10","seed":{"t":"58.09","s":58.09},"final":{"t":"48.90","s":48.9},"place":6,"status":"ok","dq":false},{"name":"Cagle, Rhett","team":"KCD","sid":"cagle|rhett|9-10","seed":{"t":"49.48","s":49.48},"final":{"t":"48.91","s":48.91},"place":7,"status":"ok","dq":false},{"name":"Stadt, Maximus","team":"COL","sid":"stadt|maximus|9-10","seed":{"t":"50.25","s":50.25},"final":{"t":"49.38","s":49.38},"place":8,"status":"ok","dq":false},{"name":"Harty, Everett","team":"MBKMT","sid":"harty|everett|9-10","seed":{"t":"47.08","s":47.08},"final":{"t":"50.15","s":50.15},"place":9,"status":"ok","dq":false},{"name":"Dessoffy, Tyler W","team":"BLMAR","sid":"dessoffy|tyler|9-10","seed":{"t":"53.85","s":53.85},"final":{"t":"50.67","s":50.67},"place":10,"status":"ok","dq":false},{"name":"Kirsteatter, Clay","team":"COL","sid":"kirsteatter|clay|9-10","seed":{"t":"49.61","s":49.61},"final":{"t":"51.31","s":51.31},"place":11,"status":"ok","dq":false},{"name":"Gold, Whitaker","team":"COL","sid":"gold|whitaker|9-10","seed":{"t":"56.10","s":56.1},"final":{"t":"52.01","s":52.01},"place":12,"status":"ok","dq":false},{"name":"Tate, Bradley","team":"WPPIR","sid":"tate|bradley|9-10","seed":{"t":"53.95","s":53.95},"final":{"t":"53.08","s":53.08},"place":13,"status":"ok","dq":false},{"name":"Simpson, Smith","team":"WW","sid":"simpson|smith|9-10","seed":{"t":"57.67","s":57.67},"final":{"t":"54.87","s":54.87},"place":14,"status":"ok","dq":false},{"name":"Jensen, Tobias C","team":"HW","sid":"jensen|tobias|9-10","seed":{"t":"52.43","s":52.43},"final":{"t":"56.75","s":56.75},"place":15,"status":"ok","dq":false},{"name":"Stellon, Everett","team":"CV","sid":"stellon|everett|9-10","seed":{"t":"58.47","s":58.47},"final":{"t":"57.40","s":57.4},"place":16,"status":"ok","dq":false},{"name":"Antcliff, Walton T","team":"WPPIR","sid":"antcliff|walton|9-10","seed":{"t":"50.02","s":50.02},"final":{"t":"57.91","s":57.91},"place":17,"status":"ok","dq":false},{"name":"Mazaheri, Yuna","team":"POQ","sid":"mazaheri|yuna|9-10","seed":{"t":"59.05","s":59.05},"final":{"t":"1:00.00","s":60},"place":18,"status":"ok","dq":false},{"name":"Spence, Julian","team":"WW","sid":"spence|julian|9-10","seed":{"t":"1:13.62","s":73.62},"final":{"t":"1:03.52","s":63.52},"place":19,"status":"ok","dq":false},{"name":"Brant, Oliver","team":"POQ","sid":"brant|oliver|9-10","seed":{"t":"1:18.29","s":78.29},"final":{"t":"1:06.48","s":66.48},"place":20,"status":"ok","dq":false},{"name":"Watson, William F","team":"RMMR","sid":"watson|william|9-10","seed":{"t":"1:14.04","s":74.04},"final":{"t":"1:07.88","s":67.88},"place":21,"status":"ok","dq":false},{"name":"Lawton, Nicholas E","team":"HW","sid":"lawton|nicholas|9-10","seed":{"t":"1:28.98","s":88.98},"final":{"t":"1:23.62","s":83.62},"place":22,"status":"ok","dq":false}]},{"number":"23","description":"Boys 9-10 50m Breaststroke","gender":"M","distance":50,"stroke":"Breaststroke","ageGroup":"9-10","results":[{"name":"Spaeth, Andrew","team":"RMMR","sid":"spaeth|andrew|9-10","seed":{"t":"1:03.68","s":63.68},"final":{"t":"58.64","s":58.64},"place":1,"status":"ok","dq":false,"cut":true},{"name":"Provencher, Ethan","team":"RMMR","sid":"provencher|ethan|9-10","seed":{"t":"1:06.10","s":66.1},"final":{"t":"58.91","s":58.91},"place":2,"status":"ok","dq":false,"cut":true},{"name":"McMichael, Nathan","team":"KCD","sid":"mcmichael|nathan|9-10","seed":{"t":"1:02.81","s":62.81},"final":{"t":"1:01.24","s":61.24},"place":3,"status":"ok","dq":false},{"name":"Kudley, MacLaren","team":"MBKMT","sid":"kudley|maclaren|9-10","seed":{"t":"1:04.37","s":64.37},"final":{"t":"1:02.24","s":62.24},"place":4,"status":"ok","dq":false},{"name":"Tate, Bradley","team":"WPPIR","sid":"tate|bradley|9-10","seed":{"t":"1:00.70","s":60.7},"final":{"t":"1:03.54","s":63.54},"place":5,"status":"ok","dq":false},{"name":"Spence, Thomas","team":"EL","sid":"spence|thomas|9-10","seed":{"t":"1:03.75","s":63.75},"final":{"t":"1:04.14","s":64.14},"place":6,"status":"ok","dq":false},{"name":"Cagle, Rhett","team":"KCD","sid":"cagle|rhett|9-10","seed":{"t":"1:11.65","s":71.65},"final":{"t":"1:04.21","s":64.21},"place":7,"status":"ok","dq":false},{"name":"Antcliff, Walton T","team":"WPPIR","sid":"antcliff|walton|9-10","seed":{"t":"1:03.95","s":63.95},"final":{"t":"1:04.65","s":64.65},"place":8,"status":"ok","dq":false},{"name":"Scalzi, Ryker J","team":"WO","sid":"scalzi|ryker|9-10","seed":{"t":"1:09.06","s":69.06},"final":{"t":"1:04.84","s":64.84},"place":9,"status":"ok","dq":false},{"name":"Mazaheri, Yuna","team":"POQ","sid":"mazaheri|yuna|9-10","seed":{"t":"1:08.75","s":68.75},"final":{"t":"1:08.06","s":68.06},"place":10,"status":"ok","dq":false},{"name":"Overmeyer, Connor","team":"POQ","sid":"overmeyer|connor|9-10","seed":{"t":"1:05.65","s":65.65},"final":{"t":"1:08.84","s":68.84},"place":11,"status":"ok","dq":false},{"name":"Glover, George","team":"EL","sid":"glover|george|9-10","seed":{"t":"1:07.62","s":67.62},"final":{"t":"1:09.45","s":69.45},"place":12,"status":"ok","dq":false},{"name":"Harty, Everett","team":"MBKMT","sid":"harty|everett|9-10","seed":{"t":"1:13.81","s":73.81},"final":{"t":"1:10.17","s":70.17},"place":13,"status":"ok","dq":false},{"name":"Watson, William F","team":"RMMR","sid":"watson|william|9-10","seed":{"t":"1:16.09","s":76.09},"final":{"t":"1:11.52","s":71.52},"place":14,"status":"ok","dq":false},{"name":"Chamberlain, Sam","team":"WPPIR","sid":"chamberlain|sam|9-10","seed":{"t":"1:10.27","s":70.27},"final":{"t":"1:11.61","s":71.61},"place":15,"status":"ok","dq":false},{"name":"Goergen, James T","team":"WW","sid":"goergen|james|9-10","seed":{"t":"1:03.33","s":63.33},"final":{"t":"1:04.26","s":64.26},"place":null,"status":"dq","dq":true},{"name":"Prussia, Caspar","team":"HW","sid":"prussia|caspar|9-10","seed":{"t":"1:01.06","s":61.06},"final":{"t":"1:31.36","s":91.36},"place":null,"status":"dq","dq":true}]},{"number":"35","description":"Boys 9-10 50m Backstroke","gender":"M","distance":50,"stroke":"Backstroke","ageGroup":"9-10","results":[{"name":"Threlkeld, Cavan","team":"POQ","sid":"threlkeld|cavan|9-10","seed":{"t":"58.20","s":58.2},"final":{"t":"57.30","s":57.3},"place":1,"status":"ok","dq":false,"cut":true},{"name":"Spence, Thomas","team":"EL","sid":"spence|thomas|9-10","seed":{"t":"1:05.95","s":65.95},"final":{"t":"58.61","s":58.61},"place":2,"status":"ok","dq":false},{"name":"Dessoffy, Tyler W","team":"BLMAR","sid":"dessoffy|tyler|9-10","seed":{"t":"1:02.40","s":62.4},"final":{"t":"58.65","s":58.65},"place":3,"status":"ok","dq":false},{"name":"Stadt, Maximus","team":"COL","sid":"stadt|maximus|9-10","seed":{"t":"1:06.08","s":66.08},"final":{"t":"59.20","s":59.2},"place":4,"status":"ok","dq":false},{"name":"Jensen, Tobias C","team":"HW","sid":"jensen|tobias|9-10","seed":{"t":"1:02.33","s":62.33},"final":{"t":"59.27","s":59.27},"place":5,"status":"ok","dq":false},{"name":"Spence, Noah","team":"EL","sid":"spence|noah|9-10","seed":{"t":"1:00.17","s":60.17},"final":{"t":"59.55","s":59.55},"place":6,"status":"ok","dq":false},{"name":"Cagle, Rhett","team":"KCD","sid":"cagle|rhett|9-10","seed":{"t":"1:11.47","s":71.47},"final":{"t":"1:00.52","s":60.52},"place":7,"status":"ok","dq":false},{"name":"Prussia, Caspar","team":"HW","sid":"prussia|caspar|9-10","seed":{"t":"59.75","s":59.75},"final":{"t":"1:00.90","s":60.9},"place":8,"status":"ok","dq":false},{"name":"Simpson, Smith","team":"WW","sid":"simpson|smith|9-10","seed":{"t":"1:02.33","s":62.33},"final":{"t":"1:01.60","s":61.6},"place":9,"status":"ok","dq":false},{"name":"Scalzi, Ryker J","team":"WO","sid":"scalzi|ryker|9-10","seed":{"t":"1:02.79","s":62.79},"final":{"t":"1:03.14","s":63.14},"place":10,"status":"ok","dq":false},{"name":"Kirsteatter, Clay","team":"COL","sid":"kirsteatter|clay|9-10","seed":{"t":"1:03.41","s":63.41},"final":{"t":"1:07.45","s":67.45},"place":11,"status":"ok","dq":false},{"name":"Stellon, Everett","team":"CV","sid":"stellon|everett|9-10","seed":{"t":"1:10.92","s":70.92},"final":{"t":"1:12.18","s":72.18},"place":12,"status":"ok","dq":false},{"name":"Watson, William F","team":"RMMR","sid":"watson|william|9-10","seed":{"t":"1:34.18","s":94.18},"final":{"t":"1:29.04","s":89.04},"place":13,"status":"ok","dq":false},{"name":"Spaeth, Andrew","team":"RMMR","sid":"spaeth|andrew|9-10","seed":{"t":"58.70","s":58.7},"final":{"t":"58.27","s":58.27},"place":null,"status":"dq","dq":true},{"name":"Brant, Oliver","team":"POQ","sid":"brant|oliver|9-10","seed":{"t":"1:25.00","s":85},"final":{"t":"1:26.36","s":86.36},"place":null,"status":"dq","dq":true},{"name":"Hudson, Samuel W","team":"POQ","sid":"hudson|samuel|9-10","seed":{"t":"1:04.18","s":64.18},"final":{"t":"1:02.71","s":62.71},"place":null,"status":"dq","dq":true}]},{"number":"16","description":"Girls 11-12 50m Freestyle","gender":"F","distance":50,"stroke":"Freestyle","ageGroup":"11-12","results":[{"name":"Jasper, Madison","team":"MBKMT","sid":"jasper|madison|11-12","seed":{"t":"39.05","s":39.05},"final":{"t":"38.58","s":38.58},"place":1,"status":"ok","dq":false,"cut":true},{"name":"Schantz, Alexis","team":"RMMR","sid":"schantz|alexis|11-12","seed":{"t":"40.11","s":40.11},"final":{"t":"39.35","s":39.35},"place":2,"status":"ok","dq":false},{"name":"Glover, Meleena","team":"EL","sid":"glover|meleena|11-12","seed":{"t":"42.40","s":42.4},"final":{"t":"40.40","s":40.4},"place":3,"status":"ok","dq":false},{"name":"Mills, Emmerson E","team":"MBKMT","sid":"mills|emmerson|11-12","seed":{"t":"41.34","s":41.34},"final":{"t":"40.50","s":40.5},"place":4,"status":"ok","dq":false},{"name":"Hudson, Susannah B","team":"POQ","sid":"hudson|susannah|11-12","seed":{"t":"39.75","s":39.75},"final":{"t":"40.70","s":40.7},"place":5,"status":"ok","dq":false},{"name":"Schreier, Teresa","team":"CV","sid":"schreier|teresa|11-12","seed":{"t":"45.84","s":45.84},"final":{"t":"40.74","s":40.74},"place":6,"status":"ok","dq":false},{"name":"Chaudhuri, Nadiya S","team":"WO","sid":"chaudhuri|nadiya|11-12","seed":{"t":"40.24","s":40.24},"final":{"t":"40.94","s":40.94},"place":7,"status":"ok","dq":false},{"name":"Blount, Ruth","team":"HW","sid":"blount|ruth|11-12","seed":{"t":"40.10","s":40.1},"final":{"t":"41.20","s":41.2},"place":8,"status":"ok","dq":false},{"name":"Feather, Eden L","team":"KCD","sid":"feather|eden|11-12","seed":{"t":"43.56","s":43.56},"final":{"t":"41.79","s":41.79},"place":9,"status":"ok","dq":false},{"name":"Rebar, Cadence R","team":"CV","sid":"rebar|cadence|11-12","seed":{"t":"42.47","s":42.47},"final":{"t":"42.16","s":42.16},"place":10,"status":"ok","dq":false},{"name":"Spaeth, Katherine","team":"RMMR","sid":"spaeth|katherine|11-12","seed":{"t":"42.92","s":42.92},"final":{"t":"42.65","s":42.65},"place":11,"status":"ok","dq":false},{"name":"Buffamante, Kaia","team":"RMMR","sid":"buffamante|kaia|11-12","seed":{"t":"41.44","s":41.44},"final":{"t":"43.16","s":43.16},"place":12,"status":"ok","dq":false},{"name":"Patel, Shanaya","team":"RMMR","sid":"patel|shanaya|11-12","seed":{"t":"40.50","s":40.5},"final":{"t":"43.18","s":43.18},"place":13,"status":"ok","dq":false},{"name":"Maddock, Hannah L","team":"RMMR","sid":"maddock|hannah|11-12","seed":{"t":"44.56","s":44.56},"final":{"t":"43.22","s":43.22},"place":14,"status":"ok","dq":false},{"name":"Truckey, Makynzi","team":"VG","sid":"truckey|makynzi|11-12","seed":{"t":"44.60","s":44.6},"final":{"t":"43.62","s":43.62},"place":15,"status":"ok","dq":false},{"name":"Gold, Page","team":"COL","sid":"gold|page|11-12","seed":{"t":"42.12","s":42.12},"final":{"t":"43.88","s":43.88},"place":16,"status":"ok","dq":false},{"name":"Shea, Madigan M","team":"VG","sid":"shea|madigan|11-12","seed":{"t":"44.92","s":44.92},"final":{"t":"45.12","s":45.12},"place":17,"status":"ok","dq":false},{"name":"Overmeyer, Claire","team":"POQ","sid":"overmeyer|claire|11-12","seed":{"t":"45.53","s":45.53},"final":{"t":"45.34","s":45.34},"place":18,"status":"ok","dq":false},{"name":"Martin, Evangeline","team":"GG","sid":"martin|evangeline|11-12","seed":{"t":"47.40","s":47.4},"final":{"t":"46.55","s":46.55},"place":19,"status":"ok","dq":false},{"name":"Robinson, Miriam","team":"POQ","sid":"robinson|miriam|11-12","seed":{"t":"44.02","s":44.02},"final":{"t":"47.05","s":47.05},"place":20,"status":"ok","dq":false},{"name":"Sawyer, Janaya","team":"VG","sid":"sawyer|janaya|11-12","seed":{"t":"42.14","s":42.14},"final":{"t":"47.07","s":47.07},"place":21,"status":"ok","dq":false},{"name":"Hundley, Samantha","team":"COL","sid":"hundley|samantha|11-12","seed":{"t":"48.34","s":48.34},"final":{"t":"48.94","s":48.94},"place":22,"status":"ok","dq":false},{"name":"Koch, Evelyn","team":"CV","sid":"koch|evelyn|11-12","seed":{"t":"51.35","s":51.35},"final":{"t":"49.55","s":49.55},"place":23,"status":"ok","dq":false},{"name":"Spence, Erin","team":"WW","sid":"spence|erin|11-12","seed":{"t":"53.58","s":53.58},"final":{"t":"54.33","s":54.33},"place":24,"status":"ok","dq":false},{"name":"Seabron, Lennox","team":"GG","sid":"seabron|lennox|11-12","seed":{"t":"57.96","s":57.96},"final":{"t":"58.61","s":58.61},"place":25,"status":"ok","dq":false},{"name":"Bonett, Kayra I","team":"POQ","sid":"bonett|kayra|11-12","seed":{"t":"1:27.29","s":87.29},"final":{"t":"1:22.77","s":82.77},"place":26,"status":"ok","dq":false}]},{"number":"38","description":"Girls 11-12 50m Backstroke","gender":"F","distance":50,"stroke":"Backstroke","ageGroup":"11-12","results":[{"name":"Johnson, Emily","team":"WW","sid":"johnson|emily|11-12","seed":{"t":"48.98","s":48.98},"final":{"t":"48.44","s":48.44},"place":1,"status":"ok","dq":false,"cut":true},{"name":"Blount, Ruth","team":"HW","sid":"blount|ruth|11-12","seed":{"t":"49.57","s":49.57},"final":{"t":"49.80","s":49.8},"place":2,"status":"ok","dq":false},{"name":"Glover, Meleena","team":"EL","sid":"glover|meleena|11-12","seed":{"t":"50.37","s":50.37},"final":{"t":"51.30","s":51.3},"place":3,"status":"ok","dq":false},{"name":"Feather, Eden L","team":"KCD","sid":"feather|eden|11-12","seed":{"t":"54.29","s":54.29},"final":{"t":"52.58","s":52.58},"place":4,"status":"ok","dq":false},{"name":"Gold, Page","team":"COL","sid":"gold|page|11-12","seed":{"t":"53.35","s":53.35},"final":{"t":"52.62","s":52.62},"place":5,"status":"ok","dq":false},{"name":"Hundley, Samantha","team":"COL","sid":"hundley|samantha|11-12","seed":{"t":"1:03.25","s":63.25},"final":{"t":"1:04.29","s":64.29},"place":6,"status":"ok","dq":false},{"name":"Seabron, Lennox","team":"GG","sid":"seabron|lennox|11-12","seed":{"t":"1:10.90","s":70.9},"final":{"t":"1:07.57","s":67.57},"place":7,"status":"ok","dq":false},{"name":"Bonett, Kayra I","team":"POQ","sid":"bonett|kayra|11-12","seed":{"t":"1:17.02","s":77.02},"final":{"t":"1:16.87","s":76.87},"place":8,"status":"ok","dq":false}]},{"number":"15","description":"Boys 11-12 50m Freestyle","gender":"M","distance":50,"stroke":"Freestyle","ageGroup":"11-12","results":[{"name":"Gilbert, Ethan","team":"POQ","sid":"gilbert|ethan|11-12","seed":{"t":"41.09","s":41.09},"final":{"t":"41.03","s":41.03},"place":1,"status":"ok","dq":false},{"name":"Hanlon, Bryson","team":"HW","sid":"hanlon|bryson|11-12","seed":{"t":"41.79","s":41.79},"final":{"t":"41.29","s":41.29},"place":2,"status":"ok","dq":false},{"name":"Ostlund, Harrison G","team":"CV","sid":"ostlund|harrison|11-12","seed":{"t":"44.21","s":44.21},"final":{"t":"42.38","s":42.38},"place":3,"status":"ok","dq":false},{"name":"Register, Noah","team":"MBKMT","sid":"register|noah|11-12","seed":{"t":"44.06","s":44.06},"final":{"t":"44.87","s":44.87},"place":4,"status":"ok","dq":false},{"name":"Clift, Jay","team":"CV","sid":"clift|jay|11-12","seed":{"t":"47.34","s":47.34},"final":{"t":"45.43","s":45.43},"place":5,"status":"ok","dq":false},{"name":"Mckelvey, Eli","team":"HW","sid":"mckelvey|eli|11-12","seed":{"t":"47.86","s":47.86},"final":{"t":"46.42","s":46.42},"place":6,"status":"ok","dq":false},{"name":"Chavious, Luis","team":"COL","sid":"chavious|luis|11-12","seed":{"t":"49.93","s":49.93},"final":{"t":"48.90","s":48.9},"place":7,"status":"ok","dq":false},{"name":"Chewie, Liam","team":"RMMR","sid":"chewie|liam|11-12","seed":{"t":"51.94","s":51.94},"final":{"t":"51.99","s":51.99},"place":8,"status":"ok","dq":false},{"name":"MacPherson, Gabriel","team":"POQ","sid":"macpherson|gabriel|11-12","seed":{"t":"47.35","s":47.35},"final":{"t":"52.49","s":52.49},"place":9,"status":"ok","dq":false},{"name":"Patel, Vihaan","team":"RMMR","sid":"patel|vihaan|11-12","seed":{"t":"47.58","s":47.58},"final":{"t":"52.86","s":52.86},"place":10,"status":"ok","dq":false},{"name":"Scott, Andrew","team":"WPPIR","sid":"scott|andrew|11-12","seed":{"t":"53.65","s":53.65},"final":{"t":"53.13","s":53.13},"place":11,"status":"ok","dq":false},{"name":"Gibbs, Gabriel C","team":"KCD","sid":"gibbs|gabriel|11-12","seed":{"t":"1:00.12","s":60.12},"final":{"t":"55.11","s":55.11},"place":12,"status":"ok","dq":false},{"name":"Jones, Jaxson","team":"POQ","sid":"jones|jaxson|11-12","seed":{"t":"51.01","s":51.01},"final":{"t":"55.12","s":55.12},"place":13,"status":"ok","dq":false},{"name":"Turco, Clark","team":"POQ","sid":"turco|clark|11-12","seed":{"t":"1:02.95","s":62.95},"final":{"t":"1:01.17","s":61.17},"place":14,"status":"ok","dq":false},{"name":"Steward, Joseph","team":"KCD","sid":"steward|joseph|11-12","seed":{"t":"1:10.89","s":70.89},"final":{"t":"1:08.68","s":68.68},"place":15,"status":"ok","dq":false},{"name":"Hobbs, Noah B","team":"WO","sid":"hobbs|noah|11-12","seed":{"t":"56.94","s":56.94},"final":null,"place":null,"status":"scratch","dq":false}]},{"number":"37","description":"Boys 11-12 50m Backstroke","gender":"M","distance":50,"stroke":"Backstroke","ageGroup":"11-12","results":[{"name":"Provencher, Aydan","team":"RMMR","sid":"provencher|aydan|11-12","seed":{"t":"53.90","s":53.9},"final":{"t":"50.20","s":50.2},"place":1,"status":"ok","dq":false},{"name":"Gilbert, Ethan","team":"POQ","sid":"gilbert|ethan|11-12","seed":{"t":"54.65","s":54.65},"final":{"t":"53.12","s":53.12},"place":2,"status":"ok","dq":false},{"name":"Jones, Jaxson","team":"POQ","sid":"jones|jaxson|11-12","seed":{"t":"59.55","s":59.55},"final":{"t":"57.58","s":57.58},"place":3,"status":"ok","dq":false},{"name":"Chewie, Liam","team":"RMMR","sid":"chewie|liam|11-12","seed":{"t":"1:03.47","s":63.47},"final":{"t":"1:00.49","s":60.49},"place":4,"status":"ok","dq":false},{"name":"Frailing, Benjamin","team":"HW","sid":"frailing|benjamin|11-12","seed":{"t":"1:02.15","s":62.15},"final":{"t":"1:00.61","s":60.61},"place":5,"status":"ok","dq":false},{"name":"Register, Noah","team":"MBKMT","sid":"register|noah|11-12","seed":{"t":"1:01.81","s":61.81},"final":{"t":"1:04.42","s":64.42},"place":6,"status":"ok","dq":false},{"name":"Turco, Clark","team":"POQ","sid":"turco|clark|11-12","seed":{"t":"1:15.77","s":75.77},"final":{"t":"1:14.39","s":74.39},"place":7,"status":"ok","dq":false},{"name":"Gibbs, Gabriel C","team":"KCD","sid":"gibbs|gabriel|11-12","seed":{"t":"1:28.36","s":88.36},"final":{"t":"1:18.20","s":78.2},"place":8,"status":"ok","dq":false},{"name":"Steward, Joseph","team":"KCD","sid":"steward|joseph|11-12","seed":{"t":"1:36.04","s":96.04},"final":{"t":"1:32.18","s":92.18},"place":9,"status":"ok","dq":false},{"name":"Hobbs, Noah B","team":"WO","sid":"hobbs|noah|11-12","seed":{"t":"1:21.59","s":81.59},"final":null,"place":null,"status":"scratch","dq":false},{"name":"Chavious, Luis","team":"COL","sid":"chavious|luis|11-12","seed":{"t":"1:08.99","s":68.99},"final":{"t":"1:08.84","s":68.84},"place":null,"status":"dq","dq":true}]},{"number":"9","description":"Boys 6 & Under 25m Freestyle","gender":"M","distance":25,"stroke":"Freestyle","ageGroup":"6 & Under","results":[{"name":"Kumar, Aavi C","team":"KCD","sid":"kumar|aavi|6&u","seed":{"t":"35.11","s":35.11},"final":{"t":"34.27","s":34.27},"place":1,"status":"ok","dq":false,"cut":true},{"name":"Stickle, Ethan","team":"EL","sid":"stickle|ethan|6&u","seed":{"t":"39.77","s":39.77},"final":{"t":"34.27","s":34.27},"place":1,"status":"ok","dq":false,"cut":true},{"name":"Simpson, Hank","team":"WW","sid":"simpson|hank|6&u","seed":{"t":"35.98","s":35.98},"final":{"t":"35.19","s":35.19},"place":3,"status":"ok","dq":false},{"name":"Tweedy, Joshua J","team":"MBKMT","sid":"tweedy|joshua|6&u","seed":{"t":"35.76","s":35.76},"final":{"t":"36.44","s":36.44},"place":4,"status":"ok","dq":false},{"name":"Kidd, Everett","team":"HW","sid":"kidd|everett|6&u","seed":{"t":"47.06","s":47.06},"final":{"t":"36.93","s":36.93},"place":5,"status":"ok","dq":false},{"name":"Kudley, Bridger","team":"MBKMT","sid":"kudley|bridger|6&u","seed":{"t":"45.29","s":45.29},"final":{"t":"43.12","s":43.12},"place":6,"status":"ok","dq":false},{"name":"Tate, Brendan R","team":"WPPIR","sid":"tate|brendan|6&u","seed":{"t":"45.51","s":45.51},"final":{"t":"46.54","s":46.54},"place":7,"status":"ok","dq":false},{"name":"Burnette, Griffin J","team":"WPPIR","sid":"burnette|griffin|6&u","seed":{"t":"50.97","s":50.97},"final":{"t":"46.71","s":46.71},"place":8,"status":"ok","dq":false},{"name":"Cole, Owen S","team":"HW","sid":"cole|owen|6&u","seed":{"t":"45.63","s":45.63},"final":{"t":"46.94","s":46.94},"place":9,"status":"ok","dq":false},{"name":"Peterson, Jeremiah","team":"WPPIR","sid":"peterson|jeremiah|6&u","seed":{"t":"47.74","s":47.74},"final":{"t":"50.35","s":50.35},"place":10,"status":"ok","dq":false},{"name":"Hudson, Thomas M","team":"MBKMT","sid":"hudson|thomas|6&u","seed":{"t":"1:12.07","s":72.07},"final":{"t":"1:05.67","s":65.67},"place":11,"status":"ok","dq":false},{"name":"Bowen, Nolan","team":"MBKMT","sid":"bowen|nolan|6&u","seed":{"t":"1:27.42","s":87.42},"final":{"t":"1:45.54","s":105.54},"place":null,"status":"dq","dq":true},{"name":"Galinski, Isaac","team":"CV","sid":"galinski|isaac|6&u","seed":{"t":"51.47","s":51.47},"final":null,"place":null,"status":"scratch","dq":false}]},{"number":"21","description":"Boys 8 & Under 25m Breaststroke","gender":"M","distance":25,"stroke":"Breaststroke","ageGroup":"8 & Under","results":[{"name":"Chewie, Jack","team":"RMMR","sid":"chewie|jack|6&u","seed":{"t":"37.05","s":37.05},"final":{"t":"32.51","s":32.51},"place":1,"status":"ok","dq":false},{"name":"Truckey, Hunter","team":"VG","sid":"truckey|hunter|6&u","seed":{"t":"34.59","s":34.59},"final":{"t":"35.06","s":35.06},"place":2,"status":"ok","dq":false},{"name":"Bell, Colt","team":"POQ","sid":"bell|colt|7-8","seed":{"t":"36.22","s":36.22},"final":{"t":"37.33","s":37.33},"place":3,"status":"ok","dq":false},{"name":"Muro, Caius","team":"GG","sid":"muro|caius|7-8","seed":{"t":"48.47","s":48.47},"final":{"t":"40.54","s":40.54},"place":4,"status":"ok","dq":false},{"name":"Kumar, Aavi C","team":"KCD","sid":"kumar|aavi|6&u","seed":{"t":"40.29","s":40.29},"final":{"t":"37.29","s":37.29},"place":null,"status":"dq","dq":true}]},{"number":"20","description":"Girls 15-18 50m Freestyle","gender":"F","distance":50,"stroke":"Freestyle","ageGroup":"15-18","results":[{"name":"Jallo, Charlotte A","team":"WPPIR","sid":"jallo|charlotte|15-18","seed":{"t":"34.61","s":34.61},"final":{"t":"34.55","s":34.55},"place":1,"status":"ok","dq":false},{"name":"Tweedt, Alexa","team":"HW","sid":"tweedt|alexa|15-18","seed":{"t":"34.88","s":34.88},"final":{"t":"34.89","s":34.89},"place":2,"status":"ok","dq":false},{"name":"Lee, Samantha","team":"HW","sid":"lee|samantha|15-18","seed":{"t":"34.98","s":34.98},"final":{"t":"35.72","s":35.72},"place":3,"status":"ok","dq":false},{"name":"Humble, Lily","team":"WO","sid":"humble|lily|15-18","seed":{"t":"37.39","s":37.39},"final":{"t":"37.35","s":37.35},"place":4,"status":"ok","dq":false},{"name":"Salyers, Samantha L","team":"COL","sid":"salyers|samantha|15-18","seed":{"t":"36.34","s":36.34},"final":{"t":"37.37","s":37.37},"place":5,"status":"ok","dq":false},{"name":"Ramirez, Kimberly J","team":"POQ","sid":"ramirez|kimberly|15-18","seed":{"t":"40.16","s":40.16},"final":{"t":"38.20","s":38.2},"place":6,"status":"ok","dq":false},{"name":"Lilliston, McKenzie G","team":"GG","sid":"lilliston|mckenzie|15-18","seed":{"t":"37.98","s":37.98},"final":{"t":"38.49","s":38.49},"place":7,"status":"ok","dq":false},{"name":"Riley, Vivian K","team":"KCD","sid":"riley|vivian|15-18","seed":{"t":"36.61","s":36.61},"final":{"t":"38.54","s":38.54},"place":8,"status":"ok","dq":false},{"name":"Templeton, Evelyn","team":"GG","sid":"templeton|evelyn|15-18","seed":{"t":"39.79","s":39.79},"final":{"t":"39.46","s":39.46},"place":9,"status":"ok","dq":false},{"name":"Fricke, Layland","team":"CV","sid":"fricke|layland|15-18","seed":{"t":"36.91","s":36.91},"final":{"t":"39.69","s":39.69},"place":10,"status":"ok","dq":false},{"name":"Loper, Jacqueline i","team":"KCD","sid":"loper|jacqueline|15-18","seed":{"t":"43.86","s":43.86},"final":null,"place":null,"status":"scratch","dq":false}]},{"number":"1","description":"Boys 10 & Under 100m IM","gender":"M","distance":100,"stroke":"IM","ageGroup":"10 & Under","results":[{"name":"McMichael, Nathan","team":"KCD","sid":"mcmichael|nathan|9-10","seed":{"t":"1:52.05","s":112.05},"final":{"t":"1:48.48","s":108.48},"place":1,"status":"ok","dq":false,"cut":true},{"name":"Coleman, Lincoln","team":"COL","sid":"coleman|lincoln|9-10","seed":{"t":"1:55.40","s":115.4},"final":{"t":"1:56.42","s":116.42},"place":2,"status":"ok","dq":false},{"name":"Glover, George","team":"EL","sid":"glover|george|9-10","seed":{"t":"2:00.90","s":120.9},"final":{"t":"1:56.53","s":116.53},"place":3,"status":"ok","dq":false},{"name":"Provencher, Ethan","team":"RMMR","sid":"provencher|ethan|9-10","seed":{"t":"1:54.55","s":114.55},"final":{"t":"1:57.30","s":117.3},"place":4,"status":"ok","dq":false},{"name":"Kudley, MacLaren","team":"MBKMT","sid":"kudley|maclaren|9-10","seed":{"t":"1:58.73","s":118.73},"final":{"t":"2:03.32","s":123.32},"place":5,"status":"ok","dq":false},{"name":"Dessoffy, Tyler W","team":"BLMAR","sid":"dessoffy|tyler|9-10","seed":{"t":"2:05.34","s":125.34},"final":{"t":"2:07.21","s":127.21},"place":6,"status":"ok","dq":false},{"name":"Gold, Whitaker","team":"COL","sid":"gold|whitaker|9-10","seed":{"t":"2:13.14","s":133.14},"final":{"t":"2:07.57","s":127.57},"place":7,"status":"ok","dq":false},{"name":"Son, Anthony K","team":"POQ","sid":"son|anthony|9-10","seed":{"t":"2:21.76","s":141.76},"final":{"t":"2:10.62","s":130.62},"place":8,"status":"ok","dq":false},{"name":"Harty, Everett","team":"MBKMT","sid":"harty|everett|9-10","seed":{"t":"2:20.34","s":140.34},"final":{"t":"2:07.82","s":127.82},"place":null,"status":"dq","dq":true}]},{"number":"42","description":"Girls 15-18 50m Backstroke","gender":"F","distance":50,"stroke":"Backstroke","ageGroup":"15-18","results":[{"name":"Salyers, Samantha L","team":"COL","sid":"salyers|samantha|15-18","seed":{"t":"42.66","s":42.66},"final":{"t":"42.35","s":42.35},"place":1,"status":"ok","dq":false},{"name":"Jallo, Charlotte A","team":"WPPIR","sid":"jallo|charlotte|15-18","seed":{"t":"41.06","s":41.06},"final":{"t":"42.48","s":42.48},"place":2,"status":"ok","dq":false},{"name":"Ramirez, Kimberly J","team":"POQ","sid":"ramirez|kimberly|15-18","seed":{"t":"46.18","s":46.18},"final":{"t":"46.35","s":46.35},"place":3,"status":"ok","dq":false},{"name":"Templeton, Evelyn","team":"GG","sid":"templeton|evelyn|15-18","seed":{"t":"52.71","s":52.71},"final":{"t":"51.16","s":51.16},"place":4,"status":"ok","dq":false},{"name":"Riley, Vivian K","team":"KCD","sid":"riley|vivian|15-18","seed":{"t":"54.21","s":54.21},"final":null,"place":null,"status":"scratch","dq":false}]},{"number":"52","description":"Girls 15-18 50m Butterfly","gender":"F","distance":50,"stroke":"Butterfly","ageGroup":"15-18","results":[{"name":"Tweedt, Alexa","team":"HW","sid":"tweedt|alexa|15-18","seed":{"t":"37.03","s":37.03},"final":{"t":"37.76","s":37.76},"place":1,"status":"ok","dq":false},{"name":"Humble, Lily","team":"WO","sid":"humble|lily|15-18","seed":{"t":"38.47","s":38.47},"final":{"t":"39.71","s":39.71},"place":2,"status":"ok","dq":false},{"name":"Salyers, Samantha L","team":"COL","sid":"salyers|samantha|15-18","seed":{"t":"40.38","s":40.38},"final":{"t":"41.88","s":41.88},"place":3,"status":"ok","dq":false},{"name":"Lilliston, McKenzie G","team":"GG","sid":"lilliston|mckenzie|15-18","seed":{"t":"44.68","s":44.68},"final":{"t":"46.01","s":46.01},"place":4,"status":"ok","dq":false},{"name":"Riley, Vivian K","team":"KCD","sid":"riley|vivian|15-18","seed":{"t":"53.42","s":53.42},"final":null,"place":null,"status":"scratch","dq":false}]},{"number":"2","description":"Girls 10 & Under 100m IM","gender":"F","distance":100,"stroke":"IM","ageGroup":"10 & Under","results":[{"name":"Muro, Maclin","team":"GG","sid":"muro|maclin|9-10","seed":{"t":"1:53.75","s":113.75},"final":{"t":"1:51.00","s":111},"place":1,"status":"ok","dq":false,"cut":true},{"name":"Allen, Alexa M","team":"RRST","sid":"allen|alexa|9-10","seed":{"t":"2:01.66","s":121.66},"final":{"t":"1:51.12","s":111.12},"place":2,"status":"ok","dq":false,"cut":true},{"name":"Robertson, Cadence R","team":"KCD","sid":"robertson|cadence|9-10","seed":{"t":"1:51.98","s":111.98},"final":{"t":"1:51.91","s":111.91},"place":3,"status":"ok","dq":false},{"name":"Harty, Averie","team":"MBKMT","sid":"harty|averie|9-10","seed":{"t":"2:01.84","s":121.84},"final":{"t":"1:56.06","s":116.06},"place":4,"status":"ok","dq":false},{"name":"Kimble, Eloise M","team":"GG","sid":"kimble|eloise|7-8","seed":{"t":"2:01.15","s":121.15},"final":{"t":"1:57.44","s":117.44},"place":5,"status":"ok","dq":false},{"name":"Bartley, Amelia","team":"RMMR","sid":"bartley|amelia|9-10","seed":{"t":"2:22.50","s":142.5},"final":{"t":"1:59.77","s":119.77},"place":6,"status":"ok","dq":false},{"name":"Kimble, Natalie J","team":"GG","sid":"kimble|natalie|9-10","seed":{"t":"1:55.34","s":115.34},"final":{"t":"2:00.38","s":120.38},"place":7,"status":"ok","dq":false},{"name":"Thacker, Bristol","team":"MBKMT","sid":"thacker|bristol|9-10","seed":{"t":"1:58.17","s":118.17},"final":{"t":"2:01.20","s":121.2},"place":8,"status":"ok","dq":false},{"name":"Antcliff, Rose E","team":"WPPIR","sid":"antcliff|rose|7-8","seed":{"t":"2:12.35","s":132.35},"final":{"t":"2:02.28","s":122.28},"place":9,"status":"ok","dq":false},{"name":"Raines, Isabella","team":"GG","sid":"raines|isabella|9-10","seed":{"t":"1:55.36","s":115.36},"final":{"t":"2:03.29","s":123.29},"place":10,"status":"ok","dq":false},{"name":"Hausknecht, Francesca","team":"EL","sid":"hausknecht|francesca|9-10","seed":{"t":"2:03.37","s":123.37},"final":{"t":"2:05.27","s":125.27},"place":11,"status":"ok","dq":false},{"name":"Guerrero, Giselle","team":"POQ","sid":"guerrero|giselle|9-10","seed":{"t":"2:12.50","s":132.5},"final":{"t":"2:07.75","s":127.75},"place":12,"status":"ok","dq":false},{"name":"Lamprecht, Juliet V","team":"POQ","sid":"lamprecht|juliet|9-10","seed":{"t":"2:25.70","s":145.7},"final":{"t":"2:18.46","s":138.46},"place":13,"status":"ok","dq":false},{"name":"Thacker, Sydney","team":"MBKMT","sid":"thacker|sydney|9-10","seed":{"t":"2:15.79","s":135.79},"final":{"t":"2:22.56","s":142.56},"place":14,"status":"ok","dq":false},{"name":"Ruhf, Lyvianna","team":"RMMR","sid":"ruhf|lyvianna|7-8","seed":{"t":"2:16.18","s":136.18},"final":{"t":"2:27.91","s":147.91},"place":15,"status":"ok","dq":false},{"name":"Chea, Alyssa","team":"COL","sid":"chea|alyssa|9-10","seed":{"t":"2:12.77","s":132.77},"final":{"t":"2:13.54","s":133.54},"place":null,"status":"dq","dq":true}]},{"number":"14","description":"Girls 9-10 50m Freestyle","gender":"F","distance":50,"stroke":"Freestyle","ageGroup":"9-10","results":[{"name":"Young, Kinsley A","team":"GG","sid":"young|kinsley|9-10","seed":{"t":"47.53","s":47.53},"final":{"t":"44.45","s":44.45},"place":1,"status":"ok","dq":false,"cut":true},{"name":"Jordan, Genevieve","team":"VG","sid":"jordan|genevieve|9-10","seed":{"t":"51.98","s":51.98},"final":{"t":"46.85","s":46.85},"place":2,"status":"ok","dq":false,"cut":true},{"name":"Robertson, Cadence R","team":"KCD","sid":"robertson|cadence|9-10","seed":{"t":"47.27","s":47.27},"final":{"t":"47.41","s":47.41},"place":3,"status":"ok","dq":false},{"name":"Crosby, Ellis","team":"RMMR","sid":"crosby|ellis|9-10","seed":{"t":"50.45","s":50.45},"final":{"t":"48.62","s":48.62},"place":4,"status":"ok","dq":false},{"name":"Anderson, Savannah","team":"WPPIR","sid":"anderson|savannah|9-10","seed":{"t":"48.37","s":48.37},"final":{"t":"48.73","s":48.73},"place":5,"status":"ok","dq":false},{"name":"Kudley, Bellamy","team":"MBKMT","sid":"kudley|bellamy|9-10","seed":{"t":"47.57","s":47.57},"final":{"t":"49.02","s":49.02},"place":6,"status":"ok","dq":false},{"name":"Farmer, Kinslee","team":"GG","sid":"farmer|kinslee|9-10","seed":{"t":"47.70","s":47.7},"final":{"t":"49.33","s":49.33},"place":7,"status":"ok","dq":false},{"name":"Harty, Averie","team":"MBKMT","sid":"harty|averie|9-10","seed":{"t":"48.68","s":48.68},"final":{"t":"49.38","s":49.38},"place":8,"status":"ok","dq":false},{"name":"Finerfrock, Lillian C","team":"MBKMT","sid":"finerfrock|lillian|9-10","seed":{"t":"49.15","s":49.15},"final":{"t":"50.03","s":50.03},"place":9,"status":"ok","dq":false},{"name":"Huskey, Leah K","team":"POQ","sid":"huskey|leah|9-10","seed":{"t":"53.52","s":53.52},"final":{"t":"50.49","s":50.49},"place":10,"status":"ok","dq":false},{"name":"Pearison, Lilly Y","team":"EL","sid":"pearison|lilly|9-10","seed":null,"final":{"t":"50.76","s":50.76},"place":11,"status":"ok","dq":false},{"name":"Thacker, Sydney","team":"MBKMT","sid":"thacker|sydney|9-10","seed":{"t":"48.44","s":48.44},"final":{"t":"51.37","s":51.37},"place":12,"status":"ok","dq":false},{"name":"Reeves, Olivia J","team":"RMMR","sid":"reeves|olivia|9-10","seed":{"t":"52.78","s":52.78},"final":{"t":"51.43","s":51.43},"place":13,"status":"ok","dq":false},{"name":"Huskey, Lauren M","team":"POQ","sid":"huskey|lauren|9-10","seed":{"t":"49.93","s":49.93},"final":{"t":"52.66","s":52.66},"place":14,"status":"ok","dq":false},{"name":"Montville, Addison","team":"MBKMT","sid":"montville|addison|9-10","seed":{"t":"55.21","s":55.21},"final":{"t":"52.98","s":52.98},"place":15,"status":"ok","dq":false},{"name":"Shea, Finley R","team":"VG","sid":"shea|finley|9-10","seed":{"t":"52.76","s":52.76},"final":{"t":"53.36","s":53.36},"place":16,"status":"ok","dq":false},{"name":"Chea, Alyssa","team":"COL","sid":"chea|alyssa|9-10","seed":{"t":"53.74","s":53.74},"final":{"t":"55.38","s":55.38},"place":17,"status":"ok","dq":false},{"name":"Burnette, Lyla M","team":"WPPIR","sid":"burnette|lyla|9-10","seed":{"t":"55.86","s":55.86},"final":{"t":"55.91","s":55.91},"place":18,"status":"ok","dq":false},{"name":"Micol, Tatem","team":"HW","sid":"micol|tatem|9-10","seed":{"t":"53.37","s":53.37},"final":{"t":"56.51","s":56.51},"place":19,"status":"ok","dq":false},{"name":"Crandol, Elizabeth","team":"POQ","sid":"crandol|elizabeth|9-10","seed":{"t":"56.17","s":56.17},"final":{"t":"56.64","s":56.64},"place":20,"status":"ok","dq":false},{"name":"Copeland, Magnolia","team":"GG","sid":"copeland|magnolia|9-10","seed":{"t":"59.31","s":59.31},"final":{"t":"57.16","s":57.16},"place":21,"status":"ok","dq":false},{"name":"Hagewood, Madison","team":"POQ","sid":"hagewood|madison|9-10","seed":{"t":"58.35","s":58.35},"final":{"t":"57.63","s":57.63},"place":22,"status":"ok","dq":false},{"name":"Hunter, Ophelia","team":"GG","sid":"hunter|ophelia|9-10","seed":{"t":"1:07.66","s":67.66},"final":{"t":"57.99","s":57.99},"place":23,"status":"ok","dq":false},{"name":"Selfridge, Natalie","team":"GG","sid":"selfridge|natalie|9-10","seed":{"t":"1:00.96","s":60.96},"final":{"t":"58.10","s":58.1},"place":24,"status":"ok","dq":false},{"name":"Murphy, Luna","team":"HW","sid":"murphy|luna|9-10","seed":{"t":"55.12","s":55.12},"final":{"t":"58.83","s":58.83},"place":25,"status":"ok","dq":false},{"name":"Rebar, Emma D","team":"CV","sid":"rebar|emma|9-10","seed":{"t":"52.25","s":52.25},"final":{"t":"59.31","s":59.31},"place":26,"status":"ok","dq":false},{"name":"Wampler, Anna J","team":"WO","sid":"wampler|anna|9-10","seed":{"t":"59.84","s":59.84},"final":{"t":"1:00.86","s":60.86},"place":27,"status":"ok","dq":false},{"name":"Ostlund, Amara K","team":"CV","sid":"ostlund|amara|9-10","seed":{"t":"1:03.84","s":63.84},"final":{"t":"1:01.63","s":61.63},"place":28,"status":"ok","dq":false},{"name":"Holmes, Elsie L","team":"POQ","sid":"holmes|elsie|9-10","seed":{"t":"53.60","s":53.6},"final":{"t":"1:03.41","s":63.41},"place":29,"status":"ok","dq":false},{"name":"Park, Harper","team":"GG","sid":"park|harper|9-10","seed":{"t":"1:07.03","s":67.03},"final":{"t":"1:04.53","s":64.53},"place":30,"status":"ok","dq":false},{"name":"Balest, Rylie","team":"MBKMT","sid":"balest|rylie|9-10","seed":{"t":"1:08.91","s":68.91},"final":{"t":"1:05.20","s":65.2},"place":31,"status":"ok","dq":false},{"name":"Allsbrook, Margaret","team":"POQ","sid":"allsbrook|margaret|9-10","seed":{"t":"1:10.85","s":70.85},"final":{"t":"1:15.63","s":75.63},"place":32,"status":"ok","dq":false},{"name":"Seabron, Laila","team":"GG","sid":"seabron|laila|9-10","seed":{"t":"1:28.96","s":88.96},"final":{"t":"1:26.10","s":86.1},"place":33,"status":"ok","dq":false},{"name":"Pearison, Joanna G","team":"EL","sid":"pearison|joanna|9-10","seed":null,"final":{"t":"1:01.44","s":61.44},"place":null,"status":"dq","dq":true},{"name":"Jaroma, Everly E","team":"HW","sid":"jaroma|everly|9-10","seed":{"t":"50.22","s":50.22},"final":{"t":"54.22","s":54.22},"place":null,"status":"dq","dq":true}]},{"number":"46","description":"Girls 9-10 50m Butterfly","gender":"F","distance":50,"stroke":"Butterfly","ageGroup":"9-10","results":[{"name":"Clift, Lydia","team":"CV","sid":"clift|lydia|9-10","seed":{"t":"56.22","s":56.22},"final":{"t":"50.51","s":50.51},"place":1,"status":"ok","dq":false,"cut":true},{"name":"Allen, Alexa M","team":"RRST","sid":"allen|alexa|9-10","seed":{"t":"1:01.38","s":61.38},"final":{"t":"55.35","s":55.35},"place":2,"status":"ok","dq":false},{"name":"Harty, Averie","team":"MBKMT","sid":"harty|averie|9-10","seed":{"t":"56.63","s":56.63},"final":{"t":"57.09","s":57.09},"place":3,"status":"ok","dq":false},{"name":"Scott, Winnie M","team":"WO","sid":"scott|winnie|9-10","seed":{"t":"1:08.87","s":68.87},"final":{"t":"57.35","s":57.35},"place":4,"status":"ok","dq":false},{"name":"Kimble, Natalie J","team":"GG","sid":"kimble|natalie|9-10","seed":{"t":"58.23","s":58.23},"final":{"t":"57.57","s":57.57},"place":5,"status":"ok","dq":false},{"name":"Robertson, Cadence R","team":"KCD","sid":"robertson|cadence|9-10","seed":{"t":"54.39","s":54.39},"final":{"t":"59.31","s":59.31},"place":6,"status":"ok","dq":false},{"name":"Thacker, Bristol","team":"MBKMT","sid":"thacker|bristol|9-10","seed":{"t":"1:03.91","s":63.91},"final":{"t":"1:00.06","s":60.06},"place":7,"status":"ok","dq":false},{"name":"Hausknecht, Francesca","team":"EL","sid":"hausknecht|francesca|9-10","seed":{"t":"56.59","s":56.59},"final":{"t":"1:02.13","s":62.13},"place":8,"status":"ok","dq":false},{"name":"Lamprecht, Juliet V","team":"POQ","sid":"lamprecht|juliet|9-10","seed":{"t":"1:04.81","s":64.81},"final":{"t":"1:07.10","s":67.1},"place":9,"status":"ok","dq":false},{"name":"Chea, Alyssa","team":"COL","sid":"chea|alyssa|9-10","seed":{"t":"1:06.40","s":66.4},"final":{"t":"1:09.09","s":69.09},"place":10,"status":"ok","dq":false},{"name":"Murphy, Luna","team":"HW","sid":"murphy|luna|9-10","seed":{"t":"1:11.23","s":71.23},"final":{"t":"1:15.20","s":75.2},"place":11,"status":"ok","dq":false},{"name":"Hunter, Ophelia","team":"GG","sid":"hunter|ophelia|9-10","seed":{"t":"1:39.45","s":99.45},"final":{"t":"1:29.41","s":89.41},"place":12,"status":"ok","dq":false},{"name":"Bartley, Amelia","team":"RMMR","sid":"bartley|amelia|9-10","seed":{"t":"56.97","s":56.97},"final":{"t":"57.59","s":57.59},"place":null,"status":"dq","dq":true}]},{"number":"44","description":"Girls 8 & Under 25m Butterfly","gender":"F","distance":25,"stroke":"Butterfly","ageGroup":"8 & Under","results":[{"name":"Amini, Ayla","team":"RMMR","sid":"amini|ayla|7-8","seed":{"t":"30.98","s":30.98},"final":{"t":"31.85","s":31.85},"place":1,"status":"ok","dq":false},{"name":"Ruhf, Lyvianna","team":"RMMR","sid":"ruhf|lyvianna|7-8","seed":{"t":"36.72","s":36.72},"final":{"t":"32.78","s":32.78},"place":2,"status":"ok","dq":false},{"name":"Spady, Saylor W","team":"COL","sid":"spady|saylor|7-8","seed":{"t":"36.66","s":36.66},"final":{"t":"33.52","s":33.52},"place":3,"status":"ok","dq":false},{"name":"Register, Elle","team":"MBKMT","sid":"register|elle|7-8","seed":{"t":"34.60","s":34.6},"final":{"t":"34.21","s":34.21},"place":4,"status":"ok","dq":false},{"name":"Baber, Kennedy","team":"GG","sid":"baber|kennedy|7-8","seed":{"t":"32.53","s":32.53},"final":{"t":"35.03","s":35.03},"place":5,"status":"ok","dq":false},{"name":"Truckey, Zaylee","team":"VG","sid":"truckey|zaylee|7-8","seed":{"t":"33.44","s":33.44},"final":{"t":"35.55","s":35.55},"place":6,"status":"ok","dq":false},{"name":"Cole, Harper","team":"WPPIR","sid":"cole|harper|7-8","seed":{"t":"39.74","s":39.74},"final":{"t":"37.27","s":37.27},"place":7,"status":"ok","dq":false},{"name":"MacPherson, Leona","team":"POQ","sid":"macpherson|leona|7-8","seed":{"t":"43.40","s":43.4},"final":{"t":"38.83","s":38.83},"place":8,"status":"ok","dq":false},{"name":"Glover, Mary","team":"EL","sid":"glover|mary|7-8","seed":{"t":"38.24","s":38.24},"final":{"t":"41.69","s":41.69},"place":9,"status":"ok","dq":false},{"name":"Steward, Anne Marie","team":"KCD","sid":"steward|anne|7-8","seed":{"t":"50.79","s":50.79},"final":{"t":"47.96","s":47.96},"place":10,"status":"ok","dq":false},{"name":"Goergen, Amelia J","team":"WW","sid":"goergen|amelia|6&u","seed":{"t":"38.90","s":38.9},"final":{"t":"51.00","s":51},"place":11,"status":"ok","dq":false},{"name":"Bartley, Abigail","team":"RMMR","sid":"bartley|abigail|7-8","seed":{"t":"33.15","s":33.15},"final":{"t":"38.55","s":38.55},"place":null,"status":"dq","dq":true},{"name":"Raines, Lucille","team":"GG","sid":"raines|lucille|6&u","seed":{"t":"31.60","s":31.6},"final":{"t":"34.31","s":34.31},"place":null,"status":"dq","dq":true}]},{"number":"4","description":"Girls 11-12 100m IM","gender":"F","distance":100,"stroke":"IM","ageGroup":"11-12","results":[{"name":"Johnson, Emily","team":"WW","sid":"johnson|emily|11-12","seed":{"t":"1:38.80","s":98.8},"final":{"t":"1:36.41","s":96.41},"place":1,"status":"ok","dq":false},{"name":"Melillo, Charlotte","team":"WO","sid":"melillo|charlotte|11-12","seed":{"t":"1:39.13","s":99.13},"final":{"t":"1:38.50","s":98.5},"place":2,"status":"ok","dq":false},{"name":"Schantz, Alexis","team":"RMMR","sid":"schantz|alexis|11-12","seed":{"t":"1:41.90","s":101.9},"final":{"t":"1:40.58","s":100.58},"place":3,"status":"ok","dq":false},{"name":"Raines, Lily","team":"GG","sid":"raines|lily|11-12","seed":{"t":"1:41.42","s":101.42},"final":{"t":"1:40.91","s":100.91},"place":4,"status":"ok","dq":false},{"name":"Rebar, Cadence R","team":"CV","sid":"rebar|cadence|11-12","seed":{"t":"1:42.77","s":102.77},"final":{"t":"1:43.17","s":103.17},"place":5,"status":"ok","dq":false},{"name":"Hudson, Susannah B","team":"POQ","sid":"hudson|susannah|11-12","seed":{"t":"1:43.40","s":103.4},"final":{"t":"1:44.83","s":104.83},"place":6,"status":"ok","dq":false},{"name":"Jasper, Madison","team":"MBKMT","sid":"jasper|madison|11-12","seed":{"t":"1:40.00","s":100},"final":{"t":"1:46.20","s":106.2},"place":7,"status":"ok","dq":false},{"name":"Spaeth, Katherine","team":"RMMR","sid":"spaeth|katherine|11-12","seed":{"t":"1:48.78","s":108.78},"final":{"t":"1:47.72","s":107.72},"place":8,"status":"ok","dq":false},{"name":"Martin, Evangeline","team":"GG","sid":"martin|evangeline|11-12","seed":{"t":"1:52.80","s":112.8},"final":{"t":"1:51.34","s":111.34},"place":9,"status":"ok","dq":false},{"name":"Shea, Madigan M","team":"VG","sid":"shea|madigan|11-12","seed":{"t":"1:54.52","s":114.52},"final":{"t":"1:56.18","s":116.18},"place":10,"status":"ok","dq":false}]},{"number":"48","description":"Girls 11-12 50m Butterfly","gender":"F","distance":50,"stroke":"Butterfly","ageGroup":"11-12","results":[{"name":"Melillo, Charlotte","team":"WO","sid":"melillo|charlotte|11-12","seed":{"t":"45.03","s":45.03},"final":{"t":"43.04","s":43.04},"place":1,"status":"ok","dq":false,"cut":true},{"name":"Johnson, Emily","team":"WW","sid":"johnson|emily|11-12","seed":{"t":"43.78","s":43.78},"final":{"t":"46.90","s":46.9},"place":2,"status":"ok","dq":false},{"name":"Raines, Lily","team":"GG","sid":"raines|lily|11-12","seed":{"t":"50.50","s":50.5},"final":{"t":"47.83","s":47.83},"place":3,"status":"ok","dq":false},{"name":"Maddock, Hannah L","team":"RMMR","sid":"maddock|hannah|11-12","seed":{"t":"55.07","s":55.07},"final":{"t":"51.72","s":51.72},"place":4,"status":"ok","dq":false},{"name":"Rebar, Cadence R","team":"CV","sid":"rebar|cadence|11-12","seed":{"t":"58.38","s":58.38},"final":{"t":"52.70","s":52.7},"place":5,"status":"ok","dq":false},{"name":"Jasper, Madison","team":"MBKMT","sid":"jasper|madison|11-12","seed":{"t":"49.62","s":49.62},"final":{"t":"52.92","s":52.92},"place":6,"status":"ok","dq":false},{"name":"Martin, Evangeline","team":"GG","sid":"martin|evangeline|11-12","seed":{"t":"1:00.16","s":60.16},"final":{"t":"56.62","s":56.62},"place":7,"status":"ok","dq":false},{"name":"Schreier, Teresa","team":"CV","sid":"schreier|teresa|11-12","seed":{"t":"57.98","s":57.98},"final":{"t":"57.49","s":57.49},"place":8,"status":"ok","dq":false},{"name":"Robinson, Miriam","team":"POQ","sid":"robinson|miriam|11-12","seed":{"t":"55.39","s":55.39},"final":{"t":"57.66","s":57.66},"place":9,"status":"ok","dq":false}]},{"number":"31","description":"Boys 6 & Under 25m Backstroke","gender":"M","distance":25,"stroke":"Backstroke","ageGroup":"6 & Under","results":[{"name":"Truckey, Hunter","team":"VG","sid":"truckey|hunter|6&u","seed":{"t":"39.49","s":39.49},"final":{"t":"34.24","s":34.24},"place":1,"status":"ok","dq":false,"cut":true},{"name":"Evans, Wyatt","team":"GG","sid":"evans|wyatt|6&u","seed":{"t":"42.26","s":42.26},"final":{"t":"37.86","s":37.86},"place":2,"status":"ok","dq":false,"cut":true},{"name":"Kidd, Everett","team":"HW","sid":"kidd|everett|6&u","seed":{"t":"49.45","s":49.45},"final":{"t":"42.50","s":42.5},"place":3,"status":"ok","dq":false},{"name":"Stickle, Isaac Q","team":"EL","sid":"stickle|isaac|6&u","seed":{"t":"43.21","s":43.21},"final":{"t":"43.72","s":43.72},"place":4,"status":"ok","dq":false},{"name":"Simpson, Hank","team":"WW","sid":"simpson|hank|6&u","seed":{"t":"52.52","s":52.52},"final":{"t":"44.56","s":44.56},"place":5,"status":"ok","dq":false},{"name":"Tweedy, Joshua J","team":"MBKMT","sid":"tweedy|joshua|6&u","seed":{"t":"40.61","s":40.61},"final":{"t":"46.46","s":46.46},"place":6,"status":"ok","dq":false},{"name":"Bowen, Nolan","team":"MBKMT","sid":"bowen|nolan|6&u","seed":{"t":"1:01.24","s":61.24},"final":{"t":"47.96","s":47.96},"place":7,"status":"ok","dq":false},{"name":"Cole, Owen S","team":"HW","sid":"cole|owen|6&u","seed":{"t":"50.94","s":50.94},"final":{"t":"48.71","s":48.71},"place":8,"status":"ok","dq":false},{"name":"Kudley, Bridger","team":"MBKMT","sid":"kudley|bridger|6&u","seed":{"t":"40.95","s":40.95},"final":{"t":"56.05","s":56.05},"place":9,"status":"ok","dq":false},{"name":"Hudson, Thomas M","team":"MBKMT","sid":"hudson|thomas|6&u","seed":{"t":"1:04.91","s":64.91},"final":{"t":"56.49","s":56.49},"place":10,"status":"ok","dq":false},{"name":"Tate, Brendan R","team":"WPPIR","sid":"tate|brendan|6&u","seed":{"t":"1:08.96","s":68.96},"final":{"t":"1:22.71","s":82.71},"place":null,"status":"dq","dq":true},{"name":"Galinski, Isaac","team":"CV","sid":"galinski|isaac|6&u","seed":{"t":"57.68","s":57.68},"final":null,"place":null,"status":"scratch","dq":false}]},{"number":"6","description":"Girls 13-14 100m IM","gender":"F","distance":100,"stroke":"IM","ageGroup":"13-14","results":[{"name":"Jasper, Taylor","team":"MBKMT","sid":"jasper|taylor|13-14","seed":{"t":"1:33.46","s":93.46},"final":{"t":"1:34.49","s":94.49},"place":1,"status":"ok","dq":false},{"name":"Wilinski, Audrey D","team":"RMMR","sid":"wilinski|audrey|13-14","seed":{"t":"1:34.52","s":94.52},"final":{"t":"1:40.35","s":100.35},"place":2,"status":"ok","dq":false},{"name":"Morgan, Patience L","team":"GG","sid":"morgan|patience|13-14","seed":{"t":"1:34.80","s":94.8},"final":{"t":"1:40.53","s":100.53},"place":3,"status":"ok","dq":false},{"name":"Snyder, Alina B","team":"WW","sid":"snyder|alina|13-14","seed":{"t":"1:43.95","s":103.95},"final":{"t":"1:49.36","s":109.36},"place":4,"status":"ok","dq":false}]},{"number":"24","description":"Girls 9-10 50m Breaststroke","gender":"F","distance":50,"stroke":"Breaststroke","ageGroup":"9-10","results":[{"name":"Muro, Maclin","team":"GG","sid":"muro|maclin|9-10","seed":{"t":"1:00.53","s":60.53},"final":{"t":"57.40","s":57.4},"place":1,"status":"ok","dq":false,"cut":true},{"name":"Scott, Winnie M","team":"WO","sid":"scott|winnie|9-10","seed":{"t":"1:08.08","s":68.08},"final":{"t":"59.77","s":59.77},"place":2,"status":"ok","dq":false,"cut":true},{"name":"Thacker, Bristol","team":"MBKMT","sid":"thacker|bristol|9-10","seed":{"t":"1:00.84","s":60.84},"final":{"t":"1:02.54","s":62.54},"place":3,"status":"ok","dq":false},{"name":"Micol, Tatem","team":"HW","sid":"micol|tatem|9-10","seed":{"t":"1:02.15","s":62.15},"final":{"t":"1:02.58","s":62.58},"place":4,"status":"ok","dq":false},{"name":"Macaluso, Theresa","team":"GG","sid":"macaluso|theresa|9-10","seed":{"t":"1:04.06","s":64.06},"final":{"t":"1:02.60","s":62.6},"place":5,"status":"ok","dq":false},{"name":"Farmer, Kinslee","team":"GG","sid":"farmer|kinslee|9-10","seed":{"t":"1:05.88","s":65.88},"final":{"t":"1:02.70","s":62.7},"place":6,"status":"ok","dq":false},{"name":"Montville, Addison","team":"MBKMT","sid":"montville|addison|9-10","seed":{"t":"1:06.11","s":66.11},"final":{"t":"1:03.47","s":63.47},"place":7,"status":"ok","dq":false},{"name":"Hausknecht, Francesca","team":"EL","sid":"hausknecht|francesca|9-10","seed":{"t":"1:09.51","s":69.51},"final":{"t":"1:04.51","s":64.51},"place":8,"status":"ok","dq":false},{"name":"Raines, Isabella","team":"GG","sid":"raines|isabella|9-10","seed":{"t":"1:06.40","s":66.4},"final":{"t":"1:05.47","s":65.47},"place":9,"status":"ok","dq":false},{"name":"Kudley, Bellamy","team":"MBKMT","sid":"kudley|bellamy|9-10","seed":{"t":"1:06.64","s":66.64},"final":{"t":"1:05.77","s":65.77},"place":10,"status":"ok","dq":false},{"name":"Harty, Averie","team":"MBKMT","sid":"harty|averie|9-10","seed":{"t":"1:09.99","s":69.99},"final":{"t":"1:06.20","s":66.2},"place":11,"status":"ok","dq":false},{"name":"Thacker, Sydney","team":"MBKMT","sid":"thacker|sydney|9-10","seed":{"t":"1:04.37","s":64.37},"final":{"t":"1:07.39","s":67.39},"place":12,"status":"ok","dq":false},{"name":"Bartley, Amelia","team":"RMMR","sid":"bartley|amelia|9-10","seed":{"t":"1:18.98","s":78.98},"final":{"t":"1:08.33","s":68.33},"place":13,"status":"ok","dq":false},{"name":"Holmes, Elsie L","team":"POQ","sid":"holmes|elsie|9-10","seed":{"t":"1:03.53","s":63.53},"final":{"t":"1:08.37","s":68.37},"place":14,"status":"ok","dq":false},{"name":"Reeves, Olivia J","team":"RMMR","sid":"reeves|olivia|9-10","seed":{"t":"1:06.89","s":66.89},"final":{"t":"1:09.46","s":69.46},"place":15,"status":"ok","dq":false},{"name":"Chea, Alyssa","team":"COL","sid":"chea|alyssa|9-10","seed":{"t":"1:13.96","s":73.96},"final":{"t":"1:10.85","s":70.85},"place":16,"status":"ok","dq":false},{"name":"Crosby, Ellis","team":"RMMR","sid":"crosby|ellis|9-10","seed":{"t":"1:09.05","s":69.05},"final":{"t":"1:10.96","s":70.96},"place":17,"status":"ok","dq":false},{"name":"Wampler, Anna J","team":"WO","sid":"wampler|anna|9-10","seed":{"t":"1:23.15","s":83.15},"final":{"t":"1:17.28","s":77.28},"place":18,"status":"ok","dq":false},{"name":"Rebar, Emma D","team":"CV","sid":"rebar|emma|9-10","seed":{"t":"1:07.68","s":67.68},"final":{"t":"1:18.40","s":78.4},"place":19,"status":"ok","dq":false},{"name":"Balest, Rylie","team":"MBKMT","sid":"balest|rylie|9-10","seed":{"t":"1:36.44","s":96.44},"final":{"t":"1:37.76","s":97.76},"place":null,"status":"dq","dq":true},{"name":"Allen, Alexa M","team":"RRST","sid":"allen|alexa|9-10","seed":{"t":"1:08.03","s":68.03},"final":{"t":"1:05.16","s":65.16},"place":null,"status":"dq","dq":true},{"name":"Pearison, Lilly Y","team":"EL","sid":"pearison|lilly|9-10","seed":null,"final":{"t":"1:22.41","s":82.41},"place":null,"status":"dq","dq":true},{"name":"Jaroma, Everly E","team":"HW","sid":"jaroma|everly|9-10","seed":{"t":"1:24.07","s":84.07},"final":null,"place":null,"status":"dnf","dq":false},{"name":"Burnette, Lyla M","team":"WPPIR","sid":"burnette|lyla|9-10","seed":{"t":"1:22.86","s":82.86},"final":{"t":"1:22.51","s":82.51},"place":null,"status":"dq","dq":true}]},{"number":"45","description":"Boys 9-10 50m Butterfly","gender":"M","distance":50,"stroke":"Butterfly","ageGroup":"9-10","results":[{"name":"Provencher, Ethan","team":"RMMR","sid":"provencher|ethan|9-10","seed":{"t":"57.28","s":57.28},"final":{"t":"53.90","s":53.9},"place":1,"status":"ok","dq":false,"cut":true},{"name":"Harty, Everett","team":"MBKMT","sid":"harty|everett|9-10","seed":{"t":"56.25","s":56.25},"final":{"t":"59.63","s":59.63},"place":2,"status":"ok","dq":false},{"name":"Antcliff, Walton T","team":"WPPIR","sid":"antcliff|walton|9-10","seed":{"t":"1:03.33","s":63.33},"final":{"t":"1:02.78","s":62.78},"place":3,"status":"ok","dq":false},{"name":"Spence, Noah","team":"EL","sid":"spence|noah|9-10","seed":{"t":"1:09.66","s":69.66},"final":{"t":"1:06.56","s":66.56},"place":4,"status":"ok","dq":false},{"name":"Spence, Thomas","team":"EL","sid":"spence|thomas|9-10","seed":{"t":"1:11.22","s":71.22},"final":{"t":"1:07.64","s":67.64},"place":5,"status":"ok","dq":false},{"name":"Gold, Whitaker","team":"COL","sid":"gold|whitaker|9-10","seed":{"t":"1:10.42","s":70.42},"final":{"t":"1:09.28","s":69.28},"place":6,"status":"ok","dq":false},{"name":"Scalzi, Ryker J","team":"WO","sid":"scalzi|ryker|9-10","seed":{"t":"1:17.65","s":77.65},"final":{"t":"1:14.19","s":74.19},"place":7,"status":"ok","dq":false},{"name":"Glover, George","team":"EL","sid":"glover|george|9-10","seed":{"t":"1:13.92","s":73.92},"final":{"t":"1:03.01","s":63.01},"place":null,"status":"dq","dq":true},{"name":"Spencer, Winston K","team":"WPPIR","sid":"spencer|winston|9-10","seed":{"t":"58.28","s":58.28},"final":{"t":"54.22","s":54.22},"place":null,"status":"dq","dq":true}]},{"number":"10","description":"Girls 6 & Under 25m Freestyle","gender":"F","distance":25,"stroke":"Freestyle","ageGroup":"6 & Under","results":[{"name":"Verastek, Adeline","team":"GG","sid":"verastek|adeline|6&u","seed":{"t":"41.59","s":41.59},"final":{"t":"30.81","s":30.81},"place":1,"status":"ok","dq":false,"cut":true},{"name":"Burling, Lyla M","team":"WPPIR","sid":"burling|lyla|6&u","seed":{"t":"34.81","s":34.81},"final":{"t":"32.71","s":32.71},"place":2,"status":"ok","dq":false,"cut":true},{"name":"Council, Lillian J","team":"GG","sid":"council|lillian|6&u","seed":{"t":"34.88","s":34.88},"final":{"t":"37.23","s":37.23},"place":3,"status":"ok","dq":false},{"name":"Koederitz, Mila","team":"POQ","sid":"koederitz|mila|6&u","seed":{"t":"38.64","s":38.64},"final":{"t":"40.06","s":40.06},"place":4,"status":"ok","dq":false},{"name":"Antcliff, Eloise E","team":"WPPIR","sid":"antcliff|eloise|6&u","seed":{"t":"39.64","s":39.64},"final":{"t":"43.45","s":43.45},"place":5,"status":"ok","dq":false},{"name":"Trinquero, Madison G","team":"WO","sid":"trinquero|madison|6&u","seed":{"t":"44.46","s":44.46},"final":{"t":"43.86","s":43.86},"place":6,"status":"ok","dq":false},{"name":"Flowers, Kinley","team":"COL","sid":"flowers|kinley|6&u","seed":{"t":"53.95","s":53.95},"final":{"t":"48.09","s":48.09},"place":7,"status":"ok","dq":false},{"name":"Martin, Lucille","team":"GG","sid":"martin|lucille|6&u","seed":{"t":"51.31","s":51.31},"final":{"t":"49.72","s":49.72},"place":8,"status":"ok","dq":false},{"name":"Gold, Leona Mae","team":"COL","sid":"gold|leona|6&u","seed":{"t":"1:00.72","s":60.72},"final":{"t":"51.87","s":51.87},"place":9,"status":"ok","dq":false},{"name":"Hill, Sydney","team":"MBKMT","sid":"hill|sydney|6&u","seed":{"t":"1:20.39","s":80.39},"final":{"t":"54.43","s":54.43},"place":10,"status":"ok","dq":false},{"name":"Powell, Evie L","team":"WPPIR","sid":"powell|evie|6&u","seed":{"t":"48.66","s":48.66},"final":{"t":"1:01.28","s":61.28},"place":11,"status":"ok","dq":false},{"name":"Micol, Olive","team":"HW","sid":"micol|olive|6&u","seed":{"t":"52.94","s":52.94},"final":{"t":"1:04.14","s":64.14},"place":12,"status":"ok","dq":false},{"name":"Burnette, Madison K","team":"WPPIR","sid":"burnette|madison|6&u","seed":{"t":"1:29.61","s":89.61},"final":{"t":"1:24.45","s":84.45},"place":13,"status":"ok","dq":false},{"name":"Hill, Lennon C","team":"WYCC","sid":"hill|lennon|6&u","seed":{"t":"1:05.72","s":65.72},"final":null,"place":null,"status":"scratch","dq":false}]},{"number":"32","description":"Girls 6 & Under 25m Backstroke","gender":"F","distance":25,"stroke":"Backstroke","ageGroup":"6 & Under","results":[{"name":"Koederitz, Mila","team":"POQ","sid":"koederitz|mila|6&u","seed":{"t":"40.02","s":40.02},"final":{"t":"38.88","s":38.88},"place":1,"status":"ok","dq":false},{"name":"Antcliff, Eloise E","team":"WPPIR","sid":"antcliff|eloise|6&u","seed":{"t":"44.15","s":44.15},"final":{"t":"39.23","s":39.23},"place":2,"status":"ok","dq":false},{"name":"Hill, Sydney","team":"MBKMT","sid":"hill|sydney|6&u","seed":{"t":"45.21","s":45.21},"final":{"t":"43.09","s":43.09},"place":3,"status":"ok","dq":false},{"name":"Trinquero, Madison G","team":"WO","sid":"trinquero|madison|6&u","seed":{"t":"42.41","s":42.41},"final":{"t":"44.76","s":44.76},"place":4,"status":"ok","dq":false},{"name":"Council, Lillian J","team":"GG","sid":"council|lillian|6&u","seed":{"t":"49.13","s":49.13},"final":{"t":"45.04","s":45.04},"place":5,"status":"ok","dq":false},{"name":"Powell, Evie L","team":"WPPIR","sid":"powell|evie|6&u","seed":{"t":"39.70","s":39.7},"final":{"t":"49.58","s":49.58},"place":6,"status":"ok","dq":false},{"name":"Martin, Lucille","team":"GG","sid":"martin|lucille|6&u","seed":{"t":"48.06","s":48.06},"final":{"t":"51.90","s":51.9},"place":7,"status":"ok","dq":false},{"name":"Micol, Olive","team":"HW","sid":"micol|olive|6&u","seed":{"t":"1:06.54","s":66.54},"final":{"t":"1:02.71","s":62.71},"place":8,"status":"ok","dq":false},{"name":"Burnette, Madison K","team":"WPPIR","sid":"burnette|madison|6&u","seed":{"t":"1:24.37","s":84.37},"final":{"t":"1:14.81","s":74.81},"place":9,"status":"ok","dq":false},{"name":"Verastek, Adeline","team":"GG","sid":"verastek|adeline|6&u","seed":{"t":"39.61","s":39.61},"final":{"t":"42.24","s":42.24},"place":null,"status":"dq","dq":true}]},{"number":"50","description":"Girls 13-14 50m Butterfly","gender":"F","distance":50,"stroke":"Butterfly","ageGroup":"13-14","results":[{"name":"Scalzi, Kaylin M","team":"WO","sid":"scalzi|kaylin|13-14","seed":{"t":"41.59","s":41.59},"final":{"t":"41.46","s":41.46},"place":1,"status":"ok","dq":false},{"name":"Jasper, Taylor","team":"MBKMT","sid":"jasper|taylor|13-14","seed":{"t":"40.89","s":40.89},"final":{"t":"43.94","s":43.94},"place":2,"status":"ok","dq":false},{"name":"Jordan, Alexis","team":"WYTH","sid":"jordan|alexis|13-14","seed":{"t":"41.46","s":41.46},"final":{"t":"45.08","s":45.08},"place":3,"status":"ok","dq":false},{"name":"Wilinski, Audrey D","team":"RMMR","sid":"wilinski|audrey|13-14","seed":{"t":"43.07","s":43.07},"final":{"t":"47.17","s":47.17},"place":4,"status":"ok","dq":false}]},{"number":"11","description":"Boys 7-8 25m Freestyle","gender":"M","distance":25,"stroke":"Freestyle","ageGroup":"7-8","results":[{"name":"Stricklin, Bryson I","team":"POQ","sid":"stricklin|bryson|7-8","seed":{"t":"28.35","s":28.35},"final":{"t":"24.66","s":24.66},"place":1,"status":"ok","dq":false,"cut":true},{"name":"Spaeth, Henry","team":"RMMR","sid":"spaeth|henry|7-8","seed":{"t":"25.02","s":25.02},"final":{"t":"25.31","s":25.31},"place":2,"status":"ok","dq":false},{"name":"Rose, Drew","team":"JRCC","sid":"rose|drew|7-8","seed":{"t":"26.63","s":26.63},"final":{"t":"25.71","s":25.71},"place":3,"status":"ok","dq":false},{"name":"Bell, Colt","team":"POQ","sid":"bell|colt|7-8","seed":{"t":"29.73","s":29.73},"final":{"t":"26.61","s":26.61},"place":4,"status":"ok","dq":false},{"name":"Knappick, Lawson","team":"POQ","sid":"knappick|lawson|7-8","seed":{"t":"26.41","s":26.41},"final":{"t":"26.94","s":26.94},"place":5,"status":"ok","dq":false},{"name":"Ailsworth, George W","team":"JRCC","sid":"ailsworth|george|7-8","seed":{"t":"30.53","s":30.53},"final":{"t":"27.95","s":27.95},"place":6,"status":"ok","dq":false},{"name":"Burnette, Brody D","team":"WPPIR","sid":"burnette|brody|7-8","seed":{"t":"27.11","s":27.11},"final":{"t":"28.00","s":28},"place":7,"status":"ok","dq":false},{"name":"Trinquero, Noah P","team":"WO","sid":"trinquero|noah|7-8","seed":{"t":"30.16","s":30.16},"final":{"t":"28.98","s":28.98},"place":8,"status":"ok","dq":false},{"name":"Gilliam, Otto","team":"COL","sid":"gilliam|otto|7-8","seed":{"t":"32.39","s":32.39},"final":{"t":"29.48","s":29.48},"place":9,"status":"ok","dq":false},{"name":"Masters, Liam","team":"MBKMT","sid":"masters|liam|7-8","seed":{"t":"29.00","s":29},"final":{"t":"29.91","s":29.91},"place":10,"status":"ok","dq":false},{"name":"Stutzman, Isaac C","team":"RMMR","sid":"stutzman|isaac|7-8","seed":{"t":"30.75","s":30.75},"final":{"t":"32.89","s":32.89},"place":11,"status":"ok","dq":false},{"name":"Kidd, Levi J","team":"HW","sid":"kidd|levi|7-8","seed":{"t":"29.15","s":29.15},"final":{"t":"33.54","s":33.54},"place":12,"status":"ok","dq":false},{"name":"Frailing, Josiah","team":"HW","sid":"frailing|josiah|7-8","seed":{"t":"36.58","s":36.58},"final":{"t":"36.65","s":36.65},"place":13,"status":"ok","dq":false},{"name":"Stadt, Jaxon","team":"COL","sid":"stadt|jaxon|7-8","seed":{"t":"32.78","s":32.78},"final":{"t":"39.06","s":39.06},"place":14,"status":"ok","dq":false},{"name":"Selfridge, Ethan","team":"GG","sid":"selfridge|ethan|7-8","seed":{"t":"43.98","s":43.98},"final":{"t":"47.46","s":47.46},"place":15,"status":"ok","dq":false}]},{"number":"33","description":"Boys 7-8 25m Backstroke","gender":"M","distance":25,"stroke":"Backstroke","ageGroup":"7-8","results":[{"name":"Muro, Caius","team":"GG","sid":"muro|caius|7-8","seed":{"t":"30.88","s":30.88},"final":{"t":"32.63","s":32.63},"place":1,"status":"ok","dq":false},{"name":"Burnette, Brody D","team":"WPPIR","sid":"burnette|brody|7-8","seed":{"t":"36.50","s":36.5},"final":{"t":"33.13","s":33.13},"place":2,"status":"ok","dq":false},{"name":"Masters, Liam","team":"MBKMT","sid":"masters|liam|7-8","seed":{"t":"33.12","s":33.12},"final":{"t":"33.42","s":33.42},"place":3,"status":"ok","dq":false},{"name":"Stricklin, Bryson I","team":"POQ","sid":"stricklin|bryson|7-8","seed":{"t":"37.75","s":37.75},"final":{"t":"34.15","s":34.15},"place":4,"status":"ok","dq":false},{"name":"Trinquero, Noah P","team":"WO","sid":"trinquero|noah|7-8","seed":{"t":"34.43","s":34.43},"final":{"t":"34.93","s":34.93},"place":5,"status":"ok","dq":false},{"name":"Gilliam, Otto","team":"COL","sid":"gilliam|otto|7-8","seed":{"t":"35.37","s":35.37},"final":{"t":"35.81","s":35.81},"place":6,"status":"ok","dq":false},{"name":"Stadt, Jaxon","team":"COL","sid":"stadt|jaxon|7-8","seed":{"t":"45.38","s":45.38},"final":{"t":"42.83","s":42.83},"place":7,"status":"ok","dq":false}]},{"number":"25","description":"Boys 11-12 50m Breaststroke","gender":"M","distance":50,"stroke":"Breaststroke","ageGroup":"11-12","results":[{"name":"Sykes, Spencer","team":"HW","sid":"sykes|spencer|11-12","seed":{"t":"53.45","s":53.45},"final":{"t":"51.44","s":51.44},"place":1,"status":"ok","dq":false,"cut":true},{"name":"Chewie, Liam","team":"RMMR","sid":"chewie|liam|11-12","seed":{"t":"52.90","s":52.9},"final":{"t":"52.72","s":52.72},"place":2,"status":"ok","dq":false},{"name":"Ostlund, Harrison G","team":"CV","sid":"ostlund|harrison|11-12","seed":{"t":"54.26","s":54.26},"final":{"t":"53.61","s":53.61},"place":3,"status":"ok","dq":false},{"name":"Baber, Colin","team":"GG","sid":"baber|colin|11-12","seed":{"t":"1:06.45","s":66.45},"final":{"t":"57.64","s":57.64},"place":4,"status":"ok","dq":false},{"name":"Clift, Jay","team":"CV","sid":"clift|jay|11-12","seed":{"t":"1:02.18","s":62.18},"final":{"t":"58.52","s":58.52},"place":5,"status":"ok","dq":false},{"name":"Tweedt, Gus","team":"HW","sid":"tweedt|gus|11-12","seed":{"t":"1:03.20","s":63.2},"final":{"t":"1:04.10","s":64.1},"place":6,"status":"ok","dq":false},{"name":"Scott, Andrew","team":"WPPIR","sid":"scott|andrew|11-12","seed":{"t":"1:10.10","s":70.1},"final":{"t":"1:06.50","s":66.5},"place":7,"status":"ok","dq":false},{"name":"Mckelvey, Eli","team":"HW","sid":"mckelvey|eli|11-12","seed":{"t":"1:04.23","s":64.23},"final":{"t":"1:06.88","s":66.88},"place":8,"status":"ok","dq":false},{"name":"MacPherson, Gabriel","team":"POQ","sid":"macpherson|gabriel|11-12","seed":{"t":"1:02.29","s":62.29},"final":{"t":"1:08.44","s":68.44},"place":9,"status":"ok","dq":false},{"name":"Register, Noah","team":"MBKMT","sid":"register|noah|11-12","seed":{"t":"1:14.15","s":74.15},"final":{"t":"1:11.46","s":71.46},"place":10,"status":"ok","dq":false},{"name":"Farrow, Jackson C","team":"WYTH","sid":"farrow|jackson|11-12","seed":{"t":"57.61","s":57.61},"final":null,"place":null,"status":"dnf","dq":false},{"name":"Hobbs, Noah B","team":"WO","sid":"hobbs|noah|11-12","seed":{"t":"1:29.01","s":89.01},"final":null,"place":null,"status":"scratch","dq":false}]},{"number":"19","description":"Boys 15-18 50m Freestyle","gender":"M","distance":50,"stroke":"Freestyle","ageGroup":"15-18","results":[{"name":"Hobbs, Riley C","team":"WO","sid":"hobbs|riley|15-18","seed":{"t":"30.16","s":30.16},"final":{"t":"29.73","s":29.73},"place":1,"status":"ok","dq":false},{"name":"Wallace, Jayden","team":"RRST","sid":"wallace|jayden|15-18","seed":{"t":"31.27","s":31.27},"final":{"t":"30.53","s":30.53},"place":2,"status":"ok","dq":false},{"name":"Mead, Benjamin I","team":"COL","sid":"mead|benjamin|15-18","seed":{"t":"31.67","s":31.67},"final":{"t":"32.00","s":32},"place":3,"status":"ok","dq":false},{"name":"Whitworth, Dylan","team":"COL","sid":"whitworth|dylan|15-18","seed":{"t":"33.71","s":33.71},"final":{"t":"33.71","s":33.71},"place":4,"status":"ok","dq":false},{"name":"Grau, Samuel J","team":"GG","sid":"grau|samuel|15-18","seed":{"t":"34.64","s":34.64},"final":{"t":"34.19","s":34.19},"place":5,"status":"ok","dq":false},{"name":"Fletcher, Jaatari T","team":"GG","sid":"fletcher|jaatari|15-18","seed":{"t":"35.30","s":35.3},"final":{"t":"35.13","s":35.13},"place":6,"status":"ok","dq":false},{"name":"Lee, Jonathan","team":"HW","sid":"lee|jonathan|15-18","seed":{"t":"34.62","s":34.62},"final":{"t":"35.20","s":35.2},"place":7,"status":"ok","dq":false},{"name":"Cardona, Israel","team":"GG","sid":"cardona|israel|15-18","seed":{"t":"36.44","s":36.44},"final":{"t":"36.05","s":36.05},"place":8,"status":"ok","dq":false},{"name":"Lewis, Noah A","team":"RRST","sid":"lewis|noah|15-18","seed":{"t":"37.57","s":37.57},"final":{"t":"38.68","s":38.68},"place":null,"status":"dq","dq":true}]},{"number":"41","description":"Boys 15-18 50m Backstroke","gender":"M","distance":50,"stroke":"Backstroke","ageGroup":"15-18","results":[{"name":"Lee, Jonathan","team":"HW","sid":"lee|jonathan|15-18","seed":{"t":"40.25","s":40.25},"final":{"t":"40.16","s":40.16},"place":1,"status":"ok","dq":false},{"name":"Whitworth, Dylan","team":"COL","sid":"whitworth|dylan|15-18","seed":{"t":"42.36","s":42.36},"final":{"t":"41.09","s":41.09},"place":2,"status":"ok","dq":false},{"name":"Mead, Benjamin I","team":"COL","sid":"mead|benjamin|15-18","seed":{"t":"39.88","s":39.88},"final":{"t":"41.21","s":41.21},"place":3,"status":"ok","dq":false},{"name":"Lewis, Noah A","team":"RRST","sid":"lewis|noah|15-18","seed":{"t":"54.01","s":54.01},"final":{"t":"55.00","s":55},"place":4,"status":"ok","dq":false}]},{"number":"51","description":"Boys 15-18 50m Butterfly","gender":"M","distance":50,"stroke":"Butterfly","ageGroup":"15-18","results":[{"name":"Hobbs, Riley C","team":"WO","sid":"hobbs|riley|15-18","seed":{"t":"34.00","s":34},"final":{"t":"32.06","s":32.06},"place":1,"status":"ok","dq":false,"cut":true},{"name":"Wallace, Jayden","team":"RRST","sid":"wallace|jayden|15-18","seed":{"t":"33.70","s":33.7},"final":{"t":"32.08","s":32.08},"place":2,"status":"ok","dq":false,"cut":true},{"name":"Lee, Jonathan","team":"HW","sid":"lee|jonathan|15-18","seed":{"t":"43.45","s":43.45},"final":{"t":"44.40","s":44.4},"place":3,"status":"ok","dq":false},{"name":"Cardona, Israel","team":"GG","sid":"cardona|israel|15-18","seed":{"t":"45.48","s":45.48},"final":{"t":"47.18","s":47.18},"place":4,"status":"ok","dq":false},{"name":"Lewis, Noah A","team":"RRST","sid":"lewis|noah|15-18","seed":{"t":"1:04.38","s":64.38},"final":{"t":"49.82","s":49.82},"place":null,"status":"dq","dq":true}]},{"number":"17","description":"Boys 13-14 50m Freestyle","gender":"M","distance":50,"stroke":"Freestyle","ageGroup":"13-14","results":[{"name":"Melillo, Aaron","team":"WO","sid":"melillo|aaron|13-14","seed":{"t":"34.00","s":34},"final":{"t":"32.33","s":32.33},"place":1,"status":"ok","dq":false,"cut":true},{"name":"Reeves, Landon D","team":"RMMR","sid":"reeves|landon|13-14","seed":{"t":"34.92","s":34.92},"final":{"t":"34.42","s":34.42},"place":2,"status":"ok","dq":false},{"name":"Mckelvey, Camden","team":"HW","sid":"mckelvey|camden|13-14","seed":{"t":"35.36","s":35.36},"final":{"t":"34.43","s":34.43},"place":3,"status":"ok","dq":false},{"name":"Gilbert, Ryan","team":"POQ","sid":"gilbert|ryan|13-14","seed":{"t":"33.91","s":33.91},"final":{"t":"34.44","s":34.44},"place":4,"status":"ok","dq":false},{"name":"Looney, Shane M","team":"POQ","sid":"looney|shane|13-14","seed":{"t":"35.19","s":35.19},"final":{"t":"34.90","s":34.9},"place":5,"status":"ok","dq":false},{"name":"Anderson, Austin","team":"WPPIR","sid":"anderson|austin|13-14","seed":{"t":"33.97","s":33.97},"final":{"t":"35.23","s":35.23},"place":6,"status":"ok","dq":false},{"name":"Humble, Owen","team":"WO","sid":"humble|owen|13-14","seed":{"t":"35.69","s":35.69},"final":{"t":"35.37","s":35.37},"place":7,"status":"ok","dq":false},{"name":"Moffett, Christopher","team":"WPPIR","sid":"moffett|christopher|13-14","seed":{"t":"37.00","s":37},"final":{"t":"37.68","s":37.68},"place":8,"status":"ok","dq":false},{"name":"Lee, Ryan","team":"HW","sid":"lee|ryan|13-14","seed":{"t":"38.35","s":38.35},"final":{"t":"37.92","s":37.92},"place":9,"status":"ok","dq":false},{"name":"Raymond, Wyatt","team":"POQ","sid":"raymond|wyatt|13-14","seed":{"t":"35.80","s":35.8},"final":{"t":"37.93","s":37.93},"place":10,"status":"ok","dq":false},{"name":"Chewie, Connor","team":"RMMR","sid":"chewie|connor|13-14","seed":{"t":"37.40","s":37.4},"final":{"t":"38.83","s":38.83},"place":11,"status":"ok","dq":false},{"name":"Spinner, Jaxson H","team":"HW","sid":"spinner|jaxson|13-14","seed":{"t":"40.62","s":40.62},"final":{"t":"42.42","s":42.42},"place":12,"status":"ok","dq":false},{"name":"Peterson, Ashton C","team":"WPPIR","sid":"peterson|ashton|13-14","seed":{"t":"43.95","s":43.95},"final":{"t":"46.12","s":46.12},"place":13,"status":"ok","dq":false},{"name":"Truckey, Eli","team":"VG","sid":"truckey|eli|13-14","seed":{"t":"48.22","s":48.22},"final":{"t":"47.35","s":47.35},"place":14,"status":"ok","dq":false},{"name":"Wampler, Joshua K","team":"WO","sid":"wampler|joshua|13-14","seed":{"t":"44.27","s":44.27},"final":{"t":"48.11","s":48.11},"place":15,"status":"ok","dq":false}]},{"number":"27","description":"Boys 13-14 50m Breaststroke","gender":"M","distance":50,"stroke":"Breaststroke","ageGroup":"13-14","results":[{"name":"Huff, Ethan","team":"RMMR","sid":"huff|ethan|13-14","seed":{"t":"46.93","s":46.93},"final":{"t":"44.56","s":44.56},"place":1,"status":"ok","dq":false,"cut":true},{"name":"Tweedt, Max","team":"HW","sid":"tweedt|max|13-14","seed":{"t":"46.38","s":46.38},"final":{"t":"44.56","s":44.56},"place":1,"status":"ok","dq":false,"cut":true},{"name":"Chewie, Connor","team":"RMMR","sid":"chewie|connor|13-14","seed":{"t":"47.67","s":47.67},"final":{"t":"49.27","s":49.27},"place":3,"status":"ok","dq":false},{"name":"Spinner, Jaxson H","team":"HW","sid":"spinner|jaxson|13-14","seed":{"t":"49.61","s":49.61},"final":{"t":"50.62","s":50.62},"place":4,"status":"ok","dq":false},{"name":"Lee, Ryan","team":"HW","sid":"lee|ryan|13-14","seed":{"t":"53.13","s":53.13},"final":{"t":"50.74","s":50.74},"place":5,"status":"ok","dq":false},{"name":"Peterson, Ashton C","team":"WPPIR","sid":"peterson|ashton|13-14","seed":{"t":"57.85","s":57.85},"final":{"t":"59.51","s":59.51},"place":6,"status":"ok","dq":false},{"name":"Wampler, Joshua K","team":"WO","sid":"wampler|joshua|13-14","seed":{"t":"59.41","s":59.41},"final":{"t":"1:03.43","s":63.43},"place":7,"status":"ok","dq":false}]},{"number":"39","description":"Boys 13-14 50m Backstroke","gender":"M","distance":50,"stroke":"Backstroke","ageGroup":"13-14","results":[{"name":"Humble, Owen","team":"WO","sid":"humble|owen|13-14","seed":{"t":"42.77","s":42.77},"final":{"t":"41.58","s":41.58},"place":1,"status":"ok","dq":false,"cut":true},{"name":"Raymond, Wyatt","team":"POQ","sid":"raymond|wyatt|13-14","seed":{"t":"48.22","s":48.22},"final":{"t":"44.81","s":44.81},"place":2,"status":"ok","dq":false},{"name":"Lee, Ryan","team":"HW","sid":"lee|ryan|13-14","seed":{"t":"46.52","s":46.52},"final":{"t":"46.79","s":46.79},"place":3,"status":"ok","dq":false},{"name":"Chewie, Connor","team":"RMMR","sid":"chewie|connor|13-14","seed":{"t":"46.95","s":46.95},"final":{"t":"48.48","s":48.48},"place":4,"status":"ok","dq":false},{"name":"Looney, Shane M","team":"POQ","sid":"looney|shane|13-14","seed":{"t":"47.47","s":47.47},"final":{"t":"48.79","s":48.79},"place":5,"status":"ok","dq":false},{"name":"Wampler, Joshua K","team":"WO","sid":"wampler|joshua|13-14","seed":{"t":"50.27","s":50.27},"final":{"t":"50.40","s":50.4},"place":6,"status":"ok","dq":false},{"name":"Peterson, Ashton C","team":"WPPIR","sid":"peterson|ashton|13-14","seed":{"t":"53.41","s":53.41},"final":{"t":"53.98","s":53.98},"place":7,"status":"ok","dq":false}]},{"number":"43","description":"Boys 8 & Under 25m Butterfly","gender":"M","distance":25,"stroke":"Butterfly","ageGroup":"8 & Under","results":[{"name":"Knappick, Lawson","team":"POQ","sid":"knappick|lawson|7-8","seed":{"t":"34.72","s":34.72},"final":{"t":"33.01","s":33.01},"place":1,"status":"ok","dq":false},{"name":"Trinquero, Noah P","team":"WO","sid":"trinquero|noah|7-8","seed":{"t":"36.79","s":36.79},"final":{"t":"39.64","s":39.64},"place":2,"status":"ok","dq":false},{"name":"Chewie, Jack","team":"RMMR","sid":"chewie|jack|6&u","seed":{"t":"39.37","s":39.37},"final":{"t":"40.32","s":40.32},"place":3,"status":"ok","dq":false},{"name":"Kirsteatter, Mason","team":"COL","sid":"kirsteatter|mason|7-8","seed":{"t":"32.13","s":32.13},"final":{"t":"34.31","s":34.31},"place":null,"status":"dq","dq":true}]},{"number":"26","description":"Girls 11-12 50m Breaststroke","gender":"F","distance":50,"stroke":"Breaststroke","ageGroup":"11-12","results":[{"name":"Jallo, Audrey M","team":"WPPIR","sid":"jallo|audrey|11-12","seed":{"t":"54.41","s":54.41},"final":{"t":"50.91","s":50.91},"place":1,"status":"ok","dq":false,"cut":true},{"name":"Glover, Meleena","team":"EL","sid":"glover|meleena|11-12","seed":{"t":"54.97","s":54.97},"final":{"t":"53.45","s":53.45},"place":2,"status":"ok","dq":false},{"name":"Schreier, Teresa","team":"CV","sid":"schreier|teresa|11-12","seed":{"t":"53.26","s":53.26},"final":{"t":"53.61","s":53.61},"place":3,"status":"ok","dq":false},{"name":"Maddock, Hannah L","team":"RMMR","sid":"maddock|hannah|11-12","seed":{"t":"54.81","s":54.81},"final":{"t":"55.49","s":55.49},"place":4,"status":"ok","dq":false},{"name":"Blount, Ruth","team":"HW","sid":"blount|ruth|11-12","seed":{"t":"52.87","s":52.87},"final":{"t":"55.91","s":55.91},"place":5,"status":"ok","dq":false},{"name":"Spaeth, Katherine","team":"RMMR","sid":"spaeth|katherine|11-12","seed":{"t":"55.31","s":55.31},"final":{"t":"56.16","s":56.16},"place":6,"status":"ok","dq":false},{"name":"Gold, Page","team":"COL","sid":"gold|page|11-12","seed":{"t":"59.01","s":59.01},"final":{"t":"1:02.46","s":62.46},"place":7,"status":"ok","dq":false},{"name":"Koch, Evelyn","team":"CV","sid":"koch|evelyn|11-12","seed":{"t":"1:00.73","s":60.73},"final":{"t":"1:09.90","s":69.9},"place":8,"status":"ok","dq":false}]},{"number":"3","description":"Boys 11-12 100m IM","gender":"M","distance":100,"stroke":"IM","ageGroup":"11-12","results":[{"name":"Provencher, Aydan","team":"RMMR","sid":"provencher|aydan|11-12","seed":{"t":"1:43.41","s":103.41},"final":{"t":"1:42.69","s":102.69},"place":1,"status":"ok","dq":false},{"name":"Farrow, Jackson C","team":"WYTH","sid":"farrow|jackson|11-12","seed":{"t":"2:04.27","s":124.27},"final":{"t":"2:16.82","s":136.82},"place":2,"status":"ok","dq":false}]},{"number":"47","description":"Boys 11-12 50m Butterfly","gender":"M","distance":50,"stroke":"Butterfly","ageGroup":"11-12","results":[{"name":"Baber, Colin","team":"GG","sid":"baber|colin|11-12","seed":{"t":"50.32","s":50.32},"final":{"t":"49.37","s":49.37},"place":1,"status":"ok","dq":false},{"name":"Provencher, Aydan","team":"RMMR","sid":"provencher|aydan|11-12","seed":{"t":"52.53","s":52.53},"final":{"t":"54.09","s":54.09},"place":2,"status":"ok","dq":false}]},{"number":"5","description":"Boys 13-14 100m IM","gender":"M","distance":100,"stroke":"IM","ageGroup":"13-14","results":[{"name":"Reeves, Landon D","team":"RMMR","sid":"reeves|landon|13-14","seed":{"t":"1:28.59","s":88.59},"final":{"t":"1:34.66","s":94.66},"place":1,"status":"ok","dq":false},{"name":"Moffett, Christopher","team":"WPPIR","sid":"moffett|christopher|13-14","seed":{"t":"1:34.56","s":94.56},"final":{"t":"1:39.99","s":99.99},"place":2,"status":"ok","dq":false}]},{"number":"29","description":"Boys 15-18 50m Breaststroke","gender":"M","distance":50,"stroke":"Breaststroke","ageGroup":"15-18","results":[{"name":"Terrance, Christian S","team":"WYTH","sid":"terrance|christian|15-18","seed":{"t":"42.11","s":42.11},"final":{"t":"39.17","s":39.17},"place":1,"status":"ok","dq":false,"cut":true},{"name":"Press, Luke","team":"HW","sid":"press|luke|15-18","seed":{"t":"40.11","s":40.11},"final":{"t":"40.40","s":40.4},"place":2,"status":"ok","dq":false},{"name":"Grau, Samuel J","team":"GG","sid":"grau|samuel|15-18","seed":{"t":"40.99","s":40.99},"final":{"t":"40.85","s":40.85},"place":3,"status":"ok","dq":false},{"name":"Mead, Benjamin I","team":"COL","sid":"mead|benjamin|15-18","seed":{"t":"47.55","s":47.55},"final":{"t":"45.69","s":45.69},"place":4,"status":"ok","dq":false},{"name":"Whitworth, Dylan","team":"COL","sid":"whitworth|dylan|15-18","seed":{"t":"48.67","s":48.67},"final":{"t":"46.04","s":46.04},"place":5,"status":"ok","dq":false},{"name":"Fletcher, Jaatari T","team":"GG","sid":"fletcher|jaatari|15-18","seed":{"t":"45.82","s":45.82},"final":{"t":"46.39","s":46.39},"place":6,"status":"ok","dq":false},{"name":"Cardona, Israel","team":"GG","sid":"cardona|israel|15-18","seed":{"t":"48.88","s":48.88},"final":{"t":"47.51","s":47.51},"place":7,"status":"ok","dq":false}]},{"number":"7","description":"Boys 15-18 100m IM","gender":"M","distance":100,"stroke":"IM","ageGroup":"15-18","results":[{"name":"Hobbs, Riley C","team":"WO","sid":"hobbs|riley|15-18","seed":{"t":"1:19.65","s":79.65},"final":{"t":"1:19.51","s":79.51},"place":1,"status":"ok","dq":false},{"name":"Fletcher, Jaatari T","team":"GG","sid":"fletcher|jaatari|15-18","seed":{"t":"1:31.90","s":91.9},"final":{"t":"1:32.53","s":92.53},"place":2,"status":"ok","dq":false}]},{"number":"8","description":"Girls 15-18 100m IM","gender":"F","distance":100,"stroke":"IM","ageGroup":"15-18","results":[{"name":"Humble, Lily","team":"WO","sid":"humble|lily|15-18","seed":{"t":"1:31.36","s":91.36},"final":{"t":"1:32.29","s":92.29},"place":1,"status":"ok","dq":false},{"name":"Lilliston, McKenzie G","team":"GG","sid":"lilliston|mckenzie|15-18","seed":{"t":"1:46.44","s":106.44},"final":{"t":"1:50.92","s":110.92},"place":2,"status":"ok","dq":false}]},{"number":"49","description":"Boys 13-14 50m Butterfly","gender":"M","distance":50,"stroke":"Butterfly","ageGroup":"13-14","results":[{"name":"Anderson, Austin","team":"WPPIR","sid":"anderson|austin|13-14","seed":{"t":"39.81","s":39.81},"final":{"t":"38.75","s":38.75},"place":1,"status":"ok","dq":false,"cut":true},{"name":"Gilbert, Ryan","team":"POQ","sid":"gilbert|ryan|13-14","seed":{"t":"43.19","s":43.19},"final":{"t":"41.99","s":41.99},"place":2,"status":"ok","dq":false},{"name":"Mckelvey, Camden","team":"HW","sid":"mckelvey|camden|13-14","seed":{"t":"41.31","s":41.31},"final":{"t":"42.57","s":42.57},"place":3,"status":"ok","dq":false},{"name":"Moffett, Christopher","team":"WPPIR","sid":"moffett|christopher|13-14","seed":{"t":"44.38","s":44.38},"final":{"t":"45.46","s":45.46},"place":4,"status":"ok","dq":false},{"name":"Spinner, Jaxson H","team":"HW","sid":"spinner|jaxson|13-14","seed":{"t":"52.43","s":52.43},"final":{"t":"50.39","s":50.39},"place":5,"status":"ok","dq":false}]}]};</script>
 <script type="module">
 // GPSA invitational results renderer.
-// Data source: window.__MEET__ (inlined preview) or fetch ../data/<slug>.json.
+// Data source: window.__MEET__ (inlined by build_invitational.mjs) or ../data/<slug>.json.
+//
+// Two shapes of meet run through here:
+//   scored   (City Meet)      - results carry points; the page leads with the ribbon board.
+//   unscored (Summer Splash)  - no points anywhere; the page keeps the medal count.
+// Both branches are derived from the data, never from a config flag, so a new meet
+// renders correctly without anyone remembering to set something.
 
-const MEDAL_DEPTH = 8; // this league awards medals to 8th place
-let showCutCol = true; // set per-render: the CM column only appears when the meet has cuts
+// Two different depths, and the page must not blur them:
+const MEDAL_DEPTH = 8;      // event ribbons - awarded to 8th in every event, individual and relay
+const TEAM_MEDAL_DEPTH = 6; // team medals at City Meet - awarded to the top 6 teams overall
+
+// Set per render, from the data.
+let showCutCol = false;  // CM column only when standards were applied
+let showPtsCol = false;  // points column only when the meet is scored
+let relayRibbons = false; // relays medal only where relays actually score
+
+// Needed by the deep-link handler, which outlives any single render.
+let SWIMMERS = {};
+let TEAM_NAMES = {};
+let closeSheet = null; // set while a profile is open
 
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) =>
   ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
-// Only official ("ok") swims count — a DQ/scratch/DNF time doesn't stand, so it never
+// Only official ("ok") swims count - a DQ/scratch/DNF time doesn't stand, so it never
 // shows a drop, counts as faster-than-seed, or gets highlighted.
 const dropOf = (r) => (r.status === 'ok' && r.seed && r.final && r.final.s < r.seed.s ? r.seed.s - r.final.s : 0);
 const addOf = (r) => (r.status === 'ok' && r.seed && r.final && r.final.s > r.seed.s ? r.final.s - r.seed.s : 0);
-// boot() is invoked at the END of this file, after every const/helper is initialized —
-// with inlined data render() runs synchronously, so nothing can be in its TDZ.
+const fmtPts = (p) => (Number.isInteger(p) ? p : p.toFixed(1));
+const ordinal = (n) => { const s = ['th', 'st', 'nd', 'rd'], v = n % 100; return n + (s[(v - 20) % 10] || s[v] || s[0]); };
+const shortName = (n) => n.replace(/^\d{4}\s+GPSA\s+/, '').replace(/\s+Invitational$/, '');
+
+// Search matches on tokens, so "colton mueller" finds "Mueller, Colton A" even though
+// the file stores names last-first.
+const haystack = (name) => String(name || '').toLowerCase().replace(/[,]/g, ' ');
 
 async function boot() {
   const app = document.getElementById('app');
@@ -255,20 +89,35 @@ function render(app, data) {
   const cuts = allResults.filter((r) => r.cut).length;
   const withSeed = allResults.filter((r) => r.seed && r.final).length;
   const teamsWithSwims = new Set(allResults.map((r) => r.team));
-  showCutCol = !!data.meet.cutsLabel; // no CM column when standards weren't applied (e.g. City Meet)
 
-  // ---- team scores (points carried in the file; e.g. City Meet 9-7-6-5-4…) -
   const scored = allResults.some((r) => r.pts);
-  const teamPts = {};
-  if (scored) for (const r of allResults) if (r.pts) teamPts[r.team] = (teamPts[r.team] || 0) + r.pts;
-  const scoreRows = Object.entries(teamPts).map(([code, pts]) => ({ code, pts }))
-    .sort((a, b) => b.pts - a.pts || a.code.localeCompare(b.code));
-  const fmtPts = (p) => (Number.isInteger(p) ? p : p.toFixed(1));
+  showCutCol = !!data.meet.cutsLabel;
+  showPtsCol = scored;
+  // City Meet scores its four relays 18-14-12-10-8-6-4-2 and medals them like any
+  // other event. Summer Splash relays place but score nothing - they're exhibition,
+  // so they stay unmedalled.
+  relayRibbons = allResults.some((r) => r.kind === 'relay' && r.pts);
 
-  // ---- medal tally (individual, places 1-3) --------------------------------
+  // ---- the ribbon board: points, and the ribbons that earned them ----------
+  const agg = {};
+  for (const r of allResults) {
+    if (!r.pts || !r.place) continue;
+    const a = (agg[r.team] ||= { pts: 0, byPlace: {}, count: {} });
+    a.pts += r.pts;
+    a.byPlace[r.place] = (a.byPlace[r.place] || 0) + r.pts;
+    a.count[r.place] = (a.count[r.place] || 0) + 1;
+  }
+  const scorersOf = (code) => new Set(
+    allResults.filter((r) => r.team === code && r.sid && r.pts).map((r) => r.sid)).size;
+  const boardRows = Object.entries(agg)
+    .map(([code, a]) => ({ code, ...a, scorers: scorersOf(code) }))
+    .sort((x, y) => y.pts - x.pts || x.code.localeCompare(y.code));
+  const maxPts = boardRows.length ? boardRows[0].pts : 0;
+
+  // ---- medal tally (unscored meets; individual, places 1-3) ----------------
   const medals = {};
   for (const r of allResults) {
-    if (r.status !== 'ok' || !r.place || r.place > 3) continue;
+    if (r.kind === 'relay' || r.status !== 'ok' || !r.place || r.place > 3) continue;
     const m = (medals[r.team] ||= { g: 0, s: 0, b: 0 });
     if (r.place === 1) m.g++; else if (r.place === 2) m.s++; else m.b++;
   }
@@ -277,57 +126,58 @@ function render(app, data) {
     .sort((a, b) => b.g - a.g || b.s - a.s || b.b - a.b || a.code.localeCompare(b.code));
 
   // ---- swimmer index (for the profile sheet) -------------------------------
+  // The profile is the whole point of an unscored meet, so it has to be the swimmer's
+  // whole meet. Relay legs carry a name and a team but no swimmer id, so they're
+  // resolved back to the swimmer by name within their own team - unambiguous in every
+  // published file. A swimmer who ONLY swam a relay has no id anywhere and so has no
+  // profile; their name simply isn't a link.
   const bySwimmer = {};
   for (const r of allResults) {
-    if (!r.sid) continue; // relay legs have no swimmer id — not in the per-swimmer index
-    (bySwimmer[r.sid] ||= { name: r.name, team: r.team, swims: [] }).swims.push(r);
+    if (!r.sid) continue;
+    (bySwimmer[r.sid] ||= { name: r.name, team: r.team, sid: r.sid, swims: [] }).swims.push(r);
   }
+  const sidByName = {};
+  for (const r of allResults) {
+    if (!r.sid) continue;
+    const k = `${r.team}|${r.name}`;
+    sidByName[k] = sidByName[k] && sidByName[k] !== r.sid ? null : r.sid; // null = ambiguous
+  }
+  for (const r of allResults) {
+    if (r.kind !== 'relay') continue;
+    for (const leg of r.legs || []) {
+      const sid = sidByName[`${r.team}|${leg}`];
+      if (sid && bySwimmer[sid]) bySwimmer[sid].swims.push(r);
+    }
+  }
+  const evOrder = new Map(data.events.map((e, i) => [e.number, i]));
+  for (const s of Object.values(bySwimmer)) {
+    s.swims.sort((a, b) => (evOrder.get(a.ev.number) ?? 0) - (evOrder.get(b.ev.number) ?? 0));
+  }
+  SWIMMERS = bySwimmer;
+  TEAM_NAMES = teamName;
 
   const dateStr = new Date(data.meet.startDate + 'T00:00').toLocaleDateString('en-US',
     { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 
-  const medalPanel = data.meet.showMedals ? `
-      <details class="panel" open><summary>🏅 Team medal count</summary>
-        <div class="panel-body"><table class="medals"><thead><tr>
-          <th></th><th>Team</th><th>🥇</th><th>🥈</th><th>🥉</th><th>Total</th>
-        </tr></thead><tbody>
-          ${medalRows.map((m, i) => `<tr data-team="${esc(m.code)}">
-            <td class="rank num">${i + 1}</td>
-            <td>${esc(teamName[m.code] || m.code)}</td>
-            <td class="num">${m.g || ''}</td><td class="num">${m.s || ''}</td>
-            <td class="num">${m.b || ''}</td><td class="num tot">${m.tot}</td>
-          </tr>`).join('')}
-        </tbody></table></div>
-      </details>` : '';
-
-  // A scored meet (City Meet) leads with team points; otherwise fall back to the
-  // opt-in medal count. Clicking a row filters the page to that team (wired via .medals).
-  const scoresPanel = `
-      <details class="panel" open><summary>🏆 Team scores</summary>
-        <div class="panel-body"><table class="medals"><thead><tr>
-          <th></th><th>Team</th><th>Points</th>
-        </tr></thead><tbody>
-          ${scoreRows.map((t, i) => `<tr data-team="${esc(t.code)}">
-            <td class="rank num">${i + 1}</td>
-            <td>${esc(teamName[t.code] || t.code)}</td>
-            <td class="num tot">${fmtPts(t.pts)}</td>
-          </tr>`).join('')}
-        </tbody></table></div>
-      </details>`;
-  const teamPanel = scored ? scoresPanel : medalPanel;
+  // Tab title, bookmarks and share cards all read this - "GPSA Invitational Results"
+  // told nobody which meet they were looking at.
+  document.title = `${data.meet.name} — Results`;
+  const desc = document.querySelector('meta[name=description]');
+  if (desc) {
+    desc.content = scored && boardRows.length
+      ? `${data.meet.name}: ${teamName[boardRows[0].code] || boardRows[0].code} wins with `
+        + `${fmtPts(boardRows[0].pts)} points. Full results for ${swimmers.size} swimmers `
+        + `across ${data.events.length} events.`
+      : `${data.meet.name}: full results for ${swimmers.size} swimmers across ${data.events.length} events.`;
+  }
 
   app.innerHTML = `
     <header class="hero"><div class="hero-in">
       <div class="eyebrow">${esc(data.meet.eyebrow || 'GPSA Invitational')}</div>
       <h1>${esc(data.meet.name)}</h1>
       <div class="date">${esc(dateStr)}</div>
-      <div class="stats">
-        <div class="stat"><div class="n num">${swimmers.size}</div><div class="l">Swimmers</div></div>
-        <div class="stat"><div class="n num">${teamsWithSwims.size}</div><div class="l">Teams</div></div>
-        <div class="stat"><div class="n num">${data.events.length}</div><div class="l">Events</div></div>
-        <div class="stat hl"><div class="n num">${drops}</div><div class="l">Faster than seed</div></div>
-        ${cuts ? `<div class="stat gold"><div class="n num">${cuts}</div><div class="l">City Meet cuts</div></div>` : ''}
-      </div>
+      ${scored ? champBlock(boardRows, teamName, swimmers.size, data.events.length)
+               : statTiles(swimmers.size, teamsWithSwims.size, data.events.length, drops, cuts, data.meet.cutsLabel)}
     </div></header>
     <div class="lane"></div>
 
@@ -340,45 +190,138 @@ function render(app, data) {
           .sort((a, b) => a.name.localeCompare(b.name))
           .map((t) => `<option value="${esc(t.code)}">${esc(t.name)}</option>`).join('')}
       </select></div>
-      <label class="toggle"><input type="checkbox" id="top8"> Top 8 only</label>
+      <label class="toggle"><input type="checkbox" id="top8"> Top ${MEDAL_DEPTH} only</label>
     </div></div>
 
     <main>
-      ${teamPanel}
+      ${scored ? ribbonBoard(boardRows, teamName, maxPts) : medalPanel(medalRows, teamName, data.meet.showMedals)}
 
-      <details class="panel"><summary>↳ Jump to event</summary>
+      <details class="panel"><summary>Jump to event</summary>
         <div class="panel-body"><div class="jump">
-          ${data.events.map((e) => `<a href="#e${esc(e.number)}"><b>#${esc(e.number)}</b> ${esc(shortEvent(e))}</a>`).join('')}
+          ${data.events.map((e) => `<a href="#e${esc(e.number)}"><b>#${esc(e.number)}</b> ${esc(e.description)}</a>`).join('')}
         </div></div>
       </details>
 
       <p class="legend"><span><b>▼ faster than seed</b> (dropped time)</span>
-        ${cuts ? '<span><span class="cut">CM</span> made a City Meet qualifying time</span>' : ''}
+        ${cuts ? `<span><span class="cut">CM</span> made a ${esc(data.meet.cutsLabel)}</span>` : ''}
         <span class="medal-key">${Array.from({ length: MEDAL_DEPTH }, (_, i) =>
-          `<span class="pl p${i + 1}">${i + 1}</span>`).join('')} medals to 8th</span>
+          `<span class="chip p${i + 1}">${i + 1}</span>`).join('')} ribbons to ${ordinal(MEDAL_DEPTH)}</span>
         <span>Tap a name for every swim</span></p>
 
       <div id="events">
         ${data.events.map((e) => eventCard(e)).join('')}
       </div>
-      <p class="empty hidden" id="none">No swims match your filters.</p>
+      <p class="empty hidden" id="none" role="status">No swims match your filters.</p>
     </main>
-    <footer>${esc(data.meet.name)} · ${withSeed} swims with a seed time, ${drops} faster than seed ·
-      <a href="/invitationals/">All GPSA invitationals</a></footer>`;
+    <footer>${esc(data.meet.name)} · ${swimmers.size} swimmers · ${withSeed} swims with a seed time,
+      ${drops} faster than seed · <a href="/invitationals/">All GPSA invitationals</a></footer>`;
 
   wire(app, { bySwimmer, teamName });
+
+  // Arriving on a shared profile link opens it straight away.
+  const linked = new URLSearchParams(location.search).get('swimmer');
+  if (linked && bySwimmer[linked]) openSheet(bySwimmer[linked], teamName, false);
+}
+
+// Scored meets lead with the champion: the score, the margin, and how it was won.
+function champBlock(rows, teamName, swimmerCount, eventCount) {
+  if (!rows.length) return '';
+  const w = rows[0];
+  const margin = rows.length > 1 ? w.pts - rows[1].pts : 0;
+  const firsts = w.count[1] || 0;
+  const bits = [];
+  if (margin > 0) bits.push(`<b>Wins by ${fmtPts(margin)}</b> over ${esc(teamName[rows[1].code] || rows[1].code)}`);
+  if (firsts) bits.push(`<b>${firsts}</b> first place${firsts === 1 ? '' : 's'}`);
+  bits.push(`<b>${w.scorers}</b> swimmer${w.scorers === 1 ? '' : 's'} scored`);
+  return `<div class="champ">
+    <div>
+      <div class="champ-label">League champion</div>
+      <h2 class="champ-name">${esc(teamName[w.code] || w.code)}</h2>
+      <div class="champ-sub">${bits.join(' · ')}</div>
+    </div>
+    <div class="champ-pts"><div class="n num">${fmtPts(w.pts)}</div><div class="l">Points</div></div>
+  </div>
+  <p class="champ-sub" style="margin-top:.9rem">${swimmerCount} swimmers · ${rows.length} teams scoring · ${eventCount} events</p>`;
+}
+
+function statTiles(swimmers, teams, events, drops, cuts, cutsLabel) {
+  return `<div class="stats">
+    <div class="stat"><div class="n num">${swimmers}</div><div class="l">Swimmers</div></div>
+    <div class="stat"><div class="n num">${teams}</div><div class="l">Teams</div></div>
+    <div class="stat"><div class="n num">${events}</div><div class="l">Events</div></div>
+    <div class="stat hl"><div class="n num">${drops}</div><div class="l">Faster than seed</div></div>
+    ${cuts ? `<div class="stat gold"><div class="n num">${cuts}</div><div class="l">${esc(cutsLabel || 'Cuts')}</div></div>` : ''}
+  </div>`;
+}
+
+// Bar length is the score. Bar composition is the ribbons that earned it - so a team
+// that won a lot reads blue, and a team that scored on depth reads green and purple.
+function ribbonBoard(rows, teamName, maxPts) {
+  const key = Array.from({ length: MEDAL_DEPTH }, (_, i) =>
+    `<span class="chip p${i + 1}" title="${ordinal(i + 1)} place">${i + 1}</span>`).join('');
+  // The line after 6th is where the team medals stop - it is the difference between
+  // a medal and nothing, and in 2026 it fell between 144 and 143 points.
+  const cut = (i) => (i === TEAM_MEDAL_DEPTH && rows.length > TEAM_MEDAL_DEPTH
+    ? `<div class="board-cut"><span>Team medals to ${ordinal(TEAM_MEDAL_DEPTH)}</span></div>` : '');
+  return `<section class="board" aria-label="Team scores">
+    <div class="board-key">
+      <span>Ribbon by place</span><span class="key-scale">${key}</span>
+      <span>Bar length = points scored</span>
+    </div>
+    ${rows.map((t, i) => cut(i) + boardRow(t, i, teamName, maxPts)).join('')}
+  </section>`;
+}
+
+function boardRow(t, i, teamName, maxPts) {
+  const places = Object.keys(t.byPlace).map(Number).sort((a, b) => a - b);
+  const segs = places.map((p) =>
+    `<span class="board-seg p${p}" style="flex:${t.byPlace[p]}"></span>`).join('');
+  const facts = places.map((p) =>
+    `<span class="fact"><span class="chip p${p}">${p}</span><b>${t.count[p]}</b> × ${ordinal(p)}
+      = <b>${fmtPts(t.byPlace[p])}</b></span>`).join('');
+  const spoken = places.map((p) => `${t.count[p]} ${ordinal(p)}`).join(', ');
+  const medals = i < TEAM_MEDAL_DEPTH ? ' medals' : '';
+  return `<details class="board-row${i === 0 ? ' first' : ''}${medals}" data-team="${esc(t.code)}">
+    <summary aria-label="${esc(teamName[t.code] || t.code)}, ${ordinal(i + 1)}${medals ? ', team medal' : ''}, ${fmtPts(t.pts)} points: ${spoken}">
+      <span class="board-rank num">${i + 1}</span>
+      <span class="board-team">${esc(teamName[t.code] || t.code)}</span>
+      <span class="board-bar-cell"><span class="board-bar" style="--w:${(t.pts / maxPts * 100).toFixed(1)}%">${segs}</span></span>
+      <span class="board-pts num">${fmtPts(t.pts)}</span>
+    </summary>
+    <div class="board-detail">${facts}
+      <span class="fact plain"><b>${t.scorers}</b> swimmers scored</span>
+      <button type="button" class="fact plain only-team" data-team="${esc(t.code)}">Show only this team</button>
+    </div>
+  </details>`;
+}
+
+function medalPanel(rows, teamName, showMedals) {
+  if (!showMedals || !rows.length) return '';
+  return `<details class="panel" open><summary>Team medal count</summary>
+    <div class="panel-body"><table class="medals"><thead><tr>
+      <th></th><th>Team</th><th>1st</th><th>2nd</th><th>3rd</th><th>Total</th>
+    </tr></thead><tbody>
+      ${rows.map((m, i) => `<tr data-team="${esc(m.code)}" tabindex="0" role="button"
+          aria-label="Show only ${esc(teamName[m.code] || m.code)}">
+        <td class="rank num">${i + 1}</td>
+        <td>${esc(teamName[m.code] || m.code)}</td>
+        <td class="num">${m.g || ''}</td><td class="num">${m.s || ''}</td>
+        <td class="num">${m.b || ''}</td><td class="num tot">${m.tot}</td>
+      </tr>`).join('')}
+    </tbody></table></div>
+  </details>`;
 }
 
 function eventCard(e) {
   const rows = e.results.map((r) => (r.kind === 'relay' ? relayRow(r) : indivRow(r))).join('');
   return `<section class="event" id="e${esc(e.number)}" data-num="${esc(e.number)}">
     <div class="ev-head"><span class="ev-num">EVENT ${esc(e.number)}</span>
-      <span class="ev-title">${esc(e.description)}</span></div>
+      <h2 class="ev-title">${esc(e.description)}</h2></div>
     <div class="tbl-wrap"><table class="res">
-      <colgroup><col class="c-pl"><col class="c-name"><col class="c-team"><col class="c-seed"><col class="c-time"><col class="c-pm">${showCutCol ? '<col class="c-cm">' : ''}</colgroup>
+      <colgroup><col class="c-pl"><col class="c-name"><col class="c-team"><col class="c-seed"><col class="c-time"><col class="c-pm">${showPtsCol ? '<col class="c-pts">' : ''}${showCutCol ? '<col class="c-cm">' : ''}<col class="c-flex"></colgroup>
       <thead><tr>
       <th class="r">Pl</th><th>Swimmer</th><th>Team</th>
-      <th class="r col-seed">Seed</th><th class="r">Time</th><th class="r">±</th>${showCutCol ? '<th class="c">CM</th>' : ''}
+      <th class="r col-seed">Seed</th><th class="r">Time</th><th class="r">±</th>${showPtsCol ? '<th class="r">Pts</th>' : ''}${showCutCol ? '<th class="c">CM</th>' : ''}<td class="t-flex"></td>
     </tr></thead><tbody>${rows}</tbody></table></div>
   </section>`;
 }
@@ -387,50 +330,55 @@ function indivRow(r) {
   const d = dropOf(r), a = addOf(r);
   let placeCell, timeCell, dropCell;
   if (r.status === 'ok') {
-    // GPSA place-ribbon color for 1st-8th; 9+ get no award color.
     const cls = r.place && r.place <= MEDAL_DEPTH ? ` p${r.place}` : '';
     placeCell = r.place ? `<span class="pl${cls}">${r.place}</span>` : '';
     timeCell = r.final ? `<span class="num">${esc(r.final.t)}</span>` : '';
     dropCell = d > 0 ? `<span class="drop num">▼ ${d.toFixed(2)}</span>`
       : a > 0 ? `<span class="addt num">▲ ${a.toFixed(2)}</span>` : '';
   } else {
-    // DQ/scratch/DNF: the time doesn't stand, so no place, no time, no drop — just the reason.
+    // DQ/scratch/DNF: the time doesn't stand, so no place, no time, no drop.
     placeCell = '';
     timeCell = '';
-    dropCell = `<span class="badge ${r.dq ? 'dq' : 'sc'}">${r.dq ? 'DQ' : r.status}</span>`;
+    dropCell = `<span class="badge ${r.dq ? 'dq' : 'sc'}">${r.dq ? 'DQ' : esc(r.status)}</span>`;
   }
-  const cutCell = r.cut ? '<span class="cut">CM</span>' : '';
-  return `<tr data-name="${esc(r.name.toLowerCase())}" data-team="${esc(r.team)}"
+  return `<tr data-name="${esc(haystack(r.name))}" data-team="${esc(r.team)}"
       data-place="${r.place || 99}" data-sid="${esc(r.sid)}">
-    <td class="r">${placeCell}</td>
-    <td class="name"><button class="swm" data-sid="${esc(r.sid)}">${esc(r.name)}</button></td>
-    <td><span class="team">${esc(r.team)}</span></td>
-    <td class="r col-seed num">${r.seed ? esc(r.seed.t) : ''}</td>
-    <td class="r">${timeCell}</td>
-    <td class="r">${dropCell}</td>
-    ${showCutCol ? `<td class="c">${cutCell}</td>` : ''}
+    <td class="r t-pl">${placeCell}</td>
+    <td class="name t-name"><button class="swm" data-sid="${esc(r.sid)}">${esc(r.name)}</button></td>
+    <td class="t-team"><span class="team">${esc(r.team)}</span></td>
+    <td class="r col-seed num t-seed">${r.seed ? esc(r.seed.t) : ''}</td>
+    <td class="r t-time">${timeCell}</td>
+    <td class="r t-pm">${dropCell}</td>
+    ${showPtsCol ? `<td class="r t-end">${r.pts ? `<span class="pts num">${fmtPts(r.pts)}</span>` : ''}</td>` : ''}
+    ${showCutCol ? `<td class="c t-end">${r.cut ? '<span class="cut">CM</span>' : ''}</td>` : ''}
+    <td class="t-flex"></td>
   </tr>`;
 }
 
-// Relays: team + letter + leg names, no individual swimmer, no medal color (no relay
-// medals in this league), no City Meet cut.
+// Relays: team + letter + leg names, no individual swimmer. Ribbon colors only where
+// relays actually score (City Meet); elsewhere they're exhibition and stay plain.
 function relayRow(r) {
   const ok = r.status === 'ok';
   const d = dropOf(r);
-  const placeCell = ok && r.place ? `<span class="pl">${r.place}</span>` : '';
+  const cls = relayRibbons && r.place && r.place <= MEDAL_DEPTH ? ` p${r.place}` : '';
+  const placeCell = ok && r.place ? `<span class="pl${cls}">${r.place}</span>` : '';
   const timeCell = ok && r.final ? `<span class="num">${esc(r.final.t)}</span>` : '';
-  const endCell = !ok ? `<span class="badge ${r.dq ? 'dq' : 'sc'}">${r.dq ? 'DQ' : r.status}</span>`
+  const endCell = !ok ? `<span class="badge ${r.dq ? 'dq' : 'sc'}">${r.dq ? 'DQ' : esc(r.status)}</span>`
     : d > 0 ? `<span class="drop num">▼ ${d.toFixed(2)}</span>` : '';
-  const legNames = (r.legs || []).join(', ');
-  return `<tr data-name="${esc(legNames.toLowerCase())}" data-team="${esc(r.team)}"
+  // Legs are stored "Last, First" - joining them with a comma reads as twice as many
+  // people as actually swam, so they're separated with a middot.
+  const legs = (r.legs || []);
+  return `<tr data-name="${esc(haystack(legs.join(' ')))}" data-team="${esc(r.team)}"
       data-place="${r.place || 99}" data-sid="">
-    <td class="r">${placeCell}</td>
-    <td class="name"><span class="relay-tag">'${esc(r.letter)}' relay</span> ${esc(legNames)}</td>
-    <td><span class="team">${esc(r.team)}</span></td>
-    <td class="r col-seed num">${r.seed ? esc(r.seed.t) : ''}</td>
-    <td class="r">${timeCell}</td>
-    <td class="r">${endCell}</td>
-    ${showCutCol ? '<td class="c"></td>' : ''}
+    <td class="r t-pl">${placeCell}</td>
+    <td class="name t-name"><span class="relay-tag">'${esc(r.letter)}' relay</span><span class="legs">${legs.map(esc).join(' · ')}</span></td>
+    <td class="t-team"><span class="team">${esc(r.team)}</span></td>
+    <td class="r col-seed num t-seed">${r.seed ? esc(r.seed.t) : ''}</td>
+    <td class="r t-time">${timeCell}</td>
+    <td class="r t-pm">${endCell}</td>
+    ${showPtsCol ? `<td class="r t-end">${r.pts ? `<span class="pts num">${fmtPts(r.pts)}</span>` : ''}</td>` : ''}
+    ${showCutCol ? '<td class="c t-end"></td>' : ''}
+    <td class="t-flex"></td>
   </tr>`;
 }
 
@@ -441,17 +389,24 @@ function wire(app, { bySwimmer, teamName }) {
   const none = app.querySelector('#none');
   const events = [...app.querySelectorAll('.event')];
 
+  // Anchor jumps must clear the sticky bar, which is three rows tall on a phone.
+  const bar = app.querySelector('.bar');
+  const setStick = () => document.documentElement.style.setProperty(
+    '--stick', `${Math.round(bar.getBoundingClientRect().height) + 8}px`);
+  setStick();
+  addEventListener('resize', setStick);
+
   const apply = () => {
-    const needle = q.value.trim().toLowerCase();
+    const toks = q.value.trim().toLowerCase().split(/\s+/).filter(Boolean);
     const t = team.value;
     const only8 = top8.checked;
     let anyVisible = false;
     for (const ev of events) {
       let shown = 0;
       for (const tr of ev.querySelectorAll('tbody tr')) {
-        const ok = (!needle || tr.dataset.name.includes(needle))
+        const ok = toks.every((tok) => tr.dataset.name.includes(tok))
           && (!t || tr.dataset.team === t)
-          && (!only8 || +tr.dataset.place <= 8);
+          && (!only8 || +tr.dataset.place <= MEDAL_DEPTH);
         tr.classList.toggle('hidden', !ok);
         if (ok) shown++;
       }
@@ -459,63 +414,139 @@ function wire(app, { bySwimmer, teamName }) {
       if (shown) anyVisible = true;
     }
     none.classList.toggle('hidden', anyVisible);
+
+    // The board is a ranking, so filtering never removes teams from it - a lone bar
+    // has nothing to be long relative to, and a placing means nothing without the
+    // teams either side of it. The selected team is highlighted in place instead.
+    for (const row of app.querySelectorAll('.board-row')) {
+      const picked = !!t && row.dataset.team === t;
+      row.classList.toggle('focus', picked);
+      if (picked) row.open = true;
+    }
   };
 
   q.addEventListener('input', apply);
   team.addEventListener('change', apply);
   top8.addEventListener('change', apply);
 
-  // medal row → set team filter
+  const filterTo = (code) => {
+    team.value = code;
+    apply();
+    document.getElementById('events').scrollIntoView({ behavior: 'smooth' });
+  };
+
+  // medal row (unscored meets) → set team filter; reachable by keyboard
   app.querySelectorAll('.medals tbody tr').forEach((tr) => {
-    tr.addEventListener('click', () => {
-      team.value = tr.dataset.team; apply();
-      document.getElementById('events').scrollIntoView({ behavior: 'smooth' });
+    tr.addEventListener('click', () => filterTo(tr.dataset.team));
+    tr.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); filterTo(tr.dataset.team); }
     });
   });
 
-  // swimmer name → profile sheet
   app.addEventListener('click', (e) => {
+    const only = e.target.closest('.only-team');
+    if (only) { filterTo(only.dataset.team); return; }
     const btn = e.target.closest('.swm');
     if (btn) openSheet(bySwimmer[btn.dataset.sid], teamName);
   });
 }
 
-function openSheet(sw, teamName) {
+// The URL carries the open profile, so a coach can send "here's your swimmer" and the
+// back button closes the sheet instead of leaving the page.
+function profileUrl(sid) {
+  const u = new URL(location.href);
+  if (sid) u.searchParams.set('swimmer', sid); else u.searchParams.delete('swimmer');
+  return u.toString();
+}
+
+addEventListener('popstate', () => {
+  const sid = new URLSearchParams(location.search).get('swimmer');
+  if (sid && SWIMMERS[sid]) openSheet(SWIMMERS[sid], TEAM_NAMES, false);
+  else if (closeSheet) closeSheet(false);
+});
+
+function openSheet(sw, teamName, push = true) {
   if (!sw) return;
   const modal = document.getElementById('modal');
+  const opener = document.activeElement;
+  if (push) history.pushState({ swimmer: sw.sid }, '', profileUrl(sw.sid));
+
   const rows = sw.swims.map((r) => {
+    const relay = r.kind === 'relay';
     const d = dropOf(r);
     const ok = r.status === 'ok';
     const time = ok && r.final ? r.final.t : '—';
-    const tail = !ok ? `<span class="badge ${r.dq ? 'dq' : 'sc'}">${r.dq ? 'DQ' : r.status}</span>`
-      : `${r.cut ? '<span class="cut">CM</span> ' : ''}${d > 0 ? `<span class="drop num">▼ ${d.toFixed(2)}</span>` : ''}`;
-    const pl = ok && r.place ? `${ordinal(r.place)} · ` : '';
+    // Built as a list and joined, so a swim with no place/cut/drop can't leave a
+    // dangling separator behind it.
+    const end = [];
+    if (ok && r.place) end.push(ordinal(r.place));
+    if (ok && r.pts) end.push(`<span class="pts num">${fmtPts(r.pts)} pts</span>`);
+    if (ok && r.cut) end.push('<span class="cut">CM</span>');
+    if (ok && d > 0) end.push(`<span class="drop num">▼ ${d.toFixed(2)}</span>`);
+    if (!ok) end.push(`<span class="badge ${r.dq ? 'dq' : 'sc'}">${r.dq ? 'DQ' : esc(r.status)}</span>`);
     return `<div class="swim-row">
-      <div class="ev">EV ${esc(r.ev.number)} · ${esc(r.ev.description)}</div>
+      <div class="ev">EV ${esc(r.ev.number)} · ${esc(r.ev.description)}${
+        relay ? ` · <span class="relay-tag">'${esc(r.letter)}' relay</span>` : ''}</div>
       <div class="time num">${esc(time)}</div>
-      <div class="num" style="color:var(--muted)">${r.seed ? 'seed ' + esc(r.seed.t) : ''}</div>
-      <div style="text-align:right">${pl}${tail}</div>
+      <div class="seed num">${relay ? 'team time'
+        : r.seed ? 'seed ' + esc(r.seed.t) : ''}</div>
+      <div class="end">${end.join(' · ')}</div>
     </div>`;
   }).join('');
+
+  const relays = sw.swims.filter((r) => r.kind === 'relay').length;
+  const indiv = sw.swims.length - relays;
+  const count = `${indiv} swim${indiv === 1 ? '' : 's'}`
+    + (relays ? ` · ${relays} relay${relays === 1 ? '' : 's'}` : '');
+
   modal.innerHTML = `<div class="sheet">
     <div class="sheet-head">
-      <div><h3 id="sheet-name">${esc(sw.name)}</h3>
-        <div class="sub">${esc(teamName[sw.team] || sw.team)} · ${sw.swims.length} swim${sw.swims.length === 1 ? '' : 's'}</div></div>
-      <button class="sheet-close" aria-label="Close">×</button>
+      <div class="sheet-id"><h3 id="sheet-name">${esc(sw.name)}</h3>
+        <div class="sub">${esc(teamName[sw.team] || sw.team)} · ${count}</div></div>
+      <button class="sheet-link" type="button">Copy link</button>
+      <button class="sheet-close" type="button" aria-label="Close">×</button>
     </div><div class="sheet-body">${rows}</div></div>`;
   modal.classList.add('open');
-  modal.querySelector('.sheet-close').focus();
-  const close = () => modal.classList.remove('open');
-  modal.querySelector('.sheet-close').onclick = close;
-  modal.onclick = (e) => { if (e.target === modal) close(); };
-  document.addEventListener('keydown', function esc2(e) {
-    if (e.key === 'Escape') { close(); document.removeEventListener('keydown', esc2); }
-  });
-}
 
-const shortName = (n) => n.replace(/^\d{4}\s+GPSA\s+/, '').replace(/\s+Invitational$/, '');
-const shortEvent = (e) => `${e.gender === 'F' ? 'Girls' : e.gender === 'M' ? 'Boys' : ''} ${e.ageGroup} ${e.distance} ${e.stroke.slice(0, 4)}`.trim();
-const ordinal = (n) => { const s = ['th', 'st', 'nd', 'rd'], v = n % 100; return n + (s[(v - 20) % 10] || s[v] || s[0]); };
+  const closeBtn = modal.querySelector('.sheet-close');
+  const linkBtn = modal.querySelector('.sheet-link');
+  closeBtn.focus();
+
+  const close = (goBack = true) => {
+    modal.classList.remove('open');
+    modal.innerHTML = '';
+    document.removeEventListener('keydown', onKey);
+    closeSheet = null;
+    if (goBack && new URLSearchParams(location.search).get('swimmer')) history.back();
+    if (opener && opener.isConnected) opener.focus();
+  };
+  closeSheet = close;
+
+  // Keep Tab inside the sheet while it's open.
+  const onKey = (e) => {
+    if (e.key === 'Escape') { close(); return; }
+    if (e.key !== 'Tab') return;
+    const f = [...modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')]
+      .filter((el) => el.offsetParent !== null);
+    if (!f.length) return;
+    const first = f[0], last = f[f.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  };
+
+  linkBtn.onclick = async () => {
+    try {
+      await navigator.clipboard.writeText(profileUrl(sw.sid));
+      linkBtn.textContent = 'Link copied';
+    } catch {
+      linkBtn.textContent = 'Press Ctrl+C to copy';
+    }
+    setTimeout(() => { linkBtn.textContent = 'Copy link'; }, 2000);
+  };
+  closeBtn.onclick = () => close();
+  modal.onclick = (e) => { if (e.target === modal) close(); };
+  document.addEventListener('keydown', onKey);
+}
 
 boot();
 
