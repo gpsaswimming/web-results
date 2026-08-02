@@ -6,11 +6,14 @@
 // Parses the .sd3/.hy3 with swimparse under the GPSA league profile (which strips
 // birthdates at the parse boundary — the output is DOB-free and safe to publish),
 // slims it to what the renderer needs, and writes into <outDir> (default: invitationals/):
-//   <slug>.html   self-contained results page (renderer + data inlined — portable)
+//   <slug>.html   results page (renderer + data inlined; styles from the shared CDN)
 //   <slug>.json   the NormalizedMeet data feed (reusable; index tool ignores it)
 //
-// The renderer source (shell.html, app.css, app.js) lives in scripts/invitational_template/
-// and is inlined at build time, so published pages carry no external dependency on it.
+// Pass an existing <slug>.json as <meetFile> to re-render a published meet against the
+// current template without needing the original .sd3 — the JSON is the renderer contract.
+//
+// The renderer source (shell.html, app.js) lives in scripts/invitational_template/; styles
+// come from the shared CDN (web-css/gpsa-results.css).
 
 import { readFileSync, writeFileSync, mkdirSync, readdirSync, existsSync } from 'node:fs';
 import { dirname, resolve, join } from 'node:path';
@@ -78,16 +81,17 @@ function loadCuts(meetYear) {
 const outDir = resolve(outDirArg ?? join(__dirname, '..', 'invitationals'));
 const tplDir = join(__dirname, 'invitational_template');
 
-// --- parse (DOB-free) -------------------------------------------------------
+// Re-render path: a .json input is already the renderer contract, so skip parsing.
+const fromJson = /\.json$/i.test(meetFile);
 const text = readFileSync(resolve(meetFile), 'utf8');
-const meet = parse(text, { filename: meetFile, league: GPSA });
+const meet = fromJson ? null : parse(text, { filename: meetFile, league: GPSA });
 
 // --- City Meet cuts ---------------------------------------------------------
-const cuts = loadCuts(+meet.meet.startDate.slice(0, 4));
+const cuts = fromJson ? { map: null, path: null } : loadCuts(+meet.meet.startDate.slice(0, 4));
 
 // --- slim to the renderer contract -----------------------------------------
 const num = (t) => (t && t.seconds > 0 ? { t: t.text, s: t.seconds } : null);
-const data = {
+const data = fromJson ? JSON.parse(text) : {
   meet: {
     name: titleArg || meet.meet.name,
     startDate: meet.meet.startDate,
@@ -145,19 +149,19 @@ const data = {
 
 // --- write outputs into <outDir> --------------------------------------------
 mkdirSync(outDir, { recursive: true });
-writeFileSync(join(outDir, `${slug}.json`), JSON.stringify(data));
+// On a re-render the data feed is the input — leave it untouched.
+if (!fromJson) writeFileSync(join(outDir, `${slug}.json`), JSON.stringify(data));
 
-// Self-contained page: inline the renderer + data so the .html is fully portable.
-const css = readFileSync(join(tplDir, 'app.css'), 'utf8');
+// Inline the renderer + data. Styles are NOT inlined: the page links
+// css.gpsaswimming.org/gpsa-results.css, the same shared CDN every other GPSA
+// property uses, so a styling fix ships once instead of rebuilding every meet page.
 const js = readFileSync(join(tplDir, 'app.js'), 'utf8');
 const shell = readFileSync(join(tplDir, 'shell.html'), 'utf8');
 
-const page = shell
-  .replace('<link rel="stylesheet" href="app.css">', `<style>\n${css}\n</style>`)
-  .replace(
-    '<script type="module" src="app.js"></script>',
-    `<script>window.__MEET__ = ${JSON.stringify(data)};</script>\n<script type="module">\n${js}\n</script>`,
-  );
+const page = shell.replace(
+  '<script type="module" src="app.js"></script>',
+  `<script>window.__MEET__ = ${JSON.stringify(data)};</script>\n<script type="module">\n${js}\n</script>`,
+);
 
 writeFileSync(join(outDir, `${slug}.html`), page);
 
@@ -166,6 +170,9 @@ const drops = flat.filter((r) => r.status === 'ok' && r.seed && r.final && r.fin
 const cutCount = flat.filter((r) => r.cut).length;
 console.log(`✓ ${slug}: ${data.teams.length} teams, ${data.events.length} events, ` +
   `${flat.length} swims, ${drops} time drops`);
-console.log(`  cuts:    ${cuts.path ? `${cutCount} City Meet cuts (${cuts.path})` : 'none (no standards)'}`);
+console.log(`  cuts:    ${fromJson ? `${cutCount} carried in the data feed`
+  : cuts.path ? `${cutCount} City Meet cuts (${cuts.path})` : 'none (no standards)'}`);
+console.log(`  scored:  ${flat.some((r) => r.pts) ? 'yes — ribbon board'
+  : 'no — medal count'}${flat.some((r) => r.kind === 'relay' && r.pts) ? ', relays medal' : ''}`);
 console.log(`  page:    ${join(outDir, `${slug}.html`)}`);
-console.log(`  data:    ${join(outDir, `${slug}.json`)}`);
+if (!fromJson) console.log(`  data:    ${join(outDir, `${slug}.json`)}`);

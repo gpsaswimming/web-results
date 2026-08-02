@@ -124,7 +124,44 @@ noted there affect this code if resolved differently:
 
 ## Shared CSS
 
-All generated pages reference `https://css.gpsaswimming.org/gpsa-tools-common.css`. Do not add local CSS files.
+All generated pages reference the shared CDN by absolute URL — do not add local CSS files.
+
+- Directory indexes and season archives → `https://css.gpsaswimming.org/gpsa-tools-common.css`
+- Invitational results pages → `https://css.gpsaswimming.org/gpsa-results.css`
+
+`gpsa-results.css` lives in the **web-css** repo and is the only stylesheet for the invitational
+renderer. It is *not* inlined into the built pages, so a styling fix ships by pushing web-css —
+no rebuild of the meet HTML required. Changing the renderer's markup, though, does require a
+rebuild (see below).
+
+## Invitational results renderer
+
+Source: `scripts/invitational_template/` (`shell.html`, `app.js`) + `web-css/gpsa-results.css`.
+`build_invitational.mjs` inlines the JS and the meet data into each page.
+
+The renderer branches on the **data**, never on a config flag:
+
+| Signal | Effect |
+|---|---|
+| any result has `pts` | scored meet — hero leads with the champion, ribbon board replaces the medal panel, `Pts` column appears |
+| any **relay** result has `pts` | relay places get ribbon colors (City Meet). Summer Splash relays place but score nothing, so they stay plain |
+| `meet.cutsLabel` set | `CM` column appears |
+
+City Meet scores relays 18-14-12-10-8-6-4-2 to 8th and medals them like any other event;
+Summer Splash relays are exhibition. Deriving both from `pts` means a new meet renders
+correctly without anyone remembering to set something.
+
+**Re-rendering published meets after a template change:** pass the existing `.json` as the input —
+it is already the renderer contract, so the original `.sd3` isn't needed and the data feed is left
+untouched.
+
+```bash
+node scripts/build_invitational.mjs invitationals/CityMeet/2026-city-meet.json \
+  2026-city-meet invitationals/CityMeet
+```
+
+Any markup change in `app.js` means re-running that for all six published meets
+(4 City Meet, 2 Summer Splash).
 
 ---
 
