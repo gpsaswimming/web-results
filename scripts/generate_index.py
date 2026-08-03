@@ -9,7 +9,7 @@ OUTPUT_FILE = "index.html"
 # The title for the generated HTML page.
 PAGE_TITLE = "Directory Listing"
 # List of directory names to exclude from indexing.
-EXCLUDE_DIRS = ['.git', 'scripts', 'assets', 'resources', 'css', '2022']
+EXCLUDE_DIRS = ['.git', 'scripts', 'assets', 'resources', 'css', '2022', 'letters']
 # List of filenames to exclude from directory listings.
 EXCLUDE_FILES = ['CLAUDE.md', 'README.md', 'CNAME', '.gitignore', 'last_updated.txt']
 # File extensions to exclude from listings (e.g. data feeds that back a results page).
