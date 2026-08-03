@@ -19,9 +19,17 @@ preview/
 temp/
 temp_*/
 
-# Raw meet files
+# Raw meet files — these carry minors' birthdates and must never reach a public
+# repo. Deny every meet-file extension, not just the one we currently accept at
+# intake: the archive rebuild handles .hy3 invitational exports, and the parser
+# reads .cl2 too. This is the parachute for a path bug in the publish step, so it
+# is deliberately wider than what any tool is supposed to produce.
 *.sd3
 *.SD3
+*.hy3
+*.HY3
+*.cl2
+*.CL2
 *.zip
 *.ZIP
 
