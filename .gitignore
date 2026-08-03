@@ -34,3 +34,7 @@ last_updated.txt
 # Generated files — built at deploy time, never committed
 index.html
 scores.json
+
+# ...except the letters archive page, which is hand-authored, not a generated
+# directory listing. scripts/generate_index.py skips the letters/ folder.
+!letters/index.html
