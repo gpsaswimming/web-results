@@ -1,0 +1,42 @@
+name: no meet files
+
+# .gitignore is advisory: `git add -f` walks straight past it, and it does
+# nothing about a file that is already tracked. This check is the part that
+# actually holds.
+#
+# Raw meet files carry minors' birthdates. This repository is PUBLIC and is the
+# publish target the ingestion app layer writes to, so a path bug in that layer —
+# or a hand-run archive script pointed at the wrong directory — is the realistic
+# way one lands here. Nothing else would catch it.
+#
+# Same reasoning as the `npm pack --dry-run` step in the swimparse release
+# workflow: cheap, and the only thing standing between a mistake and a permanent
+# public record.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Fail if any meet file is tracked
+        run: |
+          # Checks what git is TRACKING, so it catches files committed with -f
+          # or added before the ignore rule existed.
+          FOUND=$(git ls-files | grep -iE '\.(sd3|hy3|cl2|zip)$' || true)
+          if [ -n "$FOUND" ]; then
+            echo "::error::Raw meet files are tracked in this public repository."
+            echo "These files carry minors' birthdates and must live only in the"
+            echo "private archive. Remove them from history before merging."
+            echo "$FOUND" | sed 's/^/  /'
+            exit 1
+          fi
+          echo "No meet files tracked."
