@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - preview
   workflow_dispatch:
 
 permissions:
@@ -64,10 +65,19 @@ jobs:
           python scripts/test_inject_analytics.py
           python scripts/inject_analytics.py .
 
+      # The Cloudflare project's production branch is `main`, so passing the
+      # current branch name means main deploys to production and anything else
+      # (i.e. `preview`) lands as a preview deployment, aliased at
+      # <branch>.gpsa-results.pages.dev. Nothing about production changes.
+      #
+      # `preview` is a DISPOSABLE scratch surface, not a long-lived branch: it is
+      # reset from main after each cutover. Merging several changes into it means
+      # you validate the composite rather than the change you are about to ship,
+      # so put one significant change on it at a time.
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v4
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy . --project-name=gpsa-results --branch=main
+          command: pages deploy . --project-name=gpsa-results --branch=${{ github.ref_name }}
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
