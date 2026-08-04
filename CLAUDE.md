@@ -73,8 +73,13 @@ to show each dual meet's final score and a link to its result page.
   drift e.g. Wythe = `GWRA`/`WYTHE`), `home_score`/`away_score`, and `url`.
 - Built at deploy time from the committed HTML and gitignored (like `index.html`) —
   self-healing, so adding a result the normal way keeps the feed current with no extra step.
-- `_headers` adds `Access-Control-Allow-Origin: https://meet-schedule.gpsaswimming.org`
-  so the schedule site can fetch it cross-origin.
+- `_headers` adds `Access-Control-Allow-Origin: *` so the schedule site and the Rules
+  Committee portal (`submit.gpsaswimming.org`) can both fetch it cross-origin. It was
+  scoped to the schedule site alone until a second consumer appeared; `_headers` takes
+  one static value per header and cannot reflect an origin, so two named origins is not
+  expressible. `*` grants nothing new — these files already serve unauthenticated to any
+  client that asks, so it widens only what *browser JavaScript on another origin* may
+  read.
 
 ---
 
