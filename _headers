@@ -1,7 +1,18 @@
 # Cloudflare Pages headers (https://developers.cloudflare.com/pages/configuration/headers/)
 
-# Allow the meet-schedule site to fetch per-season scores feeds cross-origin.
+# Allow other GPSA sites to fetch the per-season scores feeds cross-origin.
 # These are static public JSON files; a plain GET is a CORS "simple request"
 # (no preflight), so this single response header is the entire CORS surface.
+#
+# There are now two consumers — the meet-schedule site, and the Rules Committee
+# portal dashboard at submit.gpsaswimming.org. `_headers` takes one static value
+# per header and cannot reflect an origin, so two named origins is not
+# expressible; `*` is the only mechanism that serves both.
+#
+# It grants nothing new. These files are already served unauthenticated to any
+# client that asks — plain curl gets a 200 — so `*` widens only what *browser
+# JavaScript on another origin* may read, not who may read it. If that ever
+# stops being true, the fix is to stop publishing the file, not to narrow this
+# header.
 /*/scores.json
-  Access-Control-Allow-Origin: https://meet-schedule.gpsaswimming.org
+  Access-Control-Allow-Origin: *
